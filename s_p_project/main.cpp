@@ -8,22 +8,6 @@ using namespace std;
 
 
 
-struct seats
-{
-	int rows;
-	char columns;
-};
-
-//plane struct
-struct plane
-{
-    string model;
-    int code;
-    
-};
-
-
-
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
