@@ -7,6 +7,7 @@
 #include <iostream>;
 using namespace std;
 
+
 struct mydate //structure of date
 {
     int day, month;
@@ -22,7 +23,7 @@ struct plane //structure of plane
     string plane_model;
     int number_of_Rows, plane_code;
     char seat_letters;
-};
+} planes [10]; //  مطلوب عشر طيارات 
 
 struct flight //structure of flight
 {
@@ -32,7 +33,7 @@ struct flight //structure of flight
     mytime departure_time, arrival_time;
     int Flight_Code;
     vector<vector<string>> seats_status; //2d vector status of seats in the plane ("name of passenger" for busy, "Available"  for available)
-};
+} flights [20]; // مطلوب 20 رحله
 
 struct admin //structure of flight
 {
