@@ -23,7 +23,7 @@ struct plane //structure of plane
     string plane_model;
     int number_of_Rows, plane_code;
     char seat_letters;
-} planes [10]; //  مطلوب عشر طيارات 
+};
 
 struct flight //structure of flight
 {
@@ -38,7 +38,7 @@ struct flight //structure of flight
 struct admin //structure of flight
 {
     string username, password;
-};
+}admins[10];//الرقم ده من عندي كدا
 
 
 struct user //structure of user
