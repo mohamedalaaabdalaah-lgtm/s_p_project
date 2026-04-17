@@ -33,12 +33,12 @@ struct flight //structure of flight
     mytime departure_time, arrival_time;
     int Flight_Code;
     vector<vector<string>> seats_status; //2d vector status of seats in the plane ("name of passenger" for busy, "Available"  for available)
-} flights [20]; // مطلوب 20 رحله
+} ; 
 
 struct admin //structure of flight
 {
     string username, password;
-}admins[10];//الرقم ده من عندي كدا 
+};
 
 
 struct user //structure of user
@@ -61,8 +61,8 @@ struct Ticket//structure of ticket ( passport_id<<32b43  ,  flight<<583  ,   pla
 
 
 //global variables
-vector <plane> planes_list;//vectors of planes to able to add plans by admin(dynamicaly)
-vector <flight> flight_list;//vectors of flights to able to add flights by admin(dynamicaly)
+vector <plane> planes_list(10);//vectors of planes to able to add plans by admin(dynamicaly)
+vector <flight> flight_list(20);//vectors of flights to able to add flights by admin(dynamicaly)
 vector <Ticket> tickets_list;//vectors of tickets to able to add tickets by user(dynamicaly)
 
 
