@@ -13,5 +13,7 @@ public:
 
 private:
     Ui::s_p_projectClass ui;
+private slots:
+    void on_btn_enter_clicked();
 };
 
