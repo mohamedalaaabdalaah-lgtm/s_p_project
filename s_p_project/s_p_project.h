@@ -13,7 +13,18 @@ public:
 
 private:
     Ui::s_p_projectClass ui;
+private:
+    struct Admin {
+        QString username;
+        QString password;
+    };
+    Admin admins[2]; 
 private slots:
     void on_btn_enter_clicked();
+    void on_btn_choose_user_clicked(); 
+    void on_btn_choose_admin_clicked();
+    void on_btn_login_submit_clicked();
+    void on_btn_addplane_clicked();
+    void on_btn_save_plane_clicked();
 };
 

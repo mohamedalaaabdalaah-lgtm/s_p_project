@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>437</height>
+    <width>605</width>
+    <height>447</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,14 +43,37 @@ QPushButton#btn_enter:hover {
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>0</x>
       <y>10</y>
-      <width>571</width>
-      <height>381</height>
+      <width>591</width>
+      <height>391</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+     <string notr="true">/* Style for the buttons */
+QPushButton {
+    background-color: #c5a059; /* That gold/coffee color */
+    color: white;              /* Button text color */
+    border-radius: 15px;       /* Round corners */
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 200px;
+}
+
+/* Change color when hovering over the button */
+QPushButton:hover {
+    background-color: #b38f4d; 
+}
+
+/* Style for the Label text */
+QLabel {
+    color: black;              /* Clean black text */
+    font-size: 20px;
+    font-family: &quot;Segoe UI&quot;;
+    font-weight: bold;
+    margin-bottom: 20px;
+}</string>
     </property>
     <property name="currentIndex">
      <number>0</number>
@@ -62,10 +85,10 @@ QPushButton#btn_enter:hover {
      <widget class="QPushButton" name="btn_enter">
       <property name="geometry">
        <rect>
-        <x>240</x>
+        <x>160</x>
         <y>160</y>
-        <width>82</width>
-        <height>36</height>
+        <width>220</width>
+        <height>51</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -79,9 +102,9 @@ QPushButton#btn_enter:hover {
       <property name="geometry">
        <rect>
         <x>150</x>
-        <y>100</y>
+        <y>80</y>
         <width>275</width>
-        <height>32</height>
+        <height>61</height>
        </rect>
       </property>
       <property name="text">
@@ -89,8 +112,248 @@ QPushButton#btn_enter:hover {
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="login_page"/>
-    <widget class="QWidget" name="signup_page"/>
+    <widget class="QWidget" name="admin_or_user">
+     <widget class="QLabel" name="lbl_a_or_u">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>291</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;are you an admin or a user?&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::TextFormat::RichText</enum>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_choose_admin">
+      <property name="geometry">
+       <rect>
+        <x>329</x>
+        <y>60</y>
+        <width>220</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>admin</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_choose_user">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>120</y>
+        <width>220</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>user</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="login_page">
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>0</y>
+        <width>121</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;login&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txt_login_username">
+      <property name="geometry">
+       <rect>
+        <x>172</x>
+        <y>93</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>enter username</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txt_login_pass">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>150</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>please enter password</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_login_submit">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>210</y>
+        <width>220</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>login</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_error_msg">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>280</y>
+        <width>271</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="admin_menu">
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>161</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;admin menu:-&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_addplane">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>50</y>
+        <width>220</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>add plane</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>110</y>
+        <width>220</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>add flight</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>170</y>
+        <width>220</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>edit flight</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>230</y>
+        <width>220</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="addplane_page">
+     <widget class="QLineEdit" name="txt_add_model">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>60</y>
+        <width>171</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>211</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:15pt;&quot;&gt;enter plane model : &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>160</y>
+        <width>191</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:15pt;&quot;&gt;enter plane code :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txt_add_code">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>170</y>
+        <width>171</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_save_plane">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>280</y>
+        <width>220</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string> save airplane</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -98,7 +361,7 @@ QPushButton#btn_enter:hover {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
+     <width>605</width>
      <height>21</height>
     </rect>
    </property>

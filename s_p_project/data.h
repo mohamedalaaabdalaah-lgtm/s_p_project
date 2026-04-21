@@ -92,7 +92,7 @@ extern ticket* tickets_list;//dynamic array of tickets to able to add tickets by
 
  
 
-extern admin admins[];
-extern model_of_plane models[];;//ده رقم انواع الطائرات الي عندنا
+extern admin admins[10];
+extern model_of_plane models[];//ده رقم انواع الطائرات الي عندنا
 
 #endif

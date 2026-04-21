@@ -6,7 +6,24 @@
 #include <string>
 using namespace std;
 
+//new add plane function to use with giu
+void add_plane_gui(string model, int code)
+{
+    plane* ptr = new plane();
+    ptr->plane_model = model;
+    ptr->plane_code = code;
 
+    for (int i = 0; i < 5; i++) {
+        if (models[i].plane_model == ptr->plane_model) {
+            ptr->number_of_rows = models[i].number_of_row;
+            ptr->number_of_col = models[i].number_of_col;
+            ptr->seat_letters = models[i].seat_letters;
+        }
+    }
+    plane_list.push_back(*ptr);
+    delete ptr;
+}
+//---------------------------------------
 void add_plane()
 {
     plane* ptr = new plane();
