@@ -9,6 +9,15 @@
 using namespace std;
 
 
+struct model_of_plane //structure of model of plane
+{
+    string plane_model;
+    int number_of_row;//هتتغير حسب نوع الطياره
+    int number_of_col;//هتتغير حسب نوع الطياره
+    string seat_letters;
+
+};
+
 struct mydate //structure of date
 {
     int day;
@@ -24,9 +33,12 @@ struct mytime //structure of time
 struct plane //structure of plane
 {
     string plane_model;
-    int number_of_rows;
     int plane_code;
-    char** seats_p; // 2d dynamic array by pointers
+    int number_of_rows;//هتتغير حسب نوع الطياره
+    int number_of_col;//هتتغير حسب نوع الطياره
+    string seat_letters;//هتتغير حسب نوع الطياره 
+
+
 };
 
 struct flight //structure of flight
@@ -40,7 +52,7 @@ struct flight //structure of flight
     mytime departure_time;
     mytime arrival_time;
     int flight_code;
-    char** seats_f; // 2d dynamic array by pointers
+    int for_planecode;//ده عشان كل رحله تبقي يشاور علي طيارتها 
 };
 
 struct admin //structure of admin
@@ -66,8 +78,8 @@ struct ticket//structure of ticket ( passport_id<<32b43  ,  flight<<583  ,   pla
     int plane_code;
     int seat_row;
     char seat_letter;
+    string* id_passport;//ده عشان كل تذكره يبقي ليها سهم يشاور علي اليوزر اللي حجز بيه
 };
-
 
 
 //global variables
@@ -80,7 +92,7 @@ extern ticket* tickets_list;//dynamic array of tickets to able to add tickets by
 
  
 
-extern admin admins[10];//الرقم ده من عندي كدا
-
+extern admin admins[];
+extern model_of_plane models[];;//ده رقم انواع الطائرات الي عندنا
 
 #endif

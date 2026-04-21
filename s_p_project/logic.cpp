@@ -10,31 +10,32 @@ using namespace std;
 void add_plane()
 {
     plane* ptr = new plane();
+    bool model_found = false;
     cout << "\n Enter the plane model : \n ";
     cin >> (*ptr).plane_model;
 
-
-    cout << "\n Enter the plane code : \n ";
-    cin >> (*ptr).plane_code;
-
-
-    cout << "\n Enter the number of Rows :\n  ";
-    cin >> (*ptr).number_of_rows;
-
-
-    cout << "\n  add plane is done \n";
-
-
-    //2d dynamic array of seats 
-	(*ptr).seats_p = new char * [(*ptr).number_of_rows];
-    for (int i = 0; i < (*ptr).number_of_rows; i++)
+    for (int i = 0; i < 5; i++)//اللووب دي عشان تربط وتحط الصفوف والاعمده بتاعت نوع الطياره الي الادمن دخلها 
     {
-        (*ptr).seats_p[i] = new char[10];//10 because we have 10 seats in each row (A,B,C,D,E,F,G,H,J,K)
-        for (int j = 0; j < 10; j++)
+        if (models[i].plane_model == (*ptr).plane_model)
         {
-			(*ptr).seats_p[i][j] = 'O';//O for available seat  >>     //all seats are available at the beginning
-		}
-	}
+            model_found = true;
+            (*ptr).number_of_rows = models[i].number_of_row;
+            (*ptr).number_of_col = models[i].number_of_col;
+            (*ptr).seat_letters = models[i].seat_letters;
+
+            cout << "\n Enter the plane code : \n ";
+            cin >> (*ptr).plane_code;
+
+        }
+    }
+    if (model_found == false)
+    {
+        cout << "\n this model not found , try agin متقرفناش \n";
+    }
+
+
+
+
 
 
     plane_list.push_back(*ptr);//add values from dynamic var to vector 
@@ -49,6 +50,7 @@ void add_plane()
 void update_plane()
 {
     bool search = false;
+    bool model_found = false;
     int input_code;
     cout << "\n Enter the code of the plane you want to modify : \n";
     cin >> input_code;
@@ -60,181 +62,337 @@ void update_plane()
             cout << "\n Enter the new plane model : \n ";
             cin >> plane_list[i].plane_model;
 
-
-            cout << "\n Enter the new plane code : \n ";
-            cin >> plane_list[i].plane_code;
-
-            int old_rows = plane_list[i].number_of_rows;//to check in new number of rows
-            
-            cout << "\n Enter the new number of Rows :\n  ";
-            cin >> plane_list[i].number_of_rows;
-
-            if (old_rows = plane_list[i].number_of_rows)
+            for (int j = 0; j < 5; j++)//عشان نعدل الصفوف والاعمده علي حسب النوع الجديد 
             {
-            }
-            else
-            {
-                for (int j = 0; j < old_rows; j++)
+                if (models[j].plane_model == plane_list[i].plane_model)
                 {
-					delete[] plane_list[i].seats_p[j];//delete old rows
+                    model_found = true;
+                    plane_list[i].number_of_rows = models[j].number_of_row;
+                    plane_list[i].number_of_col = models[j].number_of_col;
+                    plane_list[i].seat_letters = models[j].seat_letters;
+                    cout << "\n Enter the new plane code : \n ";
+                    cin >> plane_list[i].plane_code;
+                    cout << " updated successfully \n";
+                    break;
                 }
-                 delete[] plane_list[i].seats_p;//delete old row pointers from memory
-
-
-				 //2d dynamic array of seats with new number of rows
-                 //هكمل هنا ليسا
-
-
-
-
+                else
+                {
+                    model_found = false;
+                }
 
             }
 
-           
 
-
-            cout << " updated successfully \n";
         }
 
 
     }
+
     if (search == false)
     {
         cout << " this code not found  \n";
     }
+    else if (model_found == false)
+    {
+        cout << "\n this model not found   \n";
+    }
 
 }
+
 
 void add_flight()
 
 {
+
     flight* ptr = new flight();
-    cout << "\n Enter the flight number :\n ";
-    cin >> (*ptr).flight_code;
+    int plane_code_for_flight_test;
+    bool found = false;
 
-    ///////////////////////////////////////////
+    cout << "\n Enter the code of the plane for this flight :\n ";
+    cin >> plane_code_for_flight_test;
 
-    cout << "\n Enter the departure city :\n ";
-    cin >> (*ptr).departure_city;
+    for (int i = 0; i < plane_list.size(); i++)//اللوب دي عشان تدور علي اكواد الطائرات هل الكود الي عايز يربطه بالطاءره ده موجود ولا لا 
+    {
+        if (plane_list[i].plane_code == plane_code_for_flight_test)
+        {
+            found = true;
+            cout << "\n Enter the flight code :\n ";
+            cin >> (*ptr).flight_code;
 
-    cout << "\n Enter the arrival city :\n ";
-    cin >> (*ptr).arrival_city;
+            ///////////////////////////////////////////
 
-    ///////////////////////////////////////////////
+            cout << "\n Enter the departure city :\n ";
+            cin >> (*ptr).departure_city;
 
-    cout << "\n Enter the departure airport :\n ";
-    cin >> (*ptr).departure_airport;
+            cout << "\n Enter the arrival city :\n ";
+            cin >> (*ptr).arrival_city;
 
-    cout << "\n Enter the arrival airport :\n ";
-    cin >> (*ptr).arrival_airport;
+            ///////////////////////////////////////////////
 
-    ///////////////////////////////////////////////////
+            cout << "\n Enter the departure airport :\n ";
+            cin >> (*ptr).departure_airport;
 
-    cout << "\n Enter the Day of departure date :\n ";
-    cin >> (*ptr).departure_date.day;
+            cout << "\n Enter the arrival airport :\n ";
+            cin >> (*ptr).arrival_airport;
 
-    cout << "\n Enter the month of departure date :\n ";
-    cin >> (*ptr).departure_date.month;
+            ///////////////////////////////////////////////////
 
-    cout << "\n Enter the Day of arrival date :\n ";
-    cin >> (*ptr).arrival_date.day;
+            cout << "\n Enter the Day of departure date :\n ";
+            cin >> (*ptr).departure_date.day;
 
-    cout << "\n Enter the month of arrival date :\n ";
-    cin >> (*ptr).arrival_date.month;
+            cout << "\n Enter the month of departure date :\n ";
+            cin >> (*ptr).departure_date.month;
 
-    ////////////////////////////////////////////////////////
+            cout << "\n Enter the Day of arrival date :\n ";
+            cin >> (*ptr).arrival_date.day;
 
-    cout << "\n Enter the hours of departure time :\n ";
-    cin >> (*ptr).departure_time.hours;
+            cout << "\n Enter the month of arrival date :\n ";
+            cin >> (*ptr).arrival_date.month;
 
-    cout << "\n Enter the minutes of departure time :\n ";
-    cin >> (*ptr).departure_time.minutes;
+            ////////////////////////////////////////////////////////
 
-    cout << "\n Enter the hours of arrival time :\n ";
-    cin >> (*ptr).arrival_time.hours;
+            cout << "\n Enter the hours of departure time :\n ";
+            cin >> (*ptr).departure_time.hours;
 
-    cout << "\n Enter the minutes of arrival time :\n ";
-    cin >> (*ptr).arrival_time.minutes;
+            cout << "\n Enter the minutes of departure time :\n ";
+            cin >> (*ptr).departure_time.minutes;
 
-    ////////////////////////////////////////////////////////
+            cout << "\n Enter the hours of arrival time :\n ";
+            cin >> (*ptr).arrival_time.hours;
+
+            cout << "\n Enter the minutes of arrival time :\n ";
+            cin >> (*ptr).arrival_time.minutes;
+
+            ////////////////////////////////////////////////////////
+
+
+            (*ptr).for_planecode = plane_list[i].plane_code;//نوصل الرحله بالطائره
+
+
+            flight_list.push_back(*ptr);//add values from dynamic var to vector 
+
+            //delete dynamic var 
+            delete ptr;
+            ptr = NULL;
+
+        }
+    }
+    if (found == false)
+    {
+        cout << "\n this plane code not found, please add the plane first \n";
+
+    }
+    else
+    {
+        cout << " added successfully \n";
+    }
 
 
 
-    flight_list.push_back(*ptr);//add values from dynamic var to vector 
-
-    //delete dynamic var 
-    delete ptr;
-    ptr = NULL;
 
 
 }
 
+
 void update_flight()
 {
     bool search = false;
+    bool found = false;
     int input_code;
+    int plane_code_for_flight_test;
+
     cout << "\n Enter the code of the flight you want to modify \n";
     cin >> input_code;
-    for (int i = 0; i < flight_list.size(); i++)
+    for (int i = 0; i < flight_list.size(); i++)// تدور علي هل الرحله موجوده 
     {
         if (input_code == flight_list[i].flight_code)
         {
             search = true;
-            cout << "\n Update the new flight code :\n ";
-            cin >> flight_list[i].flight_code;
+            cout << "\n Enter the new code of the plane for this flight :\n ";
+            cin >> plane_code_for_flight_test;
 
-            cout << "\n Update the new departure city :\n ";
-            cin >> flight_list[i].departure_city;
-
-            cout << "\n Update the new arrival city :\n ";
-            cin >> flight_list[i].arrival_city;
-
-
-
-            cout << "\n Update the new departure airport :\n ";
-            cin >> flight_list[i].departure_airport;
-
-            cout << "\n Update the arrival airport :\n ";
-            cin >> flight_list[i].arrival_airport;
+            for (int j = 0; j < plane_list.size(); j++)//اللوب دي عشان تدور علي اكواد الطائرات هل الكود الي عايز يربطه بالطاءره ده موجود ولا لا 
+            {
+                if (plane_list[j].plane_code == plane_code_for_flight_test)
+                {
+                    found = true;
+                    flight_list[i].for_planecode = plane_list[j].plane_code;//نوصل الرحله بالطائره الجديدة
 
 
+                    cout << "\n Update the new flight code :\n ";
+                    cin >> flight_list[i].flight_code;
 
-            cout << "\n Update the new Day of departure date :\n ";
-            cin >> flight_list[i].departure_date.day;
+                    cout << "\n Update the new departure city :\n ";
+                    cin >> flight_list[i].departure_city;
 
-            cout << "\n Update the new month of departure date :\n ";
-            cin >> flight_list[i].departure_date.month;
-
-            cout << "\n Update the new Day of arrival date :\n ";
-            cin >> flight_list[i].arrival_date.day;
-
-            cout << "\n Update the new month of arrival date :\n ";
-            cin >> flight_list[i].arrival_date.month;
+                    cout << "\n Update the new arrival city :\n ";
+                    cin >> flight_list[i].arrival_city;
 
 
 
-            cout << "\n Update the new hours of departure time :\n ";
-            cin >> flight_list[i].departure_time.hours;
+                    cout << "\n Update the new departure airport :\n ";
+                    cin >> flight_list[i].departure_airport;
 
-            cout << "\n Update the new minutes of departure time :\n ";
-            cin >> flight_list[i].departure_time.minutes;
-
-            cout << "\n Update the new hours of arrival time :\n ";
-            cin >> flight_list[i].arrival_time.hours;
-
-            cout << "\n Update the new minutes of arrival time :\n ";
-            cin >> flight_list[i].arrival_time.minutes;
+                    cout << "\n Update the arrival airport :\n ";
+                    cin >> flight_list[i].arrival_airport;
 
 
 
-            cout << "\n Update the Flight code \n ";
-            cin >> flight_list[i].flight_code;
+                    cout << "\n Update the new Day of departure date :\n ";
+                    cin >> flight_list[i].departure_date.day;
+
+                    cout << "\n Update the new month of departure date :\n ";
+                    cin >> flight_list[i].departure_date.month;
+
+                    cout << "\n Update the new Day of arrival date :\n ";
+                    cin >> flight_list[i].arrival_date.day;
+
+                    cout << "\n Update the new month of arrival date :\n ";
+                    cin >> flight_list[i].arrival_date.month;
+
+
+
+                    cout << "\n Update the new hours of departure time :\n ";
+                    cin >> flight_list[i].departure_time.hours;
+
+                    cout << "\n Update the new minutes of departure time :\n ";
+                    cin >> flight_list[i].departure_time.minutes;
+
+                    cout << "\n Update the new hours of arrival time :\n ";
+                    cin >> flight_list[i].arrival_time.hours;
+
+                    cout << "\n Update the new minutes of arrival time :\n ";
+                    cin >> flight_list[i].arrival_time.minutes;
+
+                }
+            }
+
+
+
+
+
         }
     }
-    if (search == false)
+    if (search == false || found == false)
     {
         cout << " this code not found  \n";
     }
+
+}
+
+
+
+void search_plane()//function to search for plane by its code by admins.
+{
+    int search_plane_code;
+    int printed_index = -100;//اي رقم عشان اتحقق بس يارجاله
+
+    cout << "\n Search the plane code : \n";
+    cin >> search_plane_code;
+
+    for (int i = 0; i < plane_list.size(); i++)
+    {
+        if (plane_list[i].plane_code == search_plane_code)
+        {
+            printed_index = i;
+            break;
+        }
+    }
+    if (printed_index == -100)
+    {
+        cout << "\n this code not found \n";
+    }
+    else
+    {
+        cout << "\n Airplane information : \n";
+
+
+        cout << "\n plane model :  ";
+        cout << plane_list[printed_index].plane_model;
+
+        cout << "\n plane code :  ";
+        cout << plane_list[printed_index].plane_code;
+
+        cout << "\n  number of Rows :  ";
+        cout << plane_list[printed_index].number_of_rows;
+
+        cout << "\n the seat_letters : ";
+        cout << plane_list[printed_index].seat_letters;
+    }
+
+
+}
+
+
+
+void search_flight()
+{
+    int Search_flight_code;
+    int printed_index;
+
+    cout << "\n Search the flight code : ";
+    cin >> Search_flight_code;
+
+    for (int i = 0; i < flight_list.size(); i++)
+    {
+        if (flight_list[i].flight_code == Search_flight_code)
+        {
+            printed_index = i;
+            break;
+
+        }
+        else
+        {
+            printed_index = -100;//اي رقم عشان اتحقق بس يارجاله
+        }
+    }
+
+    if (printed_index == -100)
+    {
+        cout << "\n this code not found \n";
+    }
+    else
+    {
+        cout << "\n  the departure city : ";
+        cout << flight_list[printed_index].departure_city;
+
+        cout << "\n  the arrival city : ";
+        cout << flight_list[printed_index].arrival_city;
+
+
+        cout << "\n  the departure airport : ";
+        cout << flight_list[printed_index].departure_airport;
+
+        cout << "\n  the arrival airport : ";
+        cout << flight_list[printed_index].arrival_airport;
+
+
+        cout << "\n  the date of  departure (day:month) : ";
+        cout << flight_list[printed_index].departure_date.day << ":";
+        cout << flight_list[printed_index].departure_date.month;
+
+        cout << "\n  the arrival date (day:month) : ";
+        cout << flight_list[printed_index].arrival_date.day << ":";
+        cout << flight_list[printed_index].arrival_date.month;
+
+
+        cout << "\n  the time of departure (hours:minutes) : ";
+        cout << flight_list[printed_index].departure_time.hours << ":";
+        cout << flight_list[printed_index].departure_time.minutes;
+
+        cout << "\n  the time of arrival (hours:minutes) : ";
+        cout << flight_list[printed_index].arrival_time.hours << ":";
+        cout << flight_list[printed_index].arrival_time.minutes;
+
+
+        cout << "\n  the Flight code : ";
+        cout << flight_list[printed_index].flight_code;
+
+        cout << "\n  the plane code for this flight : ";
+        cout << flight_list[printed_index].for_planecode;
+
+    }
+
 
 }
 
@@ -250,7 +408,7 @@ bool login()
         cin >> username;
         cout << "\n Please enter your password : \n";
         cin >> password;
-        for (int i = 0; i < size(admins); i++)
+        for (int i = 0; i < 10; i++)
         {
             if (username == admins[i].username && password == admins[i].password)
             {
@@ -278,8 +436,8 @@ void admin_path()
 
 
     // مجرد ارقام تجربه 
-    admins[0].username = "mohamedalaa";
-    admins[0].password = "mohamedalaa@123";
+    admins[0].username = "m";
+    admins[0].password = "m@123";
     admins[1].username = "mohamedhany";
     admins[1].password = "mohamedhany@123";
 

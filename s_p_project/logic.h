@@ -10,8 +10,8 @@ void update_flight();
 bool login();
 void admin_path();
 void start();
-
-
+void search_flight();
+void search_plane();
 
 
 #endif
