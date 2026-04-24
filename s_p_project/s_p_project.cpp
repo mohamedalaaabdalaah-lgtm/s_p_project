@@ -3,6 +3,9 @@
 #include <QStackedWidget>
 #include "logic.h"
 #include "data.h"
+#include <QDebug>
+
+#include <QMessageBox>
 
 s_p_project::s_p_project(QWidget *parent)
     : QMainWindow(parent)
@@ -37,9 +40,9 @@ s_p_project::s_p_project(QWidget *parent)
     //باقي الكراسي هعملهم  لما ادقن المصفوفه الديناميكيه
 
     ui.stackedWidget->setCurrentIndex(0); // welcome page
-    ui.lbl_welcome->setText("Welcome to Egypt airlines");
-    ui.btn_enter->setText("get started");
-    ui.lbl_a_or_u->setText("are you an admin");
+    ui.lbl_welcome->setText("Welcome to Egypt Airlines");
+    ui.btn_enter->setText("Get Started");
+    ui.lbl_a_or_u->setText("Are you an Admin or User ?");
 }
 
 s_p_project::~s_p_project()
@@ -87,9 +90,23 @@ void s_p_project::on_btn_login_submit_clicked()
     }
 
 }
+void s_p_project::on_btn_back_admin_clicked()     //   to back login page   //
+{
+
+    ui.stackedWidget->setCurrentWidget(ui.login_page);
+}
+
+
+void s_p_project::on_btn_back_login_clicked()     //  to back admin or user   //
+{
+    
+    ui.stackedWidget->setCurrentWidget(ui.admin_or_user);
+}
+
+
 //-----------------------------------------------
 void s_p_project::on_btn_addplane_clicked() {
-    ui.stackedWidget->setCurrentIndex(4);//from menu to addplane page
+    ui.stackedWidget->setCurrentWidget(ui.addplane_page);//from menu to addplane page
 }
 void s_p_project::on_btn_save_plane_clicked()
 {
@@ -98,12 +115,76 @@ void s_p_project::on_btn_save_plane_clicked()
 
     add_plane_gui(model, code);
 
-    
+    QMessageBox::information(this, "Success", "Plane added successfully!");
     ui.txt_add_model->clear();
     ui.txt_add_code->clear();
-    ui.stackedWidget->setCurrentIndex(3); // Back to Admin Menu
+    ui.stackedWidget->setCurrentWidget(ui.admin_menu);// Back to Admin Menu   المفروض احنا مش محتاجين السطر ده لان زرار الرجوع هيشتغل مكانه
+}
+
+void s_p_project::on_btn_back_addplane_clicked()    //  back to admin menu   //
+{
+    
+    ui.stackedWidget->setCurrentWidget(ui.admin_menu);
+}
+
+//---------------------------------------------------------------------// Add Flight 
+
+void s_p_project::on_btn_add_flight_clicked()
+{
+    ui.stackedWidget->setCurrentWidget(ui.add_flight_page);
+}
+
+void s_p_project::on_btn_save_flight_clicked()
+{
+    
+    //سحب الأكواد
+    
+    int planecode = ui.txt_plane_code->text().toInt();
+    int flightcode = ui.txt_flight_code->text().toInt();
+
+
+    //سحب المدن والمطارات
+    
+    string departcity = ui.cmb_depart_city->currentText().toStdString();
+    string arrivalcity = ui.cmb_arrival_city->currentText().toStdString();
+    string departair = ui.cmb_depart_air->currentText().toStdString();
+    string arrivalair = ui.cmb_arrival_air->currentText().toStdString();
+
+
+    //سحب التواريخ
+
+    int depDay = ui.date_depart->date().day();
+    int depMonth = ui.date_depart->date().month();
+    int arrDay = ui.date_arrival->date().day();
+    int arrMonth = ui.date_arrival->date().month();
+
+    //سحب الوقت 
+    int depHour = ui.time_depart->time().hour();
+    int depMinute = ui.time_depart->time().minute();
+    int arrHour = ui.time_arrival->time().hour();
+    int arrMinute = ui.time_arrival->time().minute();
+
+    bool isSuccess = add_flight_gui(planecode, flightcode, departcity, arrivalcity, departair, arrivalair,
+        depDay, depMonth, arrDay, arrMonth,
+        depHour, depMinute, arrHour, arrMinute);
+
+    if (isSuccess == true)
+    {
+        QMessageBox::information(this, "Success","The trip was successfully added");
+        ui.txt_plane_code->clear();
+        ui.txt_flight_code->clear();
+    }
+    else
+    {
+        QMessageBox::critical(this, "Error","The flight code is not available, add the first flight.");
+    }
 }
 
 
+void s_p_project::on_btn_back_flight_clicked()       //  back to admin menu  //
+{
+    ui.stackedWidget->setCurrentWidget(ui.admin_menu);
+}
 
 
+//---------------------------------------------------------------//

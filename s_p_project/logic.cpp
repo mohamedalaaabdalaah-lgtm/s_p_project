@@ -6,7 +6,7 @@
 #include <string>
 using namespace std;
 
-//new add plane function to use with giu
+//new add plane function to use with gui
 void add_plane_gui(string model, int code)
 {
     plane* ptr = new plane();
@@ -115,7 +115,52 @@ void update_plane()
     }
 
 }
+//------------------------------------------------------------------------//
 
+bool add_flight_gui(int planecode, int flightcode, string depCity, string arrCity, string depAirport, string arrAirport,
+    int depDay, int depMonth, int arrDay, int arrMonth, int depHour, int depMinute, int arrHour, int arrMinute)
+
+{
+    flight* ptr = new flight();
+    bool found = false;
+
+    for (int i = 0; i < plane_list.size(); i++)
+    {
+        if (plane_list[i].plane_code == planecode)
+        {
+            found = true;
+            ptr->flight_code = flightcode;
+            ptr->departure_city = depCity;
+            ptr->arrival_city = arrCity;
+            ptr->departure_airport = depAirport;
+            ptr->arrival_airport = arrAirport;
+
+            ptr->departure_date.day = depDay;
+            ptr->departure_date.month = depMonth;
+
+            ptr->arrival_date.day = arrDay;
+            ptr->arrival_date.month = arrMonth;
+
+            ptr->departure_time.hours = depHour;
+            ptr->departure_time.minutes = depMinute;
+
+            ptr->arrival_time.hours = arrHour;
+            ptr->arrival_time.minutes = arrMinute;
+
+            // 4. أهم خطوة: بنربط الرحلة دي بكود الطيارة اللي لقيناها
+            ptr->for_planecode = plane_list[i].plane_code;
+
+            // 5. بنضيف الرحلة الجديدة في لستة الرحلات الأساسية
+            flight_list.push_back(*ptr);
+
+            // بنوقف اللوب خلاص ملناش دعوة بباقي الطيارات
+            break;
+        }
+    }
+    delete ptr;
+    return found;
+}
+//-----------------------------------------------------------------------------------//
 
 void add_flight()
 
