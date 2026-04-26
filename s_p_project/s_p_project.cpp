@@ -43,6 +43,9 @@ s_p_project::s_p_project(QWidget *parent)
     ui.lbl_welcome->setText("Welcome to Egypt Airlines");
     ui.btn_enter->setText("Get Started");
     ui.lbl_a_or_u->setText("Are you an Admin or User ?");
+    ////table shit/////
+    ui.table_flights->setAlternatingRowColors(true);
+    ui.table_flights->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 s_p_project::~s_p_project()
@@ -188,3 +191,113 @@ void s_p_project::on_btn_back_flight_clicked()       //  back to admin menu  //
 
 
 //---------------------------------------------------------------//
+
+
+//view flight
+void s_p_project::show_flights_in_table()
+{
+    
+    ui.table_flights->setRowCount(0);
+
+    
+    for (int i = 0; i < (int)flight_list.size(); i++)
+    {
+        ui.table_flights->insertRow(i);
+
+        
+        ui.table_flights->setItem(i, 0, new QTableWidgetItem(QString::number(flight_list[i].flight_code)));
+
+        ui.table_flights->setItem(i, 1, new QTableWidgetItem(QString::number(flight_list[i].for_planecode)));
+
+        ui.table_flights->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(flight_list[i].departure_city)));
+
+        ui.table_flights->setItem(i, 3, new QTableWidgetItem(QString::fromStdString(flight_list[i].arrival_city)));
+
+        QString dateStr = QString::number(flight_list[i].departure_date.day) + " " +QString::fromStdString(flight_list[i].departure_date.month);
+        ui.table_flights->setItem(i, 4, new QTableWidgetItem(dateStr));
+
+        QString timeStr = QString::number(flight_list[i].departure_time.hours) + ":" +QString::number(flight_list[i].departure_time.minutes).rightJustified(2, '0');
+        ui.table_flights->setItem(i, 5, new QTableWidgetItem(timeStr));                                                 //                             ^
+                                                                                                                        //لزوم الحبشتكنات من الاخ جيمي  |
+    }
+}
+void s_p_project::on_btn_view_flights_clicked() {
+    show_flights_in_table();
+    ui.stackedWidget->setCurrentWidget(ui.view_flights_page);
+}
+void  s_p_project::on_btn_back_view_flights_clicked() {
+    ui.stackedWidget->setCurrentWidget(ui.admin_menu);
+}
+///search////
+void s_p_project::on_btn_search_and_edit_clicked() {
+    {
+        QString searchText = ui.txt_admin_search_flights->text();
+
+        if (searchText.isEmpty()) {
+            QMessageBox::warning(this, "Input Error", "Please enter a flight code to search.");
+            return;
+        }
+
+        int searchCode = searchText.toInt();
+        bool found = false;
+
+        for (int i = 0; i < ui.table_flights->rowCount(); i++) {
+
+            if (ui.table_flights->item(i, 0)->text().toInt() == searchCode) {
+
+                ui.table_flights->selectRow(i);
+                ui.table_flights->scrollToItem(ui.table_flights->item(i, 0), QAbstractItemView::PositionAtTop);
+
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            QMessageBox::warning(this, "Not Found", "No flight matches that code.");
+        }
+    }
+}
+void s_p_project::on_btn_save_view_flights_clicked() 
+{
+    if (ui.table_flights->rowCount() != (int)flight_list.size()) {
+        QMessageBox::critical(this, "Sync Error", "Table and Data are out of sync!");
+        return;
+    }
+
+    for (int i = 0; i < ui.table_flights->rowCount(); i++) {
+
+        
+        flight_list[i].flight_code = ui.table_flights->item(i, 0)->text().toInt();
+
+        flight_list[i].departure_city = ui.table_flights->item(i, 2)->text().toStdString();
+
+        flight_list[i].arrival_city = ui.table_flights->item(i, 3)->text().toStdString();
+
+        QString fullDate = ui.table_flights->item(i, 4)->text();
+
+        QStringList parts = fullDate.split(" ");
+
+        if (parts.size() >= 2) {
+            flight_list[i].departure_date.day = parts[0].toInt();
+            flight_list[i].departure_date.month = parts[1].toStdString();
+        }
+
+        QString fullTime = ui.table_flights->item(i, 5)->text();
+        QStringList timeParts = fullTime.split(":");
+
+        if (timeParts.size() >= 2) {
+            flight_list[i].departure_time.hours = timeParts[0].toInt();
+            flight_list[i].departure_time.minutes = timeParts[1].toInt();
+        }
+
+    }
+
+    QMessageBox::information(this, "Success", "All changes have been saved to the system.");
+
+
+    show_flights_in_table();
+}
+
+
+

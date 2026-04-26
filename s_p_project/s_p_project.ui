@@ -70,7 +70,7 @@ QLabel {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="welcome_page">
        <property name="styleSheet">
@@ -357,7 +357,7 @@ QPushButton:hover {
          <string>Add Flight</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="btn_view_planes">
         <property name="geometry">
          <rect>
           <x>170</x>
@@ -367,10 +367,10 @@ QPushButton:hover {
          </rect>
         </property>
         <property name="text">
-         <string>Edit Flight</string>
+         <string>view planes</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_4">
+       <widget class="QPushButton" name="btn_view_flights">
         <property name="geometry">
          <rect>
           <x>170</x>
@@ -380,7 +380,7 @@ QPushButton:hover {
          </rect>
         </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>view flights</string>
         </property>
        </widget>
        <widget class="QPushButton" name="btn_back_admin">
@@ -424,6 +424,231 @@ QPushButton:hover {
         </property>
        </widget>
       </widget>
+      <widget class="QWidget" name="view_flights_page">
+       <widget class="QTableWidget" name="table_flights">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>50</y>
+          <width>601</width>
+          <height>311</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">/* The entire table background */
+QTableWidget {
+    background-color: #FFF9F2; /* Clotted cream / Light latte */
+    alternate-background-color: #F2E3D5; /* Soft mocha for alternating rows */
+    color: #4B3621; /* Deep espresso text */
+    gridline-color: #D2B48C; /* Tan/Bisque lines */
+    border: 2px solid #6F4E37; /* Coffee bean brown border */
+    font-family: &quot;Segoe UI&quot;, Arial;
+    font-size: 14px;
+    selection-background-color: #A67B5B; /* Medium roast for selected cells */
+    selection-color: white;
+}
+
+/* The header (top row) */
+QHeaderView::section {
+    background-color: #6F4E37; /* Coffee brown */
+    color: white;
+    padding: 5px;
+    border: 1px solid #4B3621;
+    font-weight: bold;
+}
+
+/* Styling the scrollbars to match */
+QScrollBar:vertical {
+    border: none;
+    background: #F2E3D5;
+    width: 10px;
+}
+
+QScrollBar::handle:vertical {
+    background: #8B5A2B; /* Cinnamon handle */
+    min-height: 20px;
+    border-radius: 5px;
+}
+
+/* Bottom right corner where scrollbars meet */
+QTableCornerButton::section {
+    background-color: #6F4E37;
+}</string>
+        </property>
+        <column>
+         <property name="text">
+          <string>flight code</string>
+         </property>
+         <property name="background">
+          <color>
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </property>
+         <property name="foreground">
+          <brush brushstyle="NoBrush">
+           <color alpha="255">
+            <red>255</red>
+            <green>192</green>
+            <blue>129</blue>
+           </color>
+          </brush>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>plane code</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>from</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>to</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>date</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>time</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QLabel" name="lbl_flights">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>111</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:15pt;&quot;&gt;flights:-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_back_view_flights">
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>370</y>
+          <width>74</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">   QPushButton {
+    /* الخلفية شفافة */
+    background-color: transparent;
+    /* لون الخط (البيج بتاعك) */
+    color: #cda47b; 
+    /* البرواز */
+    border: 2px solid #cda47b;
+    /* الحواف دائرية سِنة */
+    border-radius: 10px;
+    /* الخط عريض (Bold) */
+    font-weight: bold;
+    /* حجم الخط */
+    font-size: 18px;
+    /* الحجم الصغير */
+    min-width: 30px;
+    max-width: 50px;
+    min-height: 10px;
+    max-height: 35px;
+}
+
+/* ستايل لما المستخدم يلمس الزرار بالماوس */
+QPushButton:hover {
+    background-color: #cda47b;
+    color: #3e2723; /* يقلب بني غامق عشان يبان */
+}</string>
+        </property>
+        <property name="text">
+         <string>back</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_search_and_edit">
+        <property name="geometry">
+         <rect>
+          <x>400</x>
+          <y>0</y>
+          <width>220</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>search and edit</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="txt_admin_search_flights">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>10</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: #FFF9F2; /* Creamy Latte */
+    border: 2px solid #D2B48C; /* Tan/Bisque */
+    border-radius: 15px;      /* Rounded &quot;Coffee Pod&quot; shape */
+    padding: 5px 15px;
+    color: #4B3621;           /* Espresso text */
+    font-size: 14px;
+    selection-background-color: #A67B5B; /* Selection color */
+}
+
+QLineEdit:focus {
+    border: 2px solid #6F4E37; /* Darkens to Coffee Bean when typing */
+    background-color: #FFFFFF;
+}
+
+/* The Search Button */
+QPushButton {
+    background-color: #6F4E37; /* Deep Roast */
+    color: #FFF9F2;
+    border-radius: 15px;
+    padding: 5px 15px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #8B5A2B; /* Cinnamon hover effect */
+}
+
+QPushButton:pressed {
+    background-color: #4B3621; /* Strong Espresso pressed effect */
+}</string>
+        </property>
+        <property name="placeholderText">
+         <string>enter flight code</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_save_view_flights">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>370</y>
+          <width>220</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>save changes</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="edit_flights_page"/>
       <widget class="QWidget" name="add_flight_page">
        <widget class="QLabel" name="lbl_add_flight">
         <property name="geometry">
