@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <QtWidgets/QMainWindow>
 #include "ui_s_p_project.h"
@@ -22,6 +22,7 @@ private:
     };
     Admin admins[2]; 
 private slots:
+
     void on_btn_enter_clicked();
     void on_btn_choose_user_clicked(); 
     void on_btn_choose_admin_clicked();
@@ -49,5 +50,21 @@ private slots:
     void on_btn_search_and_edit_clicked();
     void on_btn_save_view_flights_clicked();
 
+    //view planes////
+    void on_btn_view_planes_clicked();
+    void show_planes_in_table();
+    void on_btn_admin_seach_planes_clicked();
+    void on_btn_back_view_planes_clicked();
+
+
+ 
+
+
+
+
+
+    ///عشان لما نكبببر/////
+protected:
+    void resizeEvent(QResizeEvent* event) override;
 };
 

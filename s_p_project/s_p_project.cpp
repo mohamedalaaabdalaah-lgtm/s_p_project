@@ -20,6 +20,7 @@ s_p_project::s_p_project(QWidget *parent)
     //مجرد ارقام للتجربه 
     plane_list[0].plane_model = "Boeing747";
     plane_list[0].number_of_rows = 12;
+    plane_list[0].number_of_col = 15;
     plane_list[0].plane_code = 77;
 
 
@@ -46,6 +47,11 @@ s_p_project::s_p_project(QWidget *parent)
     ////table shit/////
     ui.table_flights->setAlternatingRowColors(true);
     ui.table_flights->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui.table_planes->setAlternatingRowColors(true);
+    ui.table_planes->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    //////عشان لما نكبر//////
+    
+    ui.centralWidget->setStyleSheet("background-color: #FFF9F2;");
 }
 
 s_p_project::~s_p_project()
@@ -113,13 +119,13 @@ void s_p_project::on_btn_addplane_clicked() {
 }
 void s_p_project::on_btn_save_plane_clicked()
 {
-    string model = ui.txt_add_model->text().toStdString();
+    string model = ui.cmb_airplane_model->currentText().toStdString();
     int code = ui.txt_add_code->text().toInt();
 
     add_plane_gui(model, code);
 
     QMessageBox::information(this, "Success", "Plane added successfully!");
-    ui.txt_add_model->clear();
+    ui.cmb_airplane_model->setCurrentIndex(0);
     ui.txt_add_code->clear();
     ui.stackedWidget->setCurrentWidget(ui.admin_menu);// Back to Admin Menu   المفروض احنا مش محتاجين السطر ده لان زرار الرجوع هيشتغل مكانه
 }
@@ -298,6 +304,67 @@ void s_p_project::on_btn_save_view_flights_clicked()
 
     show_flights_in_table();
 }
+
+////the view n edit planes page ////
+void s_p_project::show_planes_in_table() {
+
+    ui.table_planes->setRowCount(0);
+    for (int i = 0; i < (int)plane_list.size(); i++) {
+        ui.table_planes->insertRow(i);
+
+        ui.table_planes->setItem(i, 0, new QTableWidgetItem(QString::number(plane_list[i].plane_code)));
+
+        ui.table_planes->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(plane_list[i].plane_model)));
+
+        ui.table_planes->setItem(i, 2, new QTableWidgetItem(QString::number(plane_list[i].number_of_rows)));
+
+        ui.table_planes->setItem(i, 3, new QTableWidgetItem(QString::number(plane_list[i].number_of_col)));
+
+    }
+
+}
+void s_p_project::on_btn_view_planes_clicked() {
+    show_planes_in_table();
+    ui.stackedWidget->setCurrentWidget(ui.view_planes_page);
+}
+
+
+void s_p_project::on_btn_admin_seach_planes_clicked()
+{
+    QString searchText = ui.txt_admin_search_planes->text();
+
+    if (searchText.isEmpty()) {
+        QMessageBox::warning(this, "Input Error", "Please enter a plane code to search.");
+        return;
+    }
+
+    int searchCode = searchText.toInt();
+    bool found = false;
+
+    for (int i = 0; i < ui.table_planes->rowCount(); i++) {
+
+        if (ui.table_planes->item(i, 0)->text().toInt() == searchCode) {
+
+            ui.table_planes->selectRow(i);
+            ui.table_planes->scrollToItem(ui.table_planes->item(i, 0), QAbstractItemView::PositionAtTop);
+
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        QMessageBox::warning(this, "Not Found", "No planes matches that code.");
+    }
+}
+
+void s_p_project::on_btn_back_view_planes_clicked() {
+    ui.stackedWidget->setCurrentWidget(ui.admin_menu);
+}
+
+
+
+
 
 
 
