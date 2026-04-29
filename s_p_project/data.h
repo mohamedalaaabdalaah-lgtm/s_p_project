@@ -51,8 +51,12 @@ struct flight //structure of flight
     mydate arrival_date;
     mytime departure_time;
     mytime arrival_time;
+    bool is_empty = true;
+    int rows_number;
+    int columns_number;
     int flight_code;
     int for_planecode;//ده عشان كل رحله تبقي يشاور علي طيارتها 
+    char seats[100][10];// دي رقم كبير ولما اجي اطبع هبقي اطبع علي حسب رقم الصفوف والعمده 
 };
 
 struct admin //structure of admin
@@ -69,30 +73,43 @@ struct user //structure of user
 };
 
 
-struct ticket//structure of ticket ( passport_id<<32b43  ,  flight<<583  ,   planecode<<4321   ,   seat<<4c  )
+struct ticket
 {
-
     string passenger_name;
     string passport_id;
-    int flight_number;
-    int plane_code;
+    int flight_number;//الي فيها الكرسي بتاع التذكرة دي 
+    string departure_city;
+    string arrival_city;
+    mydate date;
+    mytime time;
     int seat_row;
     char seat_letter;
-    string* id_passport;//ده عشان كل تذكره يبقي ليها سهم يشاور علي اليوزر اللي حجز بيه
 };
 
 
 //global variables
 extern vector <plane> plane_list;//vectors of planes to able to add plans by admin(dynamicaly)
 extern vector <flight> flight_list;//vectors of flights to able to add flights by admin(dynamicaly)
-
-
-extern int tickets_count;//to count of tickets that we have in our system to be able to add new tickets by user(dynamicaly)
-extern ticket* tickets_list;//dynamic array of tickets to able to add tickets by user(dynamicaly)
-
- 
+extern vector <ticket> tickets_list;//vectors of tickets to able to add tickets by user(dynamicaly)
 
 extern admin admins[10];
-extern model_of_plane models[];//ده رقم انواع الطائرات الي عندنا
+extern model_of_plane models[5];//ثابتين ولا بيزيدو ولا بيقيلوا وهنكتبهم في الكود 
+
+extern int choice;
+extern string keyword;
+extern string details_choice;
+extern int found ;
+extern int days ;
+extern string months ;
+
+extern user current_user;
+extern flight currentFlight;
+
+
+
+extern int  user_row;
+extern char user_colum;
+extern int indexRow, indexColum;
+extern int current_flight_index;
 
 #endif
