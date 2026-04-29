@@ -62,9 +62,6 @@ private slots:
 
 
 
-//
-//    ///عشان لما نكبببر/////
-//protected:
-//    void resizeEvent(QResizeEvent* event) override;
+
 };
 
