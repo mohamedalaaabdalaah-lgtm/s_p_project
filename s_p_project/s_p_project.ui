@@ -98,7 +98,7 @@ QLabel {
 }</string>
          </property>
          <property name="currentIndex">
-          <number>11</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="welcome_page">
           <property name="styleSheet">
@@ -132,32 +132,41 @@ QPushButton:pressed {
 }</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_13">
+           <item row="1" column="0">
+            <widget class="QLabel" name="lbl_welcome">
+             <property name="maximumSize">
+              <size>
+               <width>500</width>
+               <height>150</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt;&quot;&gt;Welcome to Egypt airlines&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
            <item row="2" column="0">
             <widget class="QPushButton" name="btn_enter">
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="cursor">
               <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="mouseTracking">
               <bool>true</bool>
              </property>
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::RightToLeft</enum>
+             </property>
              <property name="styleSheet">
               <string notr="true">background-color: rgb(214, 178, 120);</string>
              </property>
              <property name="text">
               <string>Get Started</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="lbl_welcome">
-             <property name="maximumSize">
-              <size>
-               <width>300</width>
-               <height>150</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Welcome to Egypt airlines</string>
              </property>
             </widget>
            </item>
