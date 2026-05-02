@@ -25,9 +25,9 @@ void add_plane_gui(string model, int code)
     plane_list.push_back(*ptr);
     delete ptr;
 }
-
+//----------------------------------------------------------------
 bool add_flight_gui(int planecode, int flightcode, string depCity, string arrCity, string depAirport, string arrAirport,
-    int depDay, int depMonth, int arrDay, int arrMonth, int depHour, int depMinute, int arrHour, int arrMinute)
+    int depDay, string depMonth, int arrDay, string arrMonth, int depHour, int depMinute, int arrHour, int arrMinute)
 
 {
     flight* ptr = new flight();
@@ -69,6 +69,14 @@ bool add_flight_gui(int planecode, int flightcode, string depCity, string arrCit
     delete ptr;
     return found;
 }
+//--------------------------------------------------------------------------
+
+void user_login_gui(string name,string passport)
+{
+    current_user.username = name;
+    current_user.passport_id = passport;
+}
+
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------//

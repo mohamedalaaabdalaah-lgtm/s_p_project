@@ -56,13 +56,26 @@ private slots:
     void on_btn_admin_seach_planes_clicked();
     void on_btn_back_view_planes_clicked();
 
+//----------------------------------------------//
+    //login user
 
- 
+    void on_btn_login_user_clicked();
+    void on_btn_back_login_user_clicked();
 
+   //user menu 
+    void on_btn_search_flight_clicked();
+    void on_btn_view_ticket_clicked();
+    void on_btn_back_user_menu_clicked();
 
+    //search flight 
+    void on_btn_search_flight_2_clicked();
+    void on_btn_book_seat_clicked();
+    void on_btn_back_search_flight_clicked();
+    void on_cmb_search_key_currentTextChanged(const QString &arg1);
+    void on_table_flight_search_cellClicked(int row, int column);
 
-
-
-
+    //book seat
+    void on_btn_back_book_seat_clicked();
+    void on_btn_back_view_ticket_clicked();
 };
 

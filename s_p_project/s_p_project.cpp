@@ -11,6 +11,9 @@ s_p_project::s_p_project(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
+    ui.date_search->hide(); // السطر ده بيخفي مربع التاريخ أول ما الشاشة 
+    ui.table_flight_search->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    
     // مجرد ارقام تجربه 
     admins[0].username = "m";
     admins[0].password = "m@123";
@@ -64,12 +67,12 @@ void s_p_project::on_btn_enter_clicked()
 }
 void s_p_project::on_btn_choose_user_clicked()
 {
-    ui.stackedWidget->setCurrentIndex(0); //users return to welcome page until changes
+    ui.stackedWidget->setCurrentWidget(ui.login_user_page); //users return to welcome page until changes
 }
 
 void s_p_project::on_btn_choose_admin_clicked()
 {
-    ui.stackedWidget->setCurrentIndex(2); // go to Login Page
+    ui.stackedWidget->setCurrentWidget(ui.login_page); // go to Login Page
 }
 //loginpage----------------------------------------
 void s_p_project::on_btn_login_submit_clicked()
@@ -91,7 +94,7 @@ void s_p_project::on_btn_login_submit_clicked()
     
     if (authenticated) {
         
-        ui.stackedWidget->setCurrentIndex(3);//from login to menu
+        ui.stackedWidget->setCurrentWidget(ui.admin_menu);//from login to menu
     }
     else {
         ui.lbl_error_msg->setText("Wrong password! try again. ");
@@ -127,7 +130,7 @@ void s_p_project::on_btn_save_plane_clicked()
     QMessageBox::information(this, "Success", "Plane added successfully!");
     ui.cmb_airplane_model->setCurrentIndex(0);
     ui.txt_add_code->clear();
-    ui.stackedWidget->setCurrentWidget(ui.admin_menu);// Back to Admin Menu   المفروض احنا مش محتاجين السطر ده لان زرار الرجوع هيشتغل مكانه
+    
 }
 
 void s_p_project::on_btn_back_addplane_clicked()    //  back to admin menu   //
@@ -162,10 +165,19 @@ void s_p_project::on_btn_save_flight_clicked()
 
     //سحب التواريخ
 
+   
     int depDay = ui.date_depart->date().day();
-    int depMonth = ui.date_depart->date().month();
     int arrDay = ui.date_arrival->date().day();
-    int arrMonth = ui.date_arrival->date().month();
+
+    // القاموس اللي بيترجم أرقام الشهور لكلمات
+    QStringList english_months = { "", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december" };
+
+    // سحب أرقام الشهور وترجمتها لـ string
+    int depMonthNum = ui.date_depart->date().month();
+    string depMonthStr = english_months[depMonthNum].toStdString(); // كده بقى جواه مثلا "march"
+
+    int arrMonthNum = ui.date_arrival->date().month();
+    string arrMonthStr = english_months[arrMonthNum].toStdString();
 
     //سحب الوقت 
     int depHour = ui.time_depart->time().hour();
@@ -174,7 +186,7 @@ void s_p_project::on_btn_save_flight_clicked()
     int arrMinute = ui.time_arrival->time().minute();
 
     bool isSuccess = add_flight_gui(planecode, flightcode, departcity, arrivalcity, departair, arrivalair,
-        depDay, depMonth, arrDay, arrMonth,
+        depDay, depMonthStr, arrDay, arrMonthStr, 
         depHour, depMinute, arrHour, arrMinute);
 
     if (isSuccess == true)
@@ -185,7 +197,7 @@ void s_p_project::on_btn_save_flight_clicked()
     }
     else
     {
-        QMessageBox::critical(this, "Error","The flight code is not available, add the first flight.");
+        QMessageBox::critical(this, "Error","The Plane Code is not available, Add the first Plane.");
     }
 }
 
@@ -362,9 +374,240 @@ void s_p_project::on_btn_back_view_planes_clicked() {
     ui.stackedWidget->setCurrentWidget(ui.admin_menu);
 }
 
+//----------------------------------------------------------------------------------//
+
+void s_p_project::on_btn_login_user_clicked()
+{
+    QString q_username = ui.txt_login_username_2->text();
+    QString q_passport = ui.txt_login_passport->text();
 
 
+    if (q_username.isEmpty() || q_passport.isEmpty()) {
+        QMessageBox::warning(this, "Attention!", "Please enter your Username and Passport number!");
+        return; // بيوقف الدالة هنا عشان ميكملش على داتا فاضية
+    }
+
+    std::string username = q_username.toStdString();
+    std::string passport = q_passport.toStdString();
+
+    user_login_gui(username, passport);
+
+    QMessageBox::information(this, "Success ", "Welcome " + q_username + "!");
+
+    ui.txt_login_username_2->clear();
+    ui.txt_login_passport->clear();
+
+    ui.stackedWidget->setCurrentWidget(ui.user_menu_page);
+
+}
+
+void s_p_project::on_btn_back_login_user_clicked()      //  back to admin or user  //
+{
+    ui.stackedWidget->setCurrentWidget(ui.admin_or_user);
+}
+//--------------------------------------------------------------------------------------------//  
+// user menu
+void s_p_project::on_btn_search_flight_clicked()                           
+{
+    ui.stackedWidget->setCurrentWidget(ui.flight_search_page);
+}
+
+void s_p_project::on_btn_view_ticket_clicked()
+{
+    ui.stackedWidget->setCurrentWidget(ui.view_ticket_page);
+}
+
+void s_p_project::on_btn_back_user_menu_clicked()
+{
+    ui.stackedWidget->setCurrentWidget(ui.login_user_page);
+}
+
+//------------------------------------------------------------------------------//
+void s_p_project::on_cmb_search_key_currentTextChanged(const QString& arg1)
+{
+    // لو اليوزر اختار إنه يبحث بالتاريخ
+    if (arg1 == "Date")
+    {
+        ui.txt_city_search->hide();       // اخفي مربع المدينة
+        ui.date_search->show();           // اظهر مربع التاريخ
+        ui.lbl_keyword->setText("Enter Date :"); // غير عنوان المربع
+    }
+    // لو اختار يبحث بالمدينة (Departure City أو Arrival City)
+    else
+    {
+        ui.date_search->hide();           // اخفي مربع التاريخ
+        ui.txt_city_search->show();       // اظهر مربع المدينة
+        ui.lbl_keyword->setText("Enter City :"); // رجع العنوان لأصله
+    }
+}
+//-----------------------------------------------------------------------------------------//
+//search flight 
 
 
+void s_p_project::on_btn_search_flight_2_clicked()
+{
+   
+    ui.table_flight_search->setRowCount(0);
+
+    // 2. سحب اختيارات اليوزر وتجهيزها للمقارنة
+    QString searchBy = ui.cmb_search_key->currentText().trimmed().toLower();
+    QString keyword = ui.txt_city_search->text().trimmed().toLower();
+
+    // سحب التاريخ من الـ Date Box وترجمته لكلمة إنجليزي عشان يطابق داتا صحابك
+    int search_day = ui.date_search->date().day();
+    int month_num = ui.date_search->date().month();
+    QStringList english_months = { "", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december" };
+    QString search_month = english_months[month_num];
+
+    int row = 0;
+
+    
+    for (int i = 0; i < flight_list.size(); i++)
+    {
+        bool match = false;
+
+       
+        QString current_dep_city = QString::fromStdString(flight_list[i].departure_city).toLower();
+        QString current_arr_city = QString::fromStdString(flight_list[i].arrival_city).toLower();
+        QString current_month = QString::fromStdString(flight_list[i].departure_date.month).toLower();
+
+        // 4. شروط البحث
+        if (searchBy == "departure city" && current_dep_city == keyword)
+        {
+            match = true;
+        }
+        else if (searchBy == "arrival city" && current_arr_city == keyword)
+        {
+            match = true;
+        }
+        else if (searchBy == "date" && current_month == search_month && flight_list[i].departure_date.day == search_day)
+        {
+            match = true;
+        }
+
+        
+        if (match)
+        {
+            ui.table_flight_search->insertRow(row);
+
+            // ================== DAta Edit ========================//
+
+            // 1. تظبيط الشهر (تكبير أول حرف)
+            QString display_month = QString::fromStdString(flight_list[i].departure_date.month);
+            if (!display_month.isEmpty())
+            {
+                display_month[0] = display_month[0].toUpper();
+            }
+           
+            QString fullDate = QString::number(flight_list[i].departure_date.day) + " " + display_month;
+
+            // 2. تظبيط الوقت (AM و PM وصفر الدقايق)
+            int h = flight_list[i].departure_time.hours;
+            int m = flight_list[i].departure_time.minutes;
+           
+            QString am_pm = "AM";
+            if (h >= 12)
+            {
+                am_pm = "PM";
+                if (h > 12) { h -= 12; }
+            }
+            if (h == 0)
+            {
+                h = 12;
+            }
+           
+            QString m_str = QString::number(m);
+            
+            if (m_str.length() == 1)
+            {
+                m_str = "0" + m_str;
+            }
+            QString fullTime = QString::number(h) + ":" + m_str + " " + am_pm;
 
 
+            // ===================== Show Details ============================//
+
+            ui.table_flight_search->setItem(row, 0, new QTableWidgetItem(QString::number(flight_list[i].flight_code)));
+            ui.table_flight_search->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(flight_list[i].departure_city)));
+            ui.table_flight_search->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(flight_list[i].arrival_city)));
+            ui.table_flight_search->setItem(row, 3, new QTableWidgetItem(fullDate));
+            ui.table_flight_search->setItem(row, 4, new QTableWidgetItem(fullTime));
+
+            row++;
+        }
+    }
+
+    if (row == 0)
+    {
+        QMessageBox::information(this, "Search Result", "Sorry, No flights found matching your search.");
+    }
+}
+
+//-------------------------------------------------------------------//
+
+void s_p_project::on_btn_book_seat_clicked() 
+{
+    
+    QString codeStr = ui.txt_enter_flight_code_2->text().trimmed(); 
+
+    
+    if (codeStr.isEmpty())
+    {
+        QMessageBox::warning(this, "Error", "Please enter a Flight Code first.");
+        return; // بنوقف التنفيذ هنا
+    }
+
+    int enteredCode = codeStr.toInt();
+    bool flightFound = false;
+
+    // 3. ندور على كود الرحلة في الفيكتور عشان نتأكد إنه موجود
+    for (int i = 0; i < flight_list.size(); i++)
+    {
+        if (flight_list[i].flight_code == enteredCode)
+        {
+            flightFound = true;
+
+            
+            current_flight_index = i;
+            currentFlight = flight_list[i];
+
+            break;
+        }
+    }
+
+    // 4. لو الكود صح ولقينا الرحلة، ننقله لصفحة الكراسي
+    if (flightFound)
+    {
+        ui.txt_enter_flight_code_2->clear(); 
+
+        
+        ui.stackedWidget->setCurrentWidget(ui.book_seat_page);
+    }
+    else
+    {
+        
+        QMessageBox::warning(this, "Not Found", "Invalid Flight Code. Please enter a valid code from the table.");
+    }
+}
+//-----------------------------------------------------------------// ده بيعمل حاجة اسمها Auto fill لما تدوس على الرحلة هو بيحطها تلقائي في Enter flight code 
+void s_p_project::on_table_flight_search_cellClicked(int row, int column)
+{
+   
+    ui.txt_enter_flight_code_2->setText(ui.table_flight_search->item(row, 0)->text());
+}
+
+//------------------------
+void s_p_project::on_btn_back_search_flight_clicked()      //search flight back
+{
+    ui.stackedWidget->setCurrentWidget(ui.user_menu_page);
+}
+//------------------------
+void s_p_project::on_btn_back_book_seat_clicked()           //book seat back 
+{
+    ui.stackedWidget->setCurrentWidget(ui.flight_search_page);
+}
+//------------------------
+void s_p_project::on_btn_back_view_ticket_clicked()        //view ticket back
+{
+    ui.stackedWidget->setCurrentWidget(ui.user_menu_page);
+}

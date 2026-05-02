@@ -40,6 +40,10 @@ void user_path();
 //gui functions
 void add_plane_gui(string model, int code);
 bool add_flight_gui(int planecode, int flightcode, string depCity, string arrCity, string depAirport, string arrAirport,
-    int depDay, int depMonth, int arrDay, int arrMonth, int depHour, int depMinute, int arrHour, int arrMinute);
+    int depDay, string depMonth, int arrDay, string arrMonth, int depHour, int depMinute, int arrHour, int arrMinute);
+
+//user 
+void user_login_gui(string name, string passport);
+
 
 #endif

@@ -41,7 +41,7 @@ QPushButton#btn_enter:hover {
     <string notr="true">background-color: white;</string>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+    <item row="0" column="0" colspan="2">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="styleSheet">
        <string notr="true">/* Style for the buttons */
@@ -70,7 +70,7 @@ QLabel {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>11</number>
       </property>
       <widget class="QWidget" name="welcome_page">
        <property name="styleSheet">
@@ -84,6 +84,9 @@ QLabel {
           <width>220</width>
           <height>51</height>
          </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="mouseTracking">
          <bool>true</bool>
@@ -138,6 +141,9 @@ QLabel {
           <height>41</height>
          </rect>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="text">
          <string>Admin</string>
         </property>
@@ -151,8 +157,742 @@ QLabel {
           <height>41</height>
          </rect>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="text">
          <string>User</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="login_user_page">
+       <property name="cursor">
+        <cursorShape>ArrowCursor</cursorShape>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <widget class="QLabel" name="lbl_login_user">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>10</y>
+          <width>81</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Login</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="txt_login_username_2">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>100</y>
+          <width>221</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: #3e2723; /* Dark Coffee */
+    color: #ffffff;           /* White text so you can actually see it! */
+    border-radius: 10px;
+    padding: 5px;
+}</string>
+        </property>
+        <property name="inputMask">
+         <string/>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>Username</string>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="txt_login_passport">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>160</y>
+          <width>221</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: #3e2723; /* Dark Coffee */
+    color: #ffffff;           /* White text so you can actually see it! */
+    border-radius: 10px;
+    padding: 5px;
+}</string>
+        </property>
+        <property name="inputMask">
+         <string/>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::EchoMode::Password</enum>
+        </property>
+        <property name="placeholderText">
+         <string>Passport</string>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_login_user">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>240</y>
+          <width>220</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string>Login</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_back_login_user">
+        <property name="geometry">
+         <rect>
+          <x>483</x>
+          <y>360</y>
+          <width>71</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    /* الخلفية شفافة */
+    background-color: transparent;
+    /* لون الخط (البيج بتاعك) */
+    color: #cda47b; 
+    /* البرواز */
+    border: 2px solid #cda47b;
+    /* الحواف دائرية سِنة */
+    border-radius: 10px;
+    /* الخط عريض (Bold) */
+    font-weight: bold;
+    /* حجم الخط */
+    font-size: 18px;
+    /* الحجم الصغير */
+    min-width: 20px;
+    max-width: 50px;
+    min-height: 10px;
+    max-height: 35px;
+}
+
+/* ستايل لما المستخدم يلمس الزرار بالماوس */
+QPushButton:hover {
+    background-color: #cda47b;
+    color: #3e2723; /* يقلب بني غامق عشان يبان */
+}</string>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="user_menu_page">
+       <widget class="QLabel" name="lbl_user_menu">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>191</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>-1</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+          <underline>true</underline>
+         </font>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt; text-decoration: underline;&quot;&gt;User Menu :-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_search_flight">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>110</y>
+          <width>220</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string>Search Flights</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_view_ticket">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>210</y>
+          <width>220</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string>View My Ticket</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_back_user_menu">
+        <property name="geometry">
+         <rect>
+          <x>520</x>
+          <y>360</y>
+          <width>71</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    /* الخلفية شفافة */
+    background-color: transparent;
+    /* لون الخط (البيج بتاعك) */
+    color: #cda47b; 
+    /* البرواز */
+    border: 2px solid #cda47b;
+    /* الحواف دائرية سِنة */
+    border-radius: 10px;
+    /* الخط عريض (Bold) */
+    font-weight: bold;
+    /* حجم الخط */
+    font-size: 18px;
+    /* الحجم الصغير */
+    min-width: 20px;
+    max-width: 50px;
+    min-height: 10px;
+    max-height: 35px;
+}
+
+/* ستايل لما المستخدم يلمس الزرار بالماوس */
+QPushButton:hover {
+    background-color: #cda47b;
+    color: #3e2723; /* يقلب بني غامق عشان يبان */
+}</string>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="view_ticket_page">
+       <widget class="QLabel" name="label_7">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>20</y>
+          <width>141</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_back_view_ticket">
+        <property name="geometry">
+         <rect>
+          <x>500</x>
+          <y>363</y>
+          <width>74</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"> QPushButton {
+    /* الخلفية شفافة */
+    background-color: transparent;
+    /* لون الخط (البيج بتاعك) */
+    color: #cda47b; 
+    /* البرواز */
+    border: 2px solid #cda47b;
+    /* الحواف دائرية سِنة */
+    border-radius: 10px;
+    /* الخط عريض (Bold) */
+    font-weight: bold;
+    /* حجم الخط */
+    font-size: 18px;
+    /* الحجم الصغير */
+    min-width: 30px;
+    max-width: 50px;
+    min-height: 10px;
+    max-height: 35px;
+}
+
+/* ستايل لما المستخدم يلمس الزرار بالماوس */
+QPushButton:hover {
+    background-color: #cda47b;
+    color: #3e2723; /* يقلب بني غامق عشان يبان */
+}</string>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="flight_search_page">
+       <widget class="QLabel" name="lbl_flight_search">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:700; text-decoration: underline;&quot;&gt;Search Flights :-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_search_by">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>111</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Search By :</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="cmb_search_key">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>40</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+    background-color: #3e2723;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 5px;
+    border: 1px solid #3e2723;
+}
+
+/* 2. منطقة السهم اللي على اليمين */
+QComboBox::drop-down {
+    border: none; /* بنشيل أي حدود قديمة عشان الشكل يبقى ناعم */
+    width: 30px;  /* بندي مساحة للسهم */
+}
+
+/* 3. القائمة المنسدلة نفسها (الـ Menu اللي بتفتح) */
+QComboBox QAbstractItemView {
+    background-color: #3e2723; /* نفس لون الخلفية */
+    color: #ffffff;
+    border: 1px solid #ffffff; /* إطار أبيض خفيف يحدد القائمة */
+    selection-background-color: #5d4037; /* لون أفتح شوية لما تقف بالماوس على اختيار */
+    selection-color: #ffffff;
+}</string>
+        </property>
+        <item>
+         <property name="text">
+          <string/>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Departure City</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Arrival City</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Date</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLineEdit" name="txt_city_search">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>90</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: #3e2723; /* Dark Coffee */
+    color: #ffffff;           /* White text so you can actually see it! */
+    border-radius: 10px;
+    padding: 5px;
+}</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_keyword">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>80</y>
+          <width>161</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Enter Keyword :</string>
+        </property>
+       </widget>
+       <widget class="QDateEdit" name="date_search">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>90</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">/* 1. التصميم الأساسي (النسخة الصارمة) */
+QDateEdit, QTimeEdit {
+    background: #3e2723 !important; 
+    color: #ffffff !important;
+    border-radius: 10px;
+    padding: 5px;
+    /* سطر الحدود ده مهم جداً لأنه بيلغي تحكم الويندوز تماماً */
+    border: 1px solid #3e2723 !important; 
+}
+
+/* 2. إخفاء وإدماج أزرار الأسهم */
+QDateEdit::up-button, QDateEdit::down-button,
+QTimeEdit::up-button, QTimeEdit::down-button {
+    border: none !important;
+    background: transparent !important;
+    width: 20px;
+}
+
+/* 3. تظبيط شكل السهم الخاص بالنتيجة */
+QDateEdit::drop-down {
+    border: none !important;
+    background: transparent !important;
+    width: 25px;
+}</string>
+        </property>
+        <property name="dateTime">
+         <datetime>
+          <hour>18</hour>
+          <minute>0</minute>
+          <second>0</second>
+          <year>2000</year>
+          <month>1</month>
+          <day>1</day>
+         </datetime>
+        </property>
+        <property name="date">
+         <date>
+          <year>2000</year>
+          <month>1</month>
+          <day>1</day>
+         </date>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="table_flight_search">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>140</y>
+          <width>571</width>
+          <height>151</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTableWidget {
+    background-color: #FFF9F2; /* Clotted cream / Light latte */
+    alternate-background-color: #F2E3D5; /* Soft mocha for alternating rows */
+    color: #4B3621; /* Deep espresso text */
+    gridline-color: #D2B48C; /* Tan/Bisque lines */
+    border: 2px solid #6F4E37; /* Coffee bean brown border */
+    font-family: &quot;Segoe UI&quot;, Arial;
+    font-size: 14px;
+    selection-background-color: #A67B5B; /* Medium roast for selected cells */
+    selection-color: white;
+}
+
+/* The header (top row) */
+QHeaderView::section {
+    background-color: #6F4E37; /* Coffee brown */
+    color: white;
+    padding: 5px;
+    border: 1px solid #4B3621;
+    font-weight: bold;
+}
+
+/* Styling the scrollbars to match */
+QScrollBar:vertical {
+    border: none;
+    background: #F2E3D5;
+    width: 10px;
+}
+
+QScrollBar::handle:vertical {
+    background: #8B5A2B; /* Cinnamon handle */
+    min-height: 20px;
+    border-radius: 5px;
+}
+
+/* Bottom right corner where scrollbars meet */
+QTableCornerButton::section {
+    background-color: #6F4E37;
+}</string>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+        </property>
+        <column>
+         <property name="text">
+          <string>Flight Code</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>From</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>To</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Date</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Time</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QLineEdit" name="txt_enter_flight_code_2">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>320</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: #3e2723; /* Dark Coffee */
+    color: #ffffff;           /* White text so you can actually see it! */
+    border-radius: 10px;
+    padding: 5px;
+}</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_flight_code_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>310</y>
+          <width>191</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Enter Flight Code :</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_book_seat">
+        <property name="geometry">
+         <rect>
+          <x>370</x>
+          <y>310</y>
+          <width>220</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>220</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>141</width>
+          <height>41</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string>Book Seat</string>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_back_search_flight">
+        <property name="geometry">
+         <rect>
+          <x>500</x>
+          <y>370</y>
+          <width>71</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    /* الخلفية شفافة */
+    background-color: transparent;
+    /* لون الخط (البيج بتاعك) */
+    color: #cda47b; 
+    /* البرواز */
+    border: 2px solid #cda47b;
+    /* الحواف دائرية سِنة */
+    border-radius: 10px;
+    /* الخط عريض (Bold) */
+    font-weight: bold;
+    /* حجم الخط */
+    font-size: 18px;
+    /* الحجم الصغير */
+    min-width: 20px;
+    max-width: 50px;
+    min-height: 10px;
+    max-height: 35px;
+}
+
+/* ستايل لما المستخدم يلمس الزرار بالماوس */
+QPushButton:hover {
+    background-color: #cda47b;
+    color: #3e2723; /* يقلب بني غامق عشان يبان */
+}</string>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_search_flight_2">
+        <property name="geometry">
+         <rect>
+          <x>370</x>
+          <y>80</y>
+          <width>220</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>220</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>141</width>
+          <height>41</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string>Search</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="book_seat_page">
+       <widget class="QPushButton" name="btn_back_book_seat">
+        <property name="geometry">
+         <rect>
+          <x>510</x>
+          <y>350</y>
+          <width>74</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    /* الخلفية شفافة */
+    background-color: transparent;
+    /* لون الخط (البيج بتاعك) */
+    color: #cda47b; 
+    /* البرواز */
+    border: 2px solid #cda47b;
+    /* الحواف دائرية سِنة */
+    border-radius: 10px;
+    /* الخط عريض (Bold) */
+    font-weight: bold;
+    /* حجم الخط */
+    font-size: 18px;
+    /* الحجم الصغير */
+    min-width: 20px;
+    max-width: 50px;
+    min-height: 10px;
+    max-height: 35px;
+}
+
+/* ستايل لما المستخدم يلمس الزرار بالماوس */
+QPushButton:hover {
+    background-color: #cda47b;
+    color: #3e2723; /* يقلب بني غامق عشان يبان */
+}</string>
+        </property>
+        <property name="text">
+         <string>Back</string>
         </property>
        </widget>
       </widget>
@@ -251,6 +991,9 @@ QLabel {
           <height>51</height>
          </rect>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="text">
          <string>Login</string>
         </property>
@@ -276,6 +1019,9 @@ QLabel {
           <width>71</width>
           <height>41</height>
          </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
@@ -340,6 +1086,9 @@ QPushButton:hover {
           <height>41</height>
          </rect>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="text">
          <string>Add Plane</string>
         </property>
@@ -352,6 +1101,9 @@ QPushButton:hover {
           <width>220</width>
           <height>41</height>
          </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="text">
          <string>Add Flight</string>
@@ -366,8 +1118,11 @@ QPushButton:hover {
           <height>41</height>
          </rect>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="text">
-         <string>view planes</string>
+         <string>View Planes</string>
         </property>
        </widget>
        <widget class="QPushButton" name="btn_view_flights">
@@ -379,8 +1134,11 @@ QPushButton:hover {
           <height>41</height>
          </rect>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="text">
-         <string>view flights</string>
+         <string>View Flights</string>
         </property>
        </widget>
        <widget class="QPushButton" name="btn_back_admin">
@@ -391,6 +1149,9 @@ QPushButton:hover {
           <width>74</width>
           <height>41</height>
          </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
@@ -531,8 +1292,16 @@ QTableCornerButton::section {
           <height>51</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>-1</pointsize>
+          <bold>true</bold>
+          <underline>true</underline>
+         </font>
+        </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:15pt;&quot;&gt;flights:-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Flights:-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
        <widget class="QPushButton" name="btn_back_view_flights">
@@ -543,6 +1312,9 @@ QTableCornerButton::section {
           <width>74</width>
           <height>41</height>
          </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
          <string notr="true">   QPushButton {
@@ -572,7 +1344,7 @@ QPushButton:hover {
 }</string>
         </property>
         <property name="text">
-         <string>back</string>
+         <string>Back</string>
         </property>
        </widget>
        <widget class="QPushButton" name="btn_search_and_edit">
@@ -584,8 +1356,11 @@ QPushButton:hover {
           <height>41</height>
          </rect>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="text">
-         <string>search and edit</string>
+         <string>Search and Edit</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="txt_admin_search_flights">
@@ -631,7 +1406,7 @@ QPushButton:pressed {
 }</string>
         </property>
         <property name="placeholderText">
-         <string>enter flight code</string>
+         <string>Enter flight code</string>
         </property>
        </widget>
        <widget class="QPushButton" name="btn_save_view_flights">
@@ -643,8 +1418,11 @@ QPushButton:pressed {
           <height>41</height>
          </rect>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="text">
-         <string>save changes</string>
+         <string>Save Changes</string>
         </property>
        </widget>
       </widget>
@@ -729,22 +1507,33 @@ QTableCornerButton::section {
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>121</width>
+          <width>141</width>
           <height>51</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>-1</pointsize>
+          <bold>true</bold>
+          <underline>true</underline>
+         </font>
+        </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Air planes:-&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Air planes:-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
        <widget class="QPushButton" name="btn_back_view_planes">
         <property name="geometry">
          <rect>
-          <x>510</x>
+          <x>520</x>
           <y>360</y>
-          <width>61</width>
+          <width>71</width>
           <height>41</height>
          </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
          <string notr="true"> QPushButton {
@@ -774,7 +1563,7 @@ QPushButton:hover {
 }</string>
         </property>
         <property name="text">
-         <string>back</string>
+         <string>Back</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="txt_admin_search_planes">
@@ -820,20 +1609,23 @@ QPushButton:pressed {
 }</string>
         </property>
         <property name="placeholderText">
-         <string>enter plane code</string>
+         <string>Enter plane code</string>
         </property>
        </widget>
        <widget class="QPushButton" name="btn_admin_seach_planes">
         <property name="geometry">
          <rect>
-          <x>360</x>
+          <x>370</x>
           <y>10</y>
           <width>220</width>
           <height>41</height>
          </rect>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="text">
-         <string>search and edit</string>
+         <string>Search and Edit</string>
         </property>
        </widget>
       </widget>
@@ -1440,6 +2232,9 @@ QDateEdit::drop-down {
           <height>51</height>
          </rect>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">/* الشكل الأساسي للزرار مع تكبير الخط */
 QPushButton {
@@ -1494,6 +2289,9 @@ QPushButton:pressed {
           <underline>false</underline>
           <strikeout>false</strikeout>
          </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
          <string notr="true">   QPushButton {
@@ -1590,6 +2388,9 @@ QPushButton:hover {
           <bold>true</bold>
          </font>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="text">
          <string> Save Plane</string>
         </property>
@@ -1602,6 +2403,9 @@ QPushButton:hover {
           <width>74</width>
           <height>41</height>
          </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
