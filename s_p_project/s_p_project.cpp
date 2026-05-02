@@ -11,6 +11,7 @@ s_p_project::s_p_project(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
+    this->showMaximized();
     ui.date_search->hide(); // السطر ده بيخفي مربع التاريخ أول ما الشاشة 
     ui.table_flight_search->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     

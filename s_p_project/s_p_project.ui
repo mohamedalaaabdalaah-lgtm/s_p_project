@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>644</width>
-    <height>501</height>
+    <width>895</width>
+    <height>690</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -41,10 +41,38 @@ QPushButton#btn_enter:hover {
     <string notr="true">background-color: white;</string>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0" colspan="2">
-     <widget class="QStackedWidget" name="stackedWidget">
-      <property name="styleSheet">
-       <string notr="true">/* Style for the buttons */
+    <item row="0" column="1">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>22</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="1">
+     <widget class="QFrame" name="frame">
+      <property name="minimumSize">
+       <size>
+        <width>750</width>
+        <height>550</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QStackedWidget" name="stackedWidget">
+         <property name="styleSheet">
+          <string notr="true">/* Style for the buttons */
 QPushButton {
     background-color: #c5a059; /* That gold/coffee color */
     color: white;              /* Button text color */
@@ -68,213 +96,184 @@ QLabel {
     font-weight: bold;
     margin-bottom: 20px;
 }</string>
-      </property>
-      <property name="currentIndex">
-       <number>11</number>
-      </property>
-      <widget class="QWidget" name="welcome_page">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-       <widget class="QPushButton" name="btn_enter">
-        <property name="geometry">
-         <rect>
-          <x>180</x>
-          <y>160</y>
-          <width>220</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="mouseTracking">
-         <bool>true</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(214, 178, 120);</string>
-        </property>
-        <property name="text">
-         <string>Get Started</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lbl_welcome">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>80</y>
-          <width>275</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Welcome to Egypt airlines</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="admin_or_user">
-       <widget class="QLabel" name="lbl_a_or_u">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>90</y>
-          <width>291</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Are you an Admin or a User?&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="textFormat">
-         <enum>Qt::TextFormat::RichText</enum>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_choose_admin">
-        <property name="geometry">
-         <rect>
-          <x>360</x>
-          <y>40</y>
-          <width>220</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Admin</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_choose_user">
-        <property name="geometry">
-         <rect>
-          <x>360</x>
-          <y>140</y>
-          <width>220</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>User</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="login_user_page">
-       <property name="cursor">
-        <cursorShape>ArrowCursor</cursorShape>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <widget class="QLabel" name="lbl_login_user">
-        <property name="geometry">
-         <rect>
-          <x>230</x>
-          <y>10</y>
-          <width>81</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Login</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="txt_login_username_2">
-        <property name="geometry">
-         <rect>
-          <x>150</x>
-          <y>100</y>
-          <width>221</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit {
+         </property>
+         <property name="currentIndex">
+          <number>11</number>
+         </property>
+         <widget class="QWidget" name="welcome_page">
+          <property name="styleSheet">
+           <string notr="true">/* Background of the welcome page */
+#welcome_page {
+    background-color: #FFF9F2; /* Creamy White */
+}
+
+/* Big Welcome Label */
+QLabel {
+    color: #4B3832; /* Dark Coffee Brown */
+    font-family: &quot;Segoe UI&quot;, sans-serif;
+    font-weight: bold;
+}
+
+/* Big Menu Buttons */
+QPushButton {
+    background-color: #BE9B7B; /* Latte Brown */
+    color: white;
+    border-radius: 15px; /* Rounded for that modern look */
+    padding: 10px;
+    border: 2px solid #854442; /* Deep Espresso border */
+}
+
+QPushButton:hover {
+    background-color: #854442; /* Darken on hover */
+}
+
+QPushButton:pressed {
+    background-color: #4B3832;
+}</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_13">
+           <item row="2" column="0">
+            <widget class="QPushButton" name="btn_enter">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="mouseTracking">
+              <bool>true</bool>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(214, 178, 120);</string>
+             </property>
+             <property name="text">
+              <string>Get Started</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="lbl_welcome">
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>150</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Welcome to Egypt airlines</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="admin_or_user">
+          <layout class="QGridLayout" name="gridLayout_8">
+           <item row="0" column="1">
+            <widget class="QPushButton" name="btn_choose_admin">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>Admin</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="lbl_a_or_u">
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Are you an Admin or a User?&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="textFormat">
+              <enum>Qt::TextFormat::RichText</enum>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QPushButton" name="btn_choose_user">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>User</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="login_user_page">
+          <property name="cursor">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
+          <property name="mouseTracking">
+           <bool>false</bool>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_10">
+           <item row="0" column="0">
+            <widget class="QLabel" name="lbl_login_user">
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Login</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLineEdit" name="txt_login_passport">
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
     background-color: #3e2723; /* Dark Coffee */
     color: #ffffff;           /* White text so you can actually see it! */
     border-radius: 10px;
     padding: 5px;
 }</string>
-        </property>
-        <property name="inputMask">
-         <string/>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="placeholderText">
-         <string>Username</string>
-        </property>
-        <property name="clearButtonEnabled">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="txt_login_passport">
-        <property name="geometry">
-         <rect>
-          <x>150</x>
-          <y>160</y>
-          <width>221</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit {
-    background-color: #3e2723; /* Dark Coffee */
-    color: #ffffff;           /* White text so you can actually see it! */
-    border-radius: 10px;
-    padding: 5px;
-}</string>
-        </property>
-        <property name="inputMask">
-         <string/>
-        </property>
-        <property name="echoMode">
-         <enum>QLineEdit::EchoMode::Password</enum>
-        </property>
-        <property name="placeholderText">
-         <string>Passport</string>
-        </property>
-        <property name="clearButtonEnabled">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_login_user">
-        <property name="geometry">
-         <rect>
-          <x>150</x>
-          <y>240</y>
-          <width>220</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Login</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_back_login_user">
-        <property name="geometry">
-         <rect>
-          <x>483</x>
-          <y>360</y>
-          <width>71</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
+             </property>
+             <property name="inputMask">
+              <string/>
+             </property>
+             <property name="echoMode">
+              <enum>QLineEdit::EchoMode::Password</enum>
+             </property>
+             <property name="placeholderText">
+              <string>Passport</string>
+             </property>
+             <property name="clearButtonEnabled">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QPushButton" name="btn_login_user">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>Login</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QPushButton" name="btn_back_login_user">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
     /* الخلفية شفافة */
     background-color: transparent;
     /* لون الخط (البيج بتاعك) */
@@ -299,81 +298,73 @@ QPushButton:hover {
     background-color: #cda47b;
     color: #3e2723; /* يقلب بني غامق عشان يبان */
 }</string>
-        </property>
-        <property name="text">
-         <string>Back</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="user_menu_page">
-       <widget class="QLabel" name="lbl_user_menu">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>0</y>
-          <width>191</width>
-          <height>71</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>-1</pointsize>
-          <italic>false</italic>
-          <bold>true</bold>
-          <underline>true</underline>
-         </font>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt; text-decoration: underline;&quot;&gt;User Menu :-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_search_flight">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>110</y>
-          <width>220</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Search Flights</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_view_ticket">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>210</y>
-          <width>220</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>View My Ticket</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_back_user_menu">
-        <property name="geometry">
-         <rect>
-          <x>520</x>
-          <y>360</y>
-          <width>71</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
+             </property>
+             <property name="text">
+              <string>Back</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLineEdit" name="txt_login_username_2">
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
+    background-color: #3e2723; /* Dark Coffee */
+    color: #ffffff;           /* White text so you can actually see it! */
+    border-radius: 10px;
+    padding: 5px;
+}</string>
+             </property>
+             <property name="inputMask">
+              <string/>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="placeholderText">
+              <string>Username</string>
+             </property>
+             <property name="clearButtonEnabled">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="user_menu_page">
+          <layout class="QGridLayout" name="gridLayout_12">
+           <item row="1" column="1">
+            <widget class="QPushButton" name="btn_search_flight">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>Search Flights</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QPushButton" name="btn_view_ticket">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>View My Ticket</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QPushButton" name="btn_back_user_menu">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
     /* الخلفية شفافة */
     background-color: transparent;
     /* لون الخط (البيج بتاعك) */
@@ -398,40 +389,64 @@ QPushButton:hover {
     background-color: #cda47b;
     color: #3e2723; /* يقلب بني غامق عشان يبان */
 }</string>
-        </property>
-        <property name="text">
-         <string>Back</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="view_ticket_page">
-       <widget class="QLabel" name="label_7">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>20</y>
-          <width>141</width>
-          <height>71</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_back_view_ticket">
-        <property name="geometry">
-         <rect>
-          <x>500</x>
-          <y>363</y>
-          <width>74</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"> QPushButton {
+             </property>
+             <property name="text">
+              <string>Back</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="lbl_user_menu">
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Segoe UI</family>
+               <pointsize>-1</pointsize>
+               <italic>false</italic>
+               <bold>true</bold>
+               <underline>true</underline>
+              </font>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt; text-decoration: underline;&quot;&gt;User Menu :-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="view_ticket_page">
+          <widget class="QLabel" name="label_7">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>20</y>
+             <width>141</width>
+             <height>71</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="btn_back_view_ticket">
+           <property name="geometry">
+            <rect>
+             <x>500</x>
+             <y>363</y>
+             <width>74</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"> QPushButton {
     /* الخلفية شفافة */
     background-color: transparent;
     /* لون الخط (البيج بتاعك) */
@@ -456,188 +471,147 @@ QPushButton:hover {
     background-color: #cda47b;
     color: #3e2723; /* يقلب بني غامق عشان يبان */
 }</string>
-        </property>
-        <property name="text">
-         <string>Back</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="flight_search_page">
-       <widget class="QLabel" name="lbl_flight_search">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>0</y>
-          <width>191</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:700; text-decoration: underline;&quot;&gt;Search Flights :-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lbl_search_by">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>40</y>
-          <width>111</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Search By :</string>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="cmb_search_key">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>40</y>
-          <width>171</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QComboBox {
-    background-color: #3e2723;
-    color: #ffffff;
+           </property>
+           <property name="text">
+            <string>Back</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="flight_search_page">
+          <layout class="QGridLayout" name="gridLayout_9">
+           <item row="4" column="0" rowspan="2" colspan="2">
+            <widget class="QLabel" name="lbl_flight_code_2">
+             <property name="text">
+              <string>Enter Flight Code :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3">
+            <widget class="QPushButton" name="btn_book_seat">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>220</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>141</width>
+               <height>41</height>
+              </size>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>Book Seat</string>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="lbl_keyword">
+             <property name="text">
+              <string>Enter Keyword :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3">
+            <widget class="QPushButton" name="btn_search_flight_2">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>220</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>141</width>
+               <height>41</height>
+              </size>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>Search</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="3">
+            <widget class="QPushButton" name="btn_back_search_flight">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+    /* الخلفية شفافة */
+    background-color: transparent;
+    /* لون الخط (البيج بتاعك) */
+    color: #cda47b; 
+    /* البرواز */
+    border: 2px solid #cda47b;
+    /* الحواف دائرية سِنة */
     border-radius: 10px;
-    padding: 5px;
-    border: 1px solid #3e2723;
+    /* الخط عريض (Bold) */
+    font-weight: bold;
+    /* حجم الخط */
+    font-size: 18px;
+    /* الحجم الصغير */
+    min-width: 20px;
+    max-width: 50px;
+    min-height: 10px;
+    max-height: 35px;
 }
 
-/* 2. منطقة السهم اللي على اليمين */
-QComboBox::drop-down {
-    border: none; /* بنشيل أي حدود قديمة عشان الشكل يبقى ناعم */
-    width: 30px;  /* بندي مساحة للسهم */
-}
-
-/* 3. القائمة المنسدلة نفسها (الـ Menu اللي بتفتح) */
-QComboBox QAbstractItemView {
-    background-color: #3e2723; /* نفس لون الخلفية */
-    color: #ffffff;
-    border: 1px solid #ffffff; /* إطار أبيض خفيف يحدد القائمة */
-    selection-background-color: #5d4037; /* لون أفتح شوية لما تقف بالماوس على اختيار */
-    selection-color: #ffffff;
+/* ستايل لما المستخدم يلمس الزرار بالماوس */
+QPushButton:hover {
+    background-color: #cda47b;
+    color: #3e2723; /* يقلب بني غامق عشان يبان */
 }</string>
-        </property>
-        <item>
-         <property name="text">
-          <string/>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Departure City</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Arrival City</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Date</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QLineEdit" name="txt_city_search">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>90</y>
-          <width>171</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit {
+             </property>
+             <property name="text">
+              <string>Back</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2">
+            <widget class="QLineEdit" name="txt_enter_flight_code_2">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
     background-color: #3e2723; /* Dark Coffee */
     color: #ffffff;           /* White text so you can actually see it! */
     border-radius: 10px;
     padding: 5px;
 }</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lbl_keyword">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>80</y>
-          <width>161</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Enter Keyword :</string>
-        </property>
-       </widget>
-       <widget class="QDateEdit" name="date_search">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>90</y>
-          <width>171</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">/* 1. التصميم الأساسي (النسخة الصارمة) */
-QDateEdit, QTimeEdit {
-    background: #3e2723 !important; 
-    color: #ffffff !important;
-    border-radius: 10px;
-    padding: 5px;
-    /* سطر الحدود ده مهم جداً لأنه بيلغي تحكم الويندوز تماماً */
-    border: 1px solid #3e2723 !important; 
-}
-
-/* 2. إخفاء وإدماج أزرار الأسهم */
-QDateEdit::up-button, QDateEdit::down-button,
-QTimeEdit::up-button, QTimeEdit::down-button {
-    border: none !important;
-    background: transparent !important;
-    width: 20px;
-}
-
-/* 3. تظبيط شكل السهم الخاص بالنتيجة */
-QDateEdit::drop-down {
-    border: none !important;
-    background: transparent !important;
-    width: 25px;
-}</string>
-        </property>
-        <property name="dateTime">
-         <datetime>
-          <hour>18</hour>
-          <minute>0</minute>
-          <second>0</second>
-          <year>2000</year>
-          <month>1</month>
-          <day>1</day>
-         </datetime>
-        </property>
-        <property name="date">
-         <date>
-          <year>2000</year>
-          <month>1</month>
-          <day>1</day>
-         </date>
-        </property>
-       </widget>
-       <widget class="QTableWidget" name="table_flight_search">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>140</y>
-          <width>571</width>
-          <height>151</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QTableWidget {
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="lbl_flight_search">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:700; text-decoration: underline;&quot;&gt;Search Flights :-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="4">
+            <widget class="QTableWidget" name="table_flight_search">
+             <property name="styleSheet">
+              <string notr="true">QTableWidget {
     background-color: #FFF9F2; /* Clotted cream / Light latte */
     alternate-background-color: #F2E3D5; /* Soft mocha for alternating rows */
     color: #4B3621; /* Deep espresso text */
@@ -675,118 +649,174 @@ QScrollBar::handle:vertical {
 QTableCornerButton::section {
     background-color: #6F4E37;
 }</string>
-        </property>
-        <property name="editTriggers">
-         <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
-        </property>
-        <column>
-         <property name="text">
-          <string>Flight Code</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>From</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>To</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Date</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Time</string>
-         </property>
-        </column>
-       </widget>
-       <widget class="QLineEdit" name="txt_enter_flight_code_2">
-        <property name="geometry">
-         <rect>
-          <x>210</x>
-          <y>320</y>
-          <width>131</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit {
+             </property>
+             <property name="editTriggers">
+              <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+             </property>
+             <column>
+              <property name="text">
+               <string>Flight Code</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>From</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>To</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Date</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Time</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item row="2" column="1" colspan="2">
+            <widget class="QLineEdit" name="txt_city_search">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
     background-color: #3e2723; /* Dark Coffee */
     color: #ffffff;           /* White text so you can actually see it! */
     border-radius: 10px;
     padding: 5px;
 }</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lbl_flight_code_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>310</y>
-          <width>191</width>
-          <height>71</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Enter Flight Code :</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_book_seat">
-        <property name="geometry">
-         <rect>
-          <x>370</x>
-          <y>310</y>
-          <width>220</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>220</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>141</width>
-          <height>41</height>
-         </size>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Book Seat</string>
-        </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_back_search_flight">
-        <property name="geometry">
-         <rect>
-          <x>500</x>
-          <y>370</y>
-          <width>71</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="lbl_search_by">
+             <property name="text">
+              <string>Search By :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" colspan="2">
+            <widget class="QComboBox" name="cmb_search_key">
+             <property name="styleSheet">
+              <string notr="true">QComboBox {
+    background-color: #3e2723;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 5px;
+    border: 1px solid #3e2723;
+}
+
+/* 2. منطقة السهم اللي على اليمين */
+QComboBox::drop-down {
+    border: none; /* بنشيل أي حدود قديمة عشان الشكل يبقى ناعم */
+    width: 30px;  /* بندي مساحة للسهم */
+}
+
+/* 3. القائمة المنسدلة نفسها (الـ Menu اللي بتفتح) */
+QComboBox QAbstractItemView {
+    background-color: #3e2723; /* نفس لون الخلفية */
+    color: #ffffff;
+    border: 1px solid #ffffff; /* إطار أبيض خفيف يحدد القائمة */
+    selection-background-color: #5d4037; /* لون أفتح شوية لما تقف بالماوس على اختيار */
+    selection-color: #ffffff;
+}</string>
+             </property>
+             <item>
+              <property name="text">
+               <string/>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Departure City</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Arrival City</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Date</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+          <widget class="QDateEdit" name="date_search">
+           <property name="geometry">
+            <rect>
+             <x>170</x>
+             <y>90</y>
+             <width>171</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">/* 1. التصميم الأساسي (النسخة الصارمة) */
+QDateEdit, QTimeEdit {
+    background: #3e2723 !important; 
+    color: #ffffff !important;
+    border-radius: 10px;
+    padding: 5px;
+    /* سطر الحدود ده مهم جداً لأنه بيلغي تحكم الويندوز تماماً */
+    border: 1px solid #3e2723 !important; 
+}
+
+/* 2. إخفاء وإدماج أزرار الأسهم */
+QDateEdit::up-button, QDateEdit::down-button,
+QTimeEdit::up-button, QTimeEdit::down-button {
+    border: none !important;
+    background: transparent !important;
+    width: 20px;
+}
+
+/* 3. تظبيط شكل السهم الخاص بالنتيجة */
+QDateEdit::drop-down {
+    border: none !important;
+    background: transparent !important;
+    width: 25px;
+}</string>
+           </property>
+           <property name="dateTime">
+            <datetime>
+             <hour>14</hour>
+             <minute>0</minute>
+             <second>0</second>
+             <year>2000</year>
+             <month>1</month>
+             <day>1</day>
+            </datetime>
+           </property>
+           <property name="date">
+            <date>
+             <year>2000</year>
+             <month>1</month>
+             <day>1</day>
+            </date>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="book_seat_page">
+          <widget class="QPushButton" name="btn_back_book_seat">
+           <property name="geometry">
+            <rect>
+             <x>510</x>
+             <y>350</y>
+             <width>74</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
     /* الخلفية شفافة */
     background-color: transparent;
     /* لون الخط (البيج بتاعك) */
@@ -811,61 +841,132 @@ QPushButton:hover {
     background-color: #cda47b;
     color: #3e2723; /* يقلب بني غامق عشان يبان */
 }</string>
-        </property>
-        <property name="text">
-         <string>Back</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_search_flight_2">
-        <property name="geometry">
-         <rect>
-          <x>370</x>
-          <y>80</y>
-          <width>220</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>220</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>141</width>
-          <height>41</height>
-         </size>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Search</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="book_seat_page">
-       <widget class="QPushButton" name="btn_back_book_seat">
-        <property name="geometry">
-         <rect>
-          <x>510</x>
-          <y>350</y>
-          <width>74</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
+           </property>
+           <property name="text">
+            <string>Back</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="login_page">
+          <layout class="QGridLayout" name="gridLayout_11">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Login&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLineEdit" name="txt_login_username">
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
+    background-color: #3e2723; /* Dark Coffee */
+    color: #ffffff;           /* White text so you can actually see it! */
+    border-radius: 10px;
+    padding: 5px;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="frame">
+              <bool>true</bool>
+             </property>
+             <property name="echoMode">
+              <enum>QLineEdit::EchoMode::Normal</enum>
+             </property>
+             <property name="cursorPosition">
+              <number>0</number>
+             </property>
+             <property name="dragEnabled">
+              <bool>false</bool>
+             </property>
+             <property name="placeholderText">
+              <string>Username</string>
+             </property>
+             <property name="clearButtonEnabled">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLineEdit" name="txt_login_pass">
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
+    background-color: #3e2723; /* Dark Coffee */
+    color: #ffffff;           /* White text so you can actually see it! */
+    border-radius: 10px;
+    padding: 5px;
+}</string>
+             </property>
+             <property name="inputMethodHints">
+              <set>Qt::InputMethodHint::ImhHiddenText|Qt::InputMethodHint::ImhNoAutoUppercase|Qt::InputMethodHint::ImhNoPredictiveText|Qt::InputMethodHint::ImhSensitiveData</set>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="echoMode">
+              <enum>QLineEdit::EchoMode::Password</enum>
+             </property>
+             <property name="placeholderText">
+              <string>Password</string>
+             </property>
+             <property name="clearButtonEnabled">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QPushButton" name="btn_login_submit">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>Login</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="lbl_error_msg">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2">
+            <widget class="QPushButton" name="btn_back_login">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
     /* الخلفية شفافة */
     background-color: transparent;
     /* لون الخط (البيج بتاعك) */
@@ -890,271 +991,63 @@ QPushButton:hover {
     background-color: #cda47b;
     color: #3e2723; /* يقلب بني غامق عشان يبان */
 }</string>
-        </property>
-        <property name="text">
-         <string>Back</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="login_page">
-       <widget class="QLabel" name="label">
-        <property name="geometry">
-         <rect>
-          <x>210</x>
-          <y>0</y>
-          <width>121</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Login&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="txt_login_username">
-        <property name="geometry">
-         <rect>
-          <x>172</x>
-          <y>100</y>
-          <width>211</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit {
-    background-color: #3e2723; /* Dark Coffee */
-    color: #ffffff;           /* White text so you can actually see it! */
-    border-radius: 10px;
-    padding: 5px;
-}</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="frame">
-         <bool>true</bool>
-        </property>
-        <property name="echoMode">
-         <enum>QLineEdit::EchoMode::Normal</enum>
-        </property>
-        <property name="cursorPosition">
-         <number>0</number>
-        </property>
-        <property name="dragEnabled">
-         <bool>false</bool>
-        </property>
-        <property name="placeholderText">
-         <string>Username</string>
-        </property>
-        <property name="clearButtonEnabled">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="txt_login_pass">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>160</y>
-          <width>211</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit {
-    background-color: #3e2723; /* Dark Coffee */
-    color: #ffffff;           /* White text so you can actually see it! */
-    border-radius: 10px;
-    padding: 5px;
-}</string>
-        </property>
-        <property name="inputMethodHints">
-         <set>Qt::InputMethodHint::ImhHiddenText|Qt::InputMethodHint::ImhNoAutoUppercase|Qt::InputMethodHint::ImhNoPredictiveText|Qt::InputMethodHint::ImhSensitiveData</set>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="echoMode">
-         <enum>QLineEdit::EchoMode::Password</enum>
-        </property>
-        <property name="placeholderText">
-         <string>Password</string>
-        </property>
-        <property name="clearButtonEnabled">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_login_submit">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>230</y>
-          <width>220</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Login</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lbl_error_msg">
-        <property name="geometry">
-         <rect>
-          <x>150</x>
-          <y>280</y>
-          <width>271</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_back_login">
-        <property name="geometry">
-         <rect>
-          <x>510</x>
-          <y>370</y>
-          <width>71</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
-    /* الخلفية شفافة */
-    background-color: transparent;
-    /* لون الخط (البيج بتاعك) */
-    color: #cda47b; 
-    /* البرواز */
-    border: 2px solid #cda47b;
-    /* الحواف دائرية سِنة */
-    border-radius: 10px;
-    /* الخط عريض (Bold) */
-    font-weight: bold;
-    /* حجم الخط */
-    font-size: 18px;
-    /* الحجم الصغير */
-    min-width: 20px;
-    max-width: 50px;
-    min-height: 10px;
-    max-height: 35px;
-}
-
-/* ستايل لما المستخدم يلمس الزرار بالماوس */
-QPushButton:hover {
-    background-color: #cda47b;
-    color: #3e2723; /* يقلب بني غامق عشان يبان */
-}</string>
-        </property>
-        <property name="text">
-         <string>Back</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="admin_menu">
-       <widget class="QLabel" name="label_2">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>10</y>
-          <width>161</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>-1</pointsize>
-          <bold>true</bold>
-          <underline>true</underline>
-         </font>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Admin Menu:-&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_addplane">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>50</y>
-          <width>220</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Add Plane</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_add_flight">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>120</y>
-          <width>220</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Add Flight</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_view_planes">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>190</y>
-          <width>220</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>View Planes</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_view_flights">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>260</y>
-          <width>220</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>View Flights</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_back_admin">
-        <property name="geometry">
-         <rect>
-          <x>510</x>
-          <y>370</y>
-          <width>74</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
+             </property>
+             <property name="text">
+              <string>Back</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="admin_menu">
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="1" column="1">
+            <widget class="QPushButton" name="btn_addplane">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>Add Plane</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QPushButton" name="btn_add_flight">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>Add Flight</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QPushButton" name="btn_view_planes">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>View Planes</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QPushButton" name="btn_view_flights">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>View Flights</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="2">
+            <widget class="QPushButton" name="btn_back_admin">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
     /* الخلفية شفافة */
     background-color: transparent;
     /* لون الخط (البيج بتاعك) */
@@ -1179,24 +1072,106 @@ QPushButton:hover {
     background-color: #cda47b;
     color: #3e2723; /* يقلب بني غامق عشان يبان */
 }</string>
-        </property>
-        <property name="text">
-         <string>Back</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="view_flights_page">
-       <widget class="QTableWidget" name="table_flights">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>50</y>
-          <width>601</width>
-          <height>311</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">/* The entire table background */
+             </property>
+             <property name="text">
+              <string>Back</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_2">
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Segoe UI</family>
+               <pointsize>-1</pointsize>
+               <bold>true</bold>
+               <underline>true</underline>
+              </font>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Admin Menu:-&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="view_flights_page">
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="0" column="0">
+            <widget class="QLabel" name="lbl_flights">
+             <property name="font">
+              <font>
+               <family>Segoe UI</family>
+               <pointsize>-1</pointsize>
+               <bold>true</bold>
+               <underline>true</underline>
+              </font>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Flights:-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="txt_admin_search_flights">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
+    background-color: #FFF9F2; /* Creamy Latte */
+    border: 2px solid #D2B48C; /* Tan/Bisque */
+    border-radius: 15px;      /* Rounded &quot;Coffee Pod&quot; shape */
+    padding: 5px 15px;
+    color: #4B3621;           /* Espresso text */
+    font-size: 14px;
+    selection-background-color: #A67B5B; /* Selection color */
+}
+
+QLineEdit:focus {
+    border: 2px solid #6F4E37; /* Darkens to Coffee Bean when typing */
+    background-color: #FFFFFF;
+}
+
+/* The Search Button */
+QPushButton {
+    background-color: #6F4E37; /* Deep Roast */
+    color: #FFF9F2;
+    border-radius: 15px;
+    padding: 5px 15px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #8B5A2B; /* Cinnamon hover effect */
+}
+
+QPushButton:pressed {
+    background-color: #4B3621; /* Strong Espresso pressed effect */
+}</string>
+             </property>
+             <property name="placeholderText">
+              <string>Enter flight code</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="btn_search_and_edit">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>Search and Edit</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="QTableWidget" name="table_flights">
+             <property name="styleSheet">
+              <string notr="true">/* The entire table background */
 QTableWidget {
     background-color: #FFF9F2; /* Clotted cream / Light latte */
     alternate-background-color: #F2E3D5; /* Soft mocha for alternating rows */
@@ -1235,89 +1210,72 @@ QScrollBar::handle:vertical {
 QTableCornerButton::section {
     background-color: #6F4E37;
 }</string>
-        </property>
-        <column>
-         <property name="text">
-          <string>flight code</string>
-         </property>
-         <property name="background">
-          <color>
-           <red>255</red>
-           <green>255</green>
-           <blue>255</blue>
-          </color>
-         </property>
-         <property name="foreground">
-          <brush brushstyle="NoBrush">
-           <color alpha="255">
-            <red>255</red>
-            <green>192</green>
-            <blue>129</blue>
-           </color>
-          </brush>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>plane code</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>from</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>to</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>date</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>time</string>
-         </property>
-        </column>
-       </widget>
-       <widget class="QLabel" name="lbl_flights">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>111</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>-1</pointsize>
-          <bold>true</bold>
-          <underline>true</underline>
-         </font>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Flights:-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_back_view_flights">
-        <property name="geometry">
-         <rect>
-          <x>540</x>
-          <y>370</y>
-          <width>74</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">   QPushButton {
+             </property>
+             <column>
+              <property name="text">
+               <string>flight code</string>
+              </property>
+              <property name="background">
+               <color>
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </property>
+              <property name="foreground">
+               <brush brushstyle="NoBrush">
+                <color alpha="255">
+                 <red>255</red>
+                 <green>192</green>
+                 <blue>129</blue>
+                </color>
+               </brush>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>plane code</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>from</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>to</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>date</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>time</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <widget class="QPushButton" name="btn_save_view_flights">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>Save Changes</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QPushButton" name="btn_back_view_flights">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">   QPushButton {
     /* الخلفية شفافة */
     background-color: transparent;
     /* لون الخط (البيج بتاعك) */
@@ -1342,102 +1300,45 @@ QPushButton:hover {
     background-color: #cda47b;
     color: #3e2723; /* يقلب بني غامق عشان يبان */
 }</string>
-        </property>
-        <property name="text">
-         <string>Back</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_search_and_edit">
-        <property name="geometry">
-         <rect>
-          <x>400</x>
-          <y>0</y>
-          <width>220</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Search and Edit</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="txt_admin_search_flights">
-        <property name="geometry">
-         <rect>
-          <x>210</x>
-          <y>10</y>
-          <width>171</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit {
-    background-color: #FFF9F2; /* Creamy Latte */
-    border: 2px solid #D2B48C; /* Tan/Bisque */
-    border-radius: 15px;      /* Rounded &quot;Coffee Pod&quot; shape */
-    padding: 5px 15px;
-    color: #4B3621;           /* Espresso text */
-    font-size: 14px;
-    selection-background-color: #A67B5B; /* Selection color */
-}
-
-QLineEdit:focus {
-    border: 2px solid #6F4E37; /* Darkens to Coffee Bean when typing */
-    background-color: #FFFFFF;
-}
-
-/* The Search Button */
-QPushButton {
-    background-color: #6F4E37; /* Deep Roast */
-    color: #FFF9F2;
-    border-radius: 15px;
-    padding: 5px 15px;
-    font-weight: bold;
-}
-
-QPushButton:hover {
-    background-color: #8B5A2B; /* Cinnamon hover effect */
-}
-
-QPushButton:pressed {
-    background-color: #4B3621; /* Strong Espresso pressed effect */
-}</string>
-        </property>
-        <property name="placeholderText">
-         <string>Enter flight code</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_save_view_flights">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>370</y>
-          <width>220</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Save Changes</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="view_planes_page">
-       <widget class="QTableWidget" name="table_planes">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>70</y>
-          <width>411</width>
-          <height>301</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QTableWidget {
+             </property>
+             <property name="text">
+              <string>Back</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="view_planes_page">
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="font">
+              <font>
+               <family>Segoe UI</family>
+               <pointsize>-1</pointsize>
+               <bold>true</bold>
+               <underline>true</underline>
+              </font>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Air planes:-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2" colspan="2">
+            <widget class="QPushButton" name="btn_admin_seach_planes">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>Search and Edit</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="QTableWidget" name="table_planes">
+             <property name="styleSheet">
+              <string notr="true">QTableWidget {
     background-color: #FFF9F2; /* Clotted cream / Light latte */
     alternate-background-color: #F2E3D5; /* Soft mocha for alternating rows */
     color: #4B3621; /* Deep espresso text */
@@ -1475,108 +1376,38 @@ QScrollBar::handle:vertical {
 QTableCornerButton::section {
     background-color: #6F4E37;
 }</string>
-        </property>
-        <column>
-         <property name="text">
-          <string>plane code</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>plane model</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>No.of rows</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>No.of columns</string>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>9</pointsize>
-          </font>
-         </property>
-        </column>
-       </widget>
-       <widget class="QLabel" name="label_5">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>141</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>-1</pointsize>
-          <bold>true</bold>
-          <underline>true</underline>
-         </font>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Air planes:-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_back_view_planes">
-        <property name="geometry">
-         <rect>
-          <x>520</x>
-          <y>360</y>
-          <width>71</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"> QPushButton {
-    /* الخلفية شفافة */
-    background-color: transparent;
-    /* لون الخط (البيج بتاعك) */
-    color: #cda47b; 
-    /* البرواز */
-    border: 2px solid #cda47b;
-    /* الحواف دائرية سِنة */
-    border-radius: 10px;
-    /* الخط عريض (Bold) */
-    font-weight: bold;
-    /* حجم الخط */
-    font-size: 18px;
-    /* الحجم الصغير */
-    min-width: 30px;
-    max-width: 50px;
-    min-height: 10px;
-    max-height: 35px;
-}
-
-/* ستايل لما المستخدم يلمس الزرار بالماوس */
-QPushButton:hover {
-    background-color: #cda47b;
-    color: #3e2723; /* يقلب بني غامق عشان يبان */
-}</string>
-        </property>
-        <property name="text">
-         <string>Back</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="txt_admin_search_planes">
-        <property name="geometry">
-         <rect>
-          <x>190</x>
-          <y>20</y>
-          <width>151</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit {
+             </property>
+             <column>
+              <property name="text">
+               <string>plane code</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>plane model</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>No.of rows</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>No.of columns</string>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="txt_admin_search_planes">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
     background-color: #FFF9F2; /* Creamy Latte */
     border: 2px solid #D2B48C; /* Tan/Bisque */
     border-radius: 15px;      /* Rounded &quot;Coffee Pod&quot; shape */
@@ -1607,694 +1438,19 @@ QPushButton:hover {
 QPushButton:pressed {
     background-color: #4B3621; /* Strong Espresso pressed effect */
 }</string>
-        </property>
-        <property name="placeholderText">
-         <string>Enter plane code</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_admin_seach_planes">
-        <property name="geometry">
-         <rect>
-          <x>370</x>
-          <y>10</y>
-          <width>220</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Search and Edit</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="add_flight_page">
-       <widget class="QLabel" name="lbl_add_flight">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>171</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font: 22pt &quot;Segoe UI&quot;;
-text-decoration: underline;</string>
-        </property>
-        <property name="text">
-         <string>Add Flight :-</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lbl_plane_code">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>60</y>
-          <width>131</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Plane Code :</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lbl_flight_code">
-        <property name="geometry">
-         <rect>
-          <x>310</x>
-          <y>60</y>
-          <width>131</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Flight Code :</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lbl_depart_city">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>110</y>
-          <width>161</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Departure City :</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lbl_arrival_city">
-        <property name="geometry">
-         <rect>
-          <x>310</x>
-          <y>110</y>
-          <width>141</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Arrival City :</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lbl_depart_air">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>160</y>
-          <width>191</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Departure Airport :</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lbl_arrival_air">
-        <property name="geometry">
-         <rect>
-          <x>310</x>
-          <y>160</y>
-          <width>161</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Arrival Airport :</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lbl_depart_date">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>220</y>
-          <width>171</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Departure Date :</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lbl_arrival_date">
-        <property name="geometry">
-         <rect>
-          <x>310</x>
-          <y>210</y>
-          <width>141</width>
-          <height>81</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Arrival Date :</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lbl_depart_time">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>280</y>
-          <width>181</width>
-          <height>71</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Departure Time :</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lbl_arrival_time">
-        <property name="geometry">
-         <rect>
-          <x>310</x>
-          <y>280</y>
-          <width>151</width>
-          <height>71</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Arrival Time :</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="txt_plane_code">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>60</y>
-          <width>161</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit {
-    background-color: #3e2723; /* Dark Coffee */
-    color: #ffffff;           /* White text so you can actually see it! */
-    border-radius: 10px;
-    padding: 5px;
-}</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="txt_flight_code">
-        <property name="geometry">
-         <rect>
-          <x>440</x>
-          <y>60</y>
-          <width>161</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit {
-    background-color: #3e2723; /* Dark Coffee */
-    color: #ffffff;           /* White text so you can actually see it! */
-    border-radius: 10px;
-    padding: 5px;
-}</string>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="cmb_depart_city">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>110</y>
-          <width>141</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">/* 1. المربع الأساسي اللي بيظهر قدامك */
-QComboBox {
-    background-color: #3e2723;
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 5px;
-    border: 1px solid #3e2723;
-}
-
-/* 2. منطقة السهم اللي على اليمين */
-QComboBox::drop-down {
-    border: none; /* بنشيل أي حدود قديمة عشان الشكل يبقى ناعم */
-    width: 30px;  /* بندي مساحة للسهم */
-}
-
-/* 3. القائمة المنسدلة نفسها (الـ Menu اللي بتفتح) */
-QComboBox QAbstractItemView {
-    background-color: #3e2723; /* نفس لون الخلفية */
-    color: #ffffff;
-    border: 1px solid #ffffff; /* إطار أبيض خفيف يحدد القائمة */
-    selection-background-color: #5d4037; /* لون أفتح شوية لما تقف بالماوس على اختيار */
-    selection-color: #ffffff;
-}</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>Cairo</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Alix</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Moscow</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Bejen</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Doha</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Dubai</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Gaddah</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Paris</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Berlin</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QComboBox" name="cmb_arrival_city">
-        <property name="geometry">
-         <rect>
-          <x>440</x>
-          <y>110</y>
-          <width>161</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">/* 1. المربع الأساسي اللي بيظهر قدامك */
-QComboBox {
-    background-color: #3e2723;
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 5px;
-    border: 1px solid #3e2723;
-}
-
-/* 2. منطقة السهم اللي على اليمين */
-QComboBox::drop-down {
-    border: none; /* بنشيل أي حدود قديمة عشان الشكل يبقى ناعم */
-    width: 30px;  /* بندي مساحة للسهم */
-}
-
-/* 3. القائمة المنسدلة نفسها (الـ Menu اللي بتفتح) */
-QComboBox QAbstractItemView {
-    background-color: #3e2723; /* نفس لون الخلفية */
-    color: #ffffff;
-    border: 1px solid #ffffff; /* إطار أبيض خفيف يحدد القائمة */
-    selection-background-color: #5d4037; /* لون أفتح شوية لما تقف بالماوس على اختيار */
-    selection-color: #ffffff;
-}</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>Cairo</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Alix</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Moscow</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Paris</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Doha</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Gaddah</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Berlin</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QComboBox" name="cmb_depart_air">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>170</y>
-          <width>101</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">/* 1. المربع الأساسي اللي بيظهر قدامك */
-QComboBox {
-    background-color: #3e2723;
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 5px;
-    border: 1px solid #3e2723;
-}
-
-/* 2. منطقة السهم اللي على اليمين */
-QComboBox::drop-down {
-    border: none; /* بنشيل أي حدود قديمة عشان الشكل يبقى ناعم */
-    width: 30px;  /* بندي مساحة للسهم */
-}
-
-/* 3. القائمة المنسدلة نفسها (الـ Menu اللي بتفتح) */
-QComboBox QAbstractItemView {
-    background-color: #3e2723; /* نفس لون الخلفية */
-    color: #ffffff;
-    border: 1px solid #ffffff; /* إطار أبيض خفيف يحدد القائمة */
-    selection-background-color: #5d4037; /* لون أفتح شوية لما تقف بالماوس على اختيار */
-    selection-color: #ffffff;
-}</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>Cairo</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Borj el Arab</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Sphinix</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Aswan</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QComboBox" name="cmb_arrival_air">
-        <property name="geometry">
-         <rect>
-          <x>470</x>
-          <y>170</y>
-          <width>131</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">/* 1. المربع الأساسي اللي بيظهر قدامك */
-QComboBox {
-    background-color: #3e2723;
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 5px;
-    border: 1px solid #3e2723;
-}
-
-/* 2. منطقة السهم اللي على اليمين */
-QComboBox::drop-down {
-    border: none; /* بنشيل أي حدود قديمة عشان الشكل يبقى ناعم */
-    width: 30px;  /* بندي مساحة للسهم */
-}
-
-/* 3. القائمة المنسدلة نفسها (الـ Menu اللي بتفتح) */
-QComboBox QAbstractItemView {
-    background-color: #3e2723; /* نفس لون الخلفية */
-    color: #ffffff;
-    border: 1px solid #ffffff; /* إطار أبيض خفيف يحدد القائمة */
-    selection-background-color: #5d4037; /* لون أفتح شوية لما تقف بالماوس على اختيار */
-    selection-color: #ffffff;
-}
-</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>Cairo</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>A</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>S</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>D</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>X</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QDateEdit" name="date_depart">
-        <property name="geometry">
-         <rect>
-          <x>180</x>
-          <y>230</y>
-          <width>121</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">/* 1. التصميم الأساسي (النسخة الصارمة) */
-QDateEdit, QTimeEdit {
-    background: #3e2723 !important; 
-    color: #ffffff !important;
-    border-radius: 10px;
-    padding: 5px;
-    /* سطر الحدود ده مهم جداً لأنه بيلغي تحكم الويندوز تماماً */
-    border: 1px solid #3e2723 !important; 
-}
-
-/* 2. إخفاء وإدماج أزرار الأسهم */
-QDateEdit::up-button, QDateEdit::down-button,
-QTimeEdit::up-button, QTimeEdit::down-button {
-    border: none !important;
-    background: transparent !important;
-    width: 20px;
-}
-
-/* 3. تظبيط شكل السهم الخاص بالنتيجة */
-QDateEdit::drop-down {
-    border: none !important;
-    background: transparent !important;
-    width: 25px;
-}</string>
-        </property>
-       </widget>
-       <widget class="QDateEdit" name="date_arrival">
-        <property name="geometry">
-         <rect>
-          <x>450</x>
-          <y>230</y>
-          <width>151</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">/* 1. التصميم الأساسي (النسخة الصارمة) */
-QDateEdit, QTimeEdit {
-    background: #3e2723 !important; 
-    color: #ffffff !important;
-    border-radius: 10px;
-    padding: 5px;
-    /* سطر الحدود ده مهم جداً لأنه بيلغي تحكم الويندوز تماماً */
-    border: 1px solid #3e2723 !important; 
-}
-
-/* 2. إخفاء وإدماج أزرار الأسهم */
-QDateEdit::up-button, QDateEdit::down-button,
-QTimeEdit::up-button, QTimeEdit::down-button {
-    border: none !important;
-    background: transparent !important;
-    width: 20px;
-}
-
-/* 3. تظبيط شكل السهم الخاص بالنتيجة */
-QDateEdit::drop-down {
-    border: none !important;
-    background: transparent !important;
-    width: 25px;
-}</string>
-        </property>
-       </widget>
-       <widget class="QTimeEdit" name="time_depart">
-        <property name="geometry">
-         <rect>
-          <x>180</x>
-          <y>290</y>
-          <width>121</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">/* 1. التصميم الأساسي (النسخة الصارمة) */
-QDateEdit, QTimeEdit {
-    background: #3e2723 !important; 
-    color: #ffffff !important;
-    border-radius: 10px;
-    padding: 5px;
-    /* سطر الحدود ده مهم جداً لأنه بيلغي تحكم الويندوز تماماً */
-    border: 1px solid #3e2723 !important; 
-}
-
-/* 2. إخفاء وإدماج أزرار الأسهم */
-QDateEdit::up-button, QDateEdit::down-button,
-QTimeEdit::up-button, QTimeEdit::down-button {
-    border: none !important;
-    background: transparent !important;
-    width: 20px;
-}
-
-/* 3. تظبيط شكل السهم الخاص بالنتيجة */
-QDateEdit::drop-down {
-    border: none !important;
-    background: transparent !important;
-    width: 25px;
-}</string>
-        </property>
-       </widget>
-       <widget class="QTimeEdit" name="time_arrival">
-        <property name="geometry">
-         <rect>
-          <x>450</x>
-          <y>290</y>
-          <width>151</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">/* 1. التصميم الأساسي (النسخة الصارمة) */
-QDateEdit, QTimeEdit {
-    background: #3e2723 !important; 
-    color: #ffffff !important;
-    border-radius: 10px;
-    padding: 5px;
-    /* سطر الحدود ده مهم جداً لأنه بيلغي تحكم الويندوز تماماً */
-    border: 1px solid #3e2723 !important; 
-}
-
-/* 2. إخفاء وإدماج أزرار الأسهم */
-QDateEdit::up-button, QDateEdit::down-button,
-QTimeEdit::up-button, QTimeEdit::down-button {
-    border: none !important;
-    background: transparent !important;
-    width: 20px;
-}
-
-/* 3. تظبيط شكل السهم الخاص بالنتيجة */
-QDateEdit::drop-down {
-    border: none !important;
-    background: transparent !important;
-    width: 25px;
-}</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_save_flight">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>350</y>
-          <width>250</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">/* الشكل الأساسي للزرار مع تكبير الخط */
-QPushButton {
-    background-color: #cda47b; 
-    color: #ffffff; 
-    border-radius: 12px;
-    padding: 10px 25px; /* زودنا المسافة الداخلية عشان الزرار يكبر مع الكلمة */
-    font-weight: bold;
-    font-size: 18px; /* &lt;-- هنا كبرنا الخط، لو لسه صغير خليه 20px */
-}
-
-/* تأثير لما تقف عليه بالماوس */
-QPushButton:hover {
-    background-color: #b88e65; 
-}
-
-/* تأثير لما تدوس عليه */
-QPushButton:pressed {
-    background-color: #9f764e; 
-}</string>
-        </property>
-        <property name="text">
-         <string>Save</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_back_flight">
-        <property name="geometry">
-         <rect>
-          <x>520</x>
-          <y>360</y>
-          <width>71</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>54</width>
-          <height>34</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>74</width>
-          <height>59</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>-1</pointsize>
-          <italic>false</italic>
-          <bold>true</bold>
-          <underline>false</underline>
-          <strikeout>false</strikeout>
-         </font>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">   QPushButton {
+             </property>
+             <property name="placeholderText">
+              <string>Enter plane code</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3">
+            <widget class="QPushButton" name="btn_back_view_planes">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"> QPushButton {
     /* الخلفية شفافة */
     background-color: transparent;
     /* لون الخط (البيج بتاعك) */
@@ -2319,96 +1475,695 @@ QPushButton:hover {
     background-color: #cda47b;
     color: #3e2723; /* يقلب بني غامق عشان يبان */
 }</string>
-        </property>
-        <property name="text">
-         <string>Back</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="addplane_page">
-       <widget class="QLabel" name="label_3">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>50</y>
-          <width>211</width>
-          <height>71</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:15pt;&quot;&gt;Enter Plane Model : &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_4">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>140</y>
-          <width>191</width>
-          <height>101</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:15pt;&quot;&gt;Enter Plane Code :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="txt_add_code">
-        <property name="geometry">
-         <rect>
-          <x>230</x>
-          <y>160</y>
-          <width>171</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit {
+             </property>
+             <property name="text">
+              <string>Back</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="add_flight_page">
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="1" column="2" colspan="4">
+            <widget class="QLineEdit" name="txt_plane_code">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
     background-color: #3e2723; /* Dark Coffee */
     color: #ffffff;           /* White text so you can actually see it! */
     border-radius: 10px;
     padding: 5px;
 }</string>
-        </property>
-        <property name="placeholderText">
-         <string>Enter Plane Code</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_save_plane">
-        <property name="geometry">
-         <rect>
-          <x>201</x>
-          <y>260</y>
-          <width>220</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>-1</pointsize>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string> Save Plane</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btn_back_addplane">
-        <property name="geometry">
-         <rect>
-          <x>510</x>
-          <y>370</y>
-          <width>74</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="9">
+            <widget class="QPushButton" name="btn_back_flight">
+             <property name="minimumSize">
+              <size>
+               <width>54</width>
+               <height>34</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>74</width>
+               <height>59</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>-1</pointsize>
+               <italic>false</italic>
+               <bold>true</bold>
+               <underline>false</underline>
+               <strikeout>false</strikeout>
+              </font>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">   QPushButton {
+    /* الخلفية شفافة */
+    background-color: transparent;
+    /* لون الخط (البيج بتاعك) */
+    color: #cda47b; 
+    /* البرواز */
+    border: 2px solid #cda47b;
+    /* الحواف دائرية سِنة */
+    border-radius: 10px;
+    /* الخط عريض (Bold) */
+    font-weight: bold;
+    /* حجم الخط */
+    font-size: 18px;
+    /* الحجم الصغير */
+    min-width: 30px;
+    max-width: 50px;
+    min-height: 10px;
+    max-height: 35px;
+}
+
+/* ستايل لما المستخدم يلمس الزرار بالماوس */
+QPushButton:hover {
+    background-color: #cda47b;
+    color: #3e2723; /* يقلب بني غامق عشان يبان */
+}</string>
+             </property>
+             <property name="text">
+              <string>Back</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="6">
+            <widget class="QLabel" name="lbl_arrival_air">
+             <property name="text">
+              <string>Arrival Airport :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="9">
+            <widget class="QDateEdit" name="date_arrival">
+             <property name="styleSheet">
+              <string notr="true">/* 1. التصميم الأساسي (النسخة الصارمة) */
+QDateEdit, QTimeEdit {
+    background: #3e2723 !important; 
+    color: #ffffff !important;
+    border-radius: 10px;
+    padding: 5px;
+    /* سطر الحدود ده مهم جداً لأنه بيلغي تحكم الويندوز تماماً */
+    border: 1px solid #3e2723 !important; 
+}
+
+/* 2. إخفاء وإدماج أزرار الأسهم */
+QDateEdit::up-button, QDateEdit::down-button,
+QTimeEdit::up-button, QTimeEdit::down-button {
+    border: none !important;
+    background: transparent !important;
+    width: 20px;
+}
+
+/* 3. تظبيط شكل السهم الخاص بالنتيجة */
+QDateEdit::drop-down {
+    border: none !important;
+    background: transparent !important;
+    width: 25px;
+}</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="6">
+            <widget class="QLabel" name="lbl_arrival_date">
+             <property name="maximumSize">
+              <size>
+               <width>140</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Arrival Date :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="6">
+            <widget class="QLabel" name="lbl_flight_code">
+             <property name="text">
+              <string>Flight Code :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="lbl_depart_air">
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Departure Airport :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="6">
+            <widget class="QLabel" name="lbl_arrival_time">
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Arrival Time :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="4">
+            <widget class="QComboBox" name="cmb_depart_air">
+             <property name="styleSheet">
+              <string notr="true">/* 1. المربع الأساسي اللي بيظهر قدامك */
+QComboBox {
+    background-color: #3e2723;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 5px;
+    border: 1px solid #3e2723;
+}
+
+/* 2. منطقة السهم اللي على اليمين */
+QComboBox::drop-down {
+    border: none; /* بنشيل أي حدود قديمة عشان الشكل يبقى ناعم */
+    width: 30px;  /* بندي مساحة للسهم */
+}
+
+/* 3. القائمة المنسدلة نفسها (الـ Menu اللي بتفتح) */
+QComboBox QAbstractItemView {
+    background-color: #3e2723; /* نفس لون الخلفية */
+    color: #ffffff;
+    border: 1px solid #ffffff; /* إطار أبيض خفيف يحدد القائمة */
+    selection-background-color: #5d4037; /* لون أفتح شوية لما تقف بالماوس على اختيار */
+    selection-color: #ffffff;
+}</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Cairo</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Borj el Arab</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Sphinix</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Aswan</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="3">
+            <widget class="QLabel" name="lbl_depart_city">
+             <property name="text">
+              <string>Departure City :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="1" colspan="5">
+            <widget class="QPushButton" name="btn_save_flight">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">/* الشكل الأساسي للزرار مع تكبير الخط */
+QPushButton {
+    background-color: #cda47b; 
+    color: #ffffff; 
+    border-radius: 12px;
+    padding: 10px 25px; /* زودنا المسافة الداخلية عشان الزرار يكبر مع الكلمة */
+    font-weight: bold;
+    font-size: 18px; /* &lt;-- هنا كبرنا الخط، لو لسه صغير خليه 20px */
+}
+
+/* تأثير لما تقف عليه بالماوس */
+QPushButton:hover {
+    background-color: #b88e65; 
+}
+
+/* تأثير لما تدوس عليه */
+QPushButton:pressed {
+    background-color: #9f764e; 
+}</string>
+             </property>
+             <property name="text">
+              <string>Save</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="7" colspan="3">
+            <widget class="QLineEdit" name="txt_flight_code">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
+    background-color: #3e2723; /* Dark Coffee */
+    color: #ffffff;           /* White text so you can actually see it! */
+    border-radius: 10px;
+    padding: 5px;
+}</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4">
+            <widget class="QLabel" name="lbl_add_flight">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font: 22pt &quot;Segoe UI&quot;;
+text-decoration: underline;</string>
+             </property>
+             <property name="text">
+              <string>Add Flight :-</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="lbl_plane_code">
+             <property name="text">
+              <string>Plane Code :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" colspan="3">
+            <widget class="QComboBox" name="cmb_depart_city">
+             <property name="styleSheet">
+              <string notr="true">/* 1. المربع الأساسي اللي بيظهر قدامك */
+QComboBox {
+    background-color: #3e2723;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 5px;
+    border: 1px solid #3e2723;
+}
+
+/* 2. منطقة السهم اللي على اليمين */
+QComboBox::drop-down {
+    border: none; /* بنشيل أي حدود قديمة عشان الشكل يبقى ناعم */
+    width: 30px;  /* بندي مساحة للسهم */
+}
+
+/* 3. القائمة المنسدلة نفسها (الـ Menu اللي بتفتح) */
+QComboBox QAbstractItemView {
+    background-color: #3e2723; /* نفس لون الخلفية */
+    color: #ffffff;
+    border: 1px solid #ffffff; /* إطار أبيض خفيف يحدد القائمة */
+    selection-background-color: #5d4037; /* لون أفتح شوية لما تقف بالماوس على اختيار */
+    selection-color: #ffffff;
+}</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Cairo</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Alix</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Moscow</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Bejen</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Doha</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Dubai</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Gaddah</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Paris</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Berlin</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="3" column="9">
+            <widget class="QComboBox" name="cmb_arrival_air">
+             <property name="styleSheet">
+              <string notr="true">/* 1. المربع الأساسي اللي بيظهر قدامك */
+QComboBox {
+    background-color: #3e2723;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 5px;
+    border: 1px solid #3e2723;
+}
+
+/* 2. منطقة السهم اللي على اليمين */
+QComboBox::drop-down {
+    border: none; /* بنشيل أي حدود قديمة عشان الشكل يبقى ناعم */
+    width: 30px;  /* بندي مساحة للسهم */
+}
+
+/* 3. القائمة المنسدلة نفسها (الـ Menu اللي بتفتح) */
+QComboBox QAbstractItemView {
+    background-color: #3e2723; /* نفس لون الخلفية */
+    color: #ffffff;
+    border: 1px solid #ffffff; /* إطار أبيض خفيف يحدد القائمة */
+    selection-background-color: #5d4037; /* لون أفتح شوية لما تقف بالماوس على اختيار */
+    selection-color: #ffffff;
+}
+</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Cairo</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>A</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>S</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>D</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>X</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="2" column="6">
+            <widget class="QLabel" name="lbl_arrival_city">
+             <property name="text">
+              <string>Arrival City :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="7" colspan="3">
+            <widget class="QComboBox" name="cmb_arrival_city">
+             <property name="styleSheet">
+              <string notr="true">/* 1. المربع الأساسي اللي بيظهر قدامك */
+QComboBox {
+    background-color: #3e2723;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 5px;
+    border: 1px solid #3e2723;
+}
+
+/* 2. منطقة السهم اللي على اليمين */
+QComboBox::drop-down {
+    border: none; /* بنشيل أي حدود قديمة عشان الشكل يبقى ناعم */
+    width: 30px;  /* بندي مساحة للسهم */
+}
+
+/* 3. القائمة المنسدلة نفسها (الـ Menu اللي بتفتح) */
+QComboBox QAbstractItemView {
+    background-color: #3e2723; /* نفس لون الخلفية */
+    color: #ffffff;
+    border: 1px solid #ffffff; /* إطار أبيض خفيف يحدد القائمة */
+    selection-background-color: #5d4037; /* لون أفتح شوية لما تقف بالماوس على اختيار */
+    selection-color: #ffffff;
+}</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Cairo</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Alix</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Moscow</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Paris</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Doha</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Gaddah</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Berlin</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="6" column="9">
+            <widget class="QTimeEdit" name="time_arrival">
+             <property name="styleSheet">
+              <string notr="true">/* 1. التصميم الأساسي (النسخة الصارمة) */
+QDateEdit, QTimeEdit {
+    background: #3e2723 !important; 
+    color: #ffffff !important;
+    border-radius: 10px;
+    padding: 5px;
+    /* سطر الحدود ده مهم جداً لأنه بيلغي تحكم الويندوز تماماً */
+    border: 1px solid #3e2723 !important; 
+}
+
+/* 2. إخفاء وإدماج أزرار الأسهم */
+QDateEdit::up-button, QDateEdit::down-button,
+QTimeEdit::up-button, QTimeEdit::down-button {
+    border: none !important;
+    background: transparent !important;
+    width: 20px;
+}
+
+/* 3. تظبيط شكل السهم الخاص بالنتيجة */
+QDateEdit::drop-down {
+    border: none !important;
+    background: transparent !important;
+    width: 25px;
+}</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="4">
+            <widget class="QDateEdit" name="date_depart">
+             <property name="styleSheet">
+              <string notr="true">/* 1. التصميم الأساسي (النسخة الصارمة) */
+QDateEdit, QTimeEdit {
+    background: #3e2723 !important; 
+    color: #ffffff !important;
+    border-radius: 10px;
+    padding: 5px;
+    /* سطر الحدود ده مهم جداً لأنه بيلغي تحكم الويندوز تماماً */
+    border: 1px solid #3e2723 !important; 
+}
+
+/* 2. إخفاء وإدماج أزرار الأسهم */
+QDateEdit::up-button, QDateEdit::down-button,
+QTimeEdit::up-button, QTimeEdit::down-button {
+    border: none !important;
+    background: transparent !important;
+    width: 20px;
+}
+
+/* 3. تظبيط شكل السهم الخاص بالنتيجة */
+QDateEdit::drop-down {
+    border: none !important;
+    background: transparent !important;
+    width: 25px;
+}</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="lbl_depart_date">
+             <property name="text">
+              <string>Departure Date :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="lbl_depart_time">
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Departure Time :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="4">
+            <widget class="QTimeEdit" name="time_depart">
+             <property name="styleSheet">
+              <string notr="true">/* 1. التصميم الأساسي (النسخة الصارمة) */
+QDateEdit, QTimeEdit {
+    background: #3e2723 !important; 
+    color: #ffffff !important;
+    border-radius: 10px;
+    padding: 5px;
+    /* سطر الحدود ده مهم جداً لأنه بيلغي تحكم الويندوز تماماً */
+    border: 1px solid #3e2723 !important; 
+}
+
+/* 2. إخفاء وإدماج أزرار الأسهم */
+QDateEdit::up-button, QDateEdit::down-button,
+QTimeEdit::up-button, QTimeEdit::down-button {
+    border: none !important;
+    background: transparent !important;
+    width: 20px;
+}
+
+/* 3. تظبيط شكل السهم الخاص بالنتيجة */
+QDateEdit::drop-down {
+    border: none !important;
+    background: transparent !important;
+    width: 25px;
+}</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="addplane_page">
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:15pt;&quot;&gt;Enter Plane Model : &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QComboBox" name="cmb_airplane_model">
+             <property name="styleSheet">
+              <string notr="true">QComboBox {
+    background-color: #3e2723;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 5px;
+    border: 1px solid #3e2723;
+}
+
+/* 2. منطقة السهم اللي على اليمين */
+QComboBox::drop-down {
+    border: none; /* بنشيل أي حدود قديمة عشان الشكل يبقى ناعم */
+    width: 30px;  /* بندي مساحة للسهم */
+}
+
+/* 3. القائمة المنسدلة نفسها (الـ Menu اللي بتفتح) */
+QComboBox QAbstractItemView {
+    background-color: #3e2723; /* نفس لون الخلفية */
+    color: #ffffff;
+    border: 1px solid #ffffff; /* إطار أبيض خفيف يحدد القائمة */
+    selection-background-color: #5d4037; /* لون أفتح شوية لما تقف بالماوس على اختيار */
+    selection-color: #ffffff;
+}</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Airbus A320</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Airbus A321</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Airbus A330-200</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Airbus A380-800</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Boeing 787-9</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:15pt;&quot;&gt;Enter Plane Code :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLineEdit" name="txt_add_code">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
+    background-color: #3e2723; /* Dark Coffee */
+    color: #ffffff;           /* White text so you can actually see it! */
+    border-radius: 10px;
+    padding: 5px;
+}</string>
+             </property>
+             <property name="placeholderText">
+              <string>Enter Plane Code</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3">
+            <widget class="QPushButton" name="btn_back_addplane">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
     /* الخلفية شفافة */
     background-color: transparent;
     /* لون الخط (البيج بتاعك) */
@@ -2433,72 +2188,73 @@ QPushButton:hover {
     background-color: #cda47b;
     color: #3e2723; /* يقلب بني غامق عشان يبان */
 }</string>
-        </property>
-        <property name="text">
-         <string>Back</string>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="cmb_airplane_model">
-        <property name="geometry">
-         <rect>
-          <x>230</x>
-          <y>70</y>
-          <width>161</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QComboBox {
-    background-color: #3e2723;
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 5px;
-    border: 1px solid #3e2723;
-}
-
-/* 2. منطقة السهم اللي على اليمين */
-QComboBox::drop-down {
-    border: none; /* بنشيل أي حدود قديمة عشان الشكل يبقى ناعم */
-    width: 30px;  /* بندي مساحة للسهم */
-}
-
-/* 3. القائمة المنسدلة نفسها (الـ Menu اللي بتفتح) */
-QComboBox QAbstractItemView {
-    background-color: #3e2723; /* نفس لون الخلفية */
-    color: #ffffff;
-    border: 1px solid #ffffff; /* إطار أبيض خفيف يحدد القائمة */
-    selection-background-color: #5d4037; /* لون أفتح شوية لما تقف بالماوس على اختيار */
-    selection-color: #ffffff;
-}</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>Airbus A320</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Airbus A321</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Airbus A330-200</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Airbus A380-800</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Boeing 787-9</string>
-         </property>
-        </item>
-       </widget>
-      </widget>
+             </property>
+             <property name="text">
+              <string>Back</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QPushButton" name="btn_save_plane">
+             <property name="font">
+              <font>
+               <pointsize>-1</pointsize>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string> Save Plane</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
      </widget>
+    </item>
+    <item row="2" column="1">
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>22</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="2">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>41</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="0">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>42</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>
@@ -2507,7 +2263,7 @@ QComboBox QAbstractItemView {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>644</width>
+     <width>895</width>
      <height>21</height>
     </rect>
    </property>
