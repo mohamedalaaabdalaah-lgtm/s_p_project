@@ -334,7 +334,6 @@ void s_p_project::show_planes_in_table() {
         ui.table_planes->setItem(i, 3, new QTableWidgetItem(QString::number(plane_list[i].number_of_col)));
 
     }
-
 }
 void s_p_project::on_btn_view_planes_clicked() {
     show_planes_in_table();
