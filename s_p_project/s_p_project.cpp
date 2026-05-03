@@ -56,6 +56,7 @@ s_p_project::s_p_project(QWidget *parent)
     plane_list[0].plane_model = models[3].plane_model;
     plane_list[0].number_of_rows = models[3].number_of_row = 30;
     plane_list[0].number_of_col = models[3].number_of_col = 30;
+    plane_list[0].seat_letters = models[3].seat_letters;
     plane_list[0].plane_code = 77;
 
 
@@ -73,6 +74,7 @@ s_p_project::s_p_project(QWidget *parent)
     flight_list[0].arrival_time.hours = 6;
     flight_list[0].arrival_time.minutes = 30;
     flight_list[0].flight_code = 606;
+    flight_list[0].for_planecode = 77;
     //باقي الكراسي هعملهم  لما ادقن المصفوفه الديناميكيه
 
     ui.stackedWidget->setCurrentIndex(0); // welcome page
@@ -662,6 +664,30 @@ void s_p_project::on_btn_search_flight_2_clicked()
 }
 
 //-------------------------------------------------------------------//
+////booking time boiiiiii////
+
+
+void s_p_project::setup_booking_page(int p_code, int f_id) {
+    int rows = 0, cols = 0;
+    string seat_letters = "";
+
+    for (int i = 0; i < (int)plane_list.size(); i++) {
+        if (plane_list[i].plane_code == p_code) {
+            rows = plane_list[i].number_of_rows;
+            cols = plane_list[i].number_of_col;
+
+            for (int j = 0; j < 5; j++) {
+                if (plane_list[i].plane_model == models[j].plane_model) {
+                    seat_letters = models[j].seat_letters;
+                    break;
+                }
+            }
+            break;
+        }
+    }
+
+    generate_seat_grid(rows, cols, seat_letters, f_id);
+}
 
 void s_p_project::on_btn_book_seat_clicked() 
 {
@@ -698,6 +724,7 @@ void s_p_project::on_btn_book_seat_clicked()
     {
         ui.txt_enter_flight_code_2->clear(); 
 
+        setup_booking_page(currentFlight.for_planecode, currentFlight.flight_code);
         
         ui.stackedWidget->setCurrentWidget(ui.book_seat_page);
     }
@@ -705,6 +732,82 @@ void s_p_project::on_btn_book_seat_clicked()
     {
         
         QMessageBox::warning(this, "Not Found", "Invalid Flight Code. Please enter a valid code from the table.");
+    }
+}
+
+void s_p_project::generate_seat_grid(int rows, int cols, std::string letters, int f_id) {
+    QLayoutItem* item;
+    while ((item = ui.gridLayout_seats->takeAt(0)) != nullptr) {
+        if (item->widget()) delete item->widget();
+        delete item;
+    }
+
+    int safe_cols = std::min(cols, (int)letters.length());
+
+    for (int r = 1; r <= rows; r++) {
+        for (int c = 0; c < safe_cols; c++) {
+            char current_L = letters[c];
+
+            QPushButton* seatBtn = new QPushButton();
+            seatBtn->setFixedSize(45, 45);
+
+            QString seatText = QString::number(r) + QChar(current_L);
+            seatBtn->setText(seatText);
+
+            seatBtn->setProperty("row", r);
+            seatBtn->setProperty("letter", QChar(current_L));
+
+            bool isBooked = false;
+            for (int i = 0; i < (int)tickets_list.size(); i++) {
+                if (tickets_list[i].flight_number == f_id &&
+                    tickets_list[i].seat_row == r &&
+                    tickets_list[i].seat_letter == current_L) {
+                    isBooked = true;
+                    break;
+                }
+            }
+
+            if (isBooked) {
+                seatBtn->setEnabled(false);
+                seatBtn->setStyleSheet("background-color: #3E2723; color: #8D6E63; border-radius: 4px;");
+                seatBtn->setText("X");
+            }
+            else {
+                seatBtn->setStyleSheet("background-color: #EDE0D4; color: #4B3621; border: 1px solid #6F4E37; border-radius: 4px;");
+                connect(seatBtn, &QPushButton::clicked, this, &s_p_project::handleSeatSelection);
+            }
+
+            ui.gridLayout_seats->addWidget(seatBtn, r, c);
+        }
+    }
+}
+
+void s_p_project::handleSeatSelection() {
+    QPushButton* clickedBtn = qobject_cast<QPushButton*>(sender());
+    if (!clickedBtn) return;
+
+    int r = clickedBtn->property("row").toInt();
+    char L = clickedBtn->property("letter").toChar().toLatin1(); // Convert QChar back to char
+
+    auto res = QMessageBox::question(this, "Confirm", "Book seat " + QString::number(r) + QChar(L) + "?");
+
+    if (res == QMessageBox::Yes) {
+        ticket new_t;
+        new_t.passenger_name = current_user.username; // From your user struct
+        new_t.passport_id = current_user.passport_id; //
+        new_t.flight_number = currentFlight.flight_code; //
+        new_t.seat_row = r;
+        new_t.seat_letter = L; // Match your 'char' type
+
+        // Add to your global vector
+        tickets_list.push_back(new_t);
+
+        // Update visuals
+        clickedBtn->setEnabled(false);
+        clickedBtn->setStyleSheet("background-color: #3E2723; color: #8D6E63; border-radius: 4px;");
+        clickedBtn->setText("X");
+
+        QMessageBox::information(this, "Success", "Seat Booked!");
     }
 }
 //-----------------------------------------------------------------// ده بيعمل حاجة اسمها Auto fill لما تدوس على الرحلة هو بيحطها تلقائي في Enter flight code 
