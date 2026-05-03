@@ -106,7 +106,6 @@ extern user current_user;
 extern flight currentFlight;
 
 
-
 extern int  user_row;
 extern char user_colum;
 extern int indexRow, indexColum;

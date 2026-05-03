@@ -55,6 +55,8 @@ private slots:
     void show_planes_in_table();
     void on_btn_admin_seach_planes_clicked();
     void on_btn_back_view_planes_clicked();
+    void on_btn_save_view_planes_clicked();
+
 
 //----------------------------------------------//
     //login user

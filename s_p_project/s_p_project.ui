@@ -98,7 +98,7 @@ QLabel {
 }</string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>10</number>
          </property>
          <widget class="QWidget" name="welcome_page">
           <property name="styleSheet">
@@ -794,7 +794,7 @@ QDateEdit::drop-down {
            </property>
            <property name="dateTime">
             <datetime>
-             <hour>14</hour>
+             <hour>12</hour>
              <minute>0</minute>
              <second>0</second>
              <year>2000</year>
@@ -1386,6 +1386,9 @@ QTableCornerButton::section {
     background-color: #6F4E37;
 }</string>
              </property>
+             <property name="editTriggers">
+              <set>QAbstractItemView::EditTrigger::AnyKeyPressed|QAbstractItemView::EditTrigger::DoubleClicked|QAbstractItemView::EditTrigger::EditKeyPressed</set>
+             </property>
              <column>
               <property name="text">
                <string>plane code</string>
@@ -1487,6 +1490,13 @@ QPushButton:hover {
              </property>
              <property name="text">
               <string>Back</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QPushButton" name="btn_save_view_planes">
+             <property name="text">
+              <string>Save changes</string>
              </property>
             </widget>
            </item>

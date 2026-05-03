@@ -7,6 +7,7 @@
 
 #include <QMessageBox>
 
+
 s_p_project::s_p_project(QWidget *parent)
     : QMainWindow(parent)
 {
@@ -15,6 +16,36 @@ s_p_project::s_p_project(QWidget *parent)
     ui.date_search->hide(); // السطر ده بيخفي مربع التاريخ أول ما الشاشة 
     ui.table_flight_search->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     
+    // set some data
+
+    // دي انواع الطيارات الي عندنا ومش هنعملها فايل  
+    models[0].plane_model = "AirbusA320";
+    models[0].number_of_row = 20;
+    models[0].number_of_col = 6;
+    models[0].seat_letters = "ABCHJK";
+
+    models[1].plane_model = "AirbusA330-200";
+    models[1].number_of_row = 23;
+    models[1].number_of_col = 6;
+    models[1].seat_letters = "ABCHJK";
+
+    models[2].plane_model = "AirbusA380-800";
+    models[2].number_of_row = 30;
+    models[2].number_of_col = 8;
+    models[2].seat_letters = "A C D E F G H K";
+
+
+    models[3].plane_model = "Boeing787-9";
+    models[3].number_of_row = 30;
+    models[3].number_of_col = 10;
+    models[3].seat_letters = "A B C D E F G H J K";
+
+    models[4].plane_model = "AirbusA321";
+    models[4].number_of_row = 30;
+    models[4].number_of_col = 9;
+    models[4].seat_letters = "A B C D E G H J K";
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // مجرد ارقام تجربه 
     admins[0].username = "m";
     admins[0].password = "m@123";
@@ -22,9 +53,9 @@ s_p_project::s_p_project(QWidget *parent)
     admins[1].password = "mohamedhany@123";
 
     //مجرد ارقام للتجربه 
-    plane_list[0].plane_model = "Boeing747";
-    plane_list[0].number_of_rows = 12;
-    plane_list[0].number_of_col = 15;
+    plane_list[0].plane_model = models[3].plane_model;
+    plane_list[0].number_of_rows = models[3].number_of_row = 30;
+    plane_list[0].number_of_col = models[3].number_of_col = 30;
     plane_list[0].plane_code = 77;
 
 
@@ -226,7 +257,10 @@ void s_p_project::show_flights_in_table()
         
         ui.table_flights->setItem(i, 0, new QTableWidgetItem(QString::number(flight_list[i].flight_code)));
 
-        ui.table_flights->setItem(i, 1, new QTableWidgetItem(QString::number(flight_list[i].for_planecode)));
+        QTableWidgetItem* rowItem = new QTableWidgetItem(QString::number(flight_list[i].for_planecode));
+        rowItem->setFlags(rowItem->flags() & ~Qt::ItemIsEditable);
+        ui.table_flights->setItem(i, 1, rowItem);
+
 
         ui.table_flights->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(flight_list[i].departure_city)));
 
@@ -237,7 +271,7 @@ void s_p_project::show_flights_in_table()
 
         QString timeStr = QString::number(flight_list[i].departure_time.hours) + ":" +QString::number(flight_list[i].departure_time.minutes).rightJustified(2, '0');
         ui.table_flights->setItem(i, 5, new QTableWidgetItem(timeStr));                                                 //                             ^
-                                                                                                                        //لزوم الحبشتكنات من الاخ جيمي  |
+                                                                                                                        //لزوم الحبشتكنات              |
     }
 }
 void s_p_project::on_btn_view_flights_clicked() {
@@ -320,19 +354,58 @@ void s_p_project::on_btn_save_view_flights_clicked()
 
 ////the view n edit planes page ////
 void s_p_project::show_planes_in_table() {
-
     ui.table_planes->setRowCount(0);
+
     for (int i = 0; i < (int)plane_list.size(); i++) {
         ui.table_planes->insertRow(i);
 
-        ui.table_planes->setItem(i, 0, new QTableWidgetItem(QString::number(plane_list[i].plane_code)));
+        bool has_bookings = false;
+        for (int f = 0; f < (int)flight_list.size(); f++) {
+            if (flight_list[f].for_planecode == plane_list[i].plane_code && !flight_list[f].is_empty) {
+                has_bookings = true;
+                break;
+            }
+        }
 
-        ui.table_planes->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(plane_list[i].plane_model)));
+        QTableWidgetItem* codeItem = new QTableWidgetItem(QString::number(plane_list[i].plane_code));
+        if (has_bookings) {
+            codeItem->setFlags(codeItem->flags() & ~Qt::ItemIsEditable);
+            codeItem->setBackground(QColor("#D3D3D3"));
+        }
+        ui.table_planes->setItem(i, 0, codeItem);
 
-        ui.table_planes->setItem(i, 2, new QTableWidgetItem(QString::number(plane_list[i].number_of_rows)));
+        QComboBox* combo = new QComboBox();
+        for (int j = 0; j < 5; j++) {
+            combo->addItem(QString::fromStdString(models[j].plane_model));
+        }
+        combo->setCurrentText(QString::fromStdString(plane_list[i].plane_model));
 
-        ui.table_planes->setItem(i, 3, new QTableWidgetItem(QString::number(plane_list[i].number_of_col)));
+        combo->setStyleSheet(
+            "QComboBox {"
+            "   background-color: #4B3621;" // Espresso
+            "   color: #EDE0D4;"            // Latte/Cream
+            "   border: 1px solid #6F4E37;"
+            "}"
+            "QComboBox QAbstractItemView {"
+            "   background-color: #4B3621;"
+            "   color: #EDE0D4;"
+            "   selection-background-color: #6F4E37;"
+            "}"
+        );
 
+        if (has_bookings) {
+            combo->setEnabled(false);
+            combo->setStyleSheet("background-color: #D3D3D3; color: #555;");
+        }
+        ui.table_planes->setCellWidget(i, 1, combo);
+
+        QTableWidgetItem* rowItem = new QTableWidgetItem(QString::number(plane_list[i].number_of_rows));
+        rowItem->setFlags(rowItem->flags() & ~Qt::ItemIsEditable);
+        ui.table_planes->setItem(i, 2, rowItem);
+
+        QTableWidgetItem* colItem = new QTableWidgetItem(QString::number(plane_list[i].number_of_col));
+        colItem->setFlags(colItem->flags() & ~Qt::ItemIsEditable);
+        ui.table_planes->setItem(i, 3, colItem);
     }
 }
 void s_p_project::on_btn_view_planes_clicked() {
@@ -369,6 +442,51 @@ void s_p_project::on_btn_admin_seach_planes_clicked()
         QMessageBox::warning(this, "Not Found", "No planes matches that code.");
     }
 }
+/// <summary>
+/// saving the changes boiiiiii/////
+/// </summary>
+void s_p_project::on_btn_save_view_planes_clicked() {
+
+    for (int i = 0; i < (int)plane_list.size(); i++) {
+        int new_code = ui.table_planes->item(i, 0)->text().toInt();
+        int old_code = plane_list[i].plane_code;
+
+        if (new_code != old_code) {
+            for (int f = 0; f < (int)flight_list.size(); f++) {
+                if (flight_list[f].for_planecode == old_code) {
+                    flight_list[f].for_planecode = new_code;
+                }
+            }
+        }
+    }
+
+    plane_list.clear();
+
+    for (int i = 0; i < ui.table_planes->rowCount(); ++i) {
+        plane p;
+
+        p.plane_code = ui.table_planes->item(i, 0)->text().toInt();
+
+        QComboBox* combo = qobject_cast<QComboBox*>(ui.table_planes->cellWidget(i, 1));
+        p.plane_model = combo->currentText().toStdString();
+
+        for (int j = 0; j < 5; j++) {
+            if (p.plane_model == models[j].plane_model) {
+                p.number_of_rows = models[j].number_of_row;
+                p.number_of_col = models[j].number_of_col;
+                break;
+            }
+        }
+
+        plane_list.push_back(p);
+    }
+
+    QMessageBox::information(this, "Saved", "All changes have been applied.");
+    show_planes_in_table();
+}
+    
+       
+
 
 void s_p_project::on_btn_back_view_planes_clicked() {
     ui.stackedWidget->setCurrentWidget(ui.admin_menu);
