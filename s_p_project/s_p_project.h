@@ -79,5 +79,7 @@ private slots:
     //book seat
     void on_btn_back_book_seat_clicked();
     void on_btn_back_view_ticket_clicked();
+
+     
 };
 

@@ -15,7 +15,7 @@ s_p_project::s_p_project(QWidget *parent)
     this->showMaximized();
     ui.date_search->hide(); // السطر ده بيخفي مربع التاريخ أول ما الشاشة 
     ui.table_flight_search->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    
+       
     // set some data
 
     // دي انواع الطيارات الي عندنا ومش هنعملها فايل  
@@ -510,6 +510,27 @@ void s_p_project::on_btn_login_user_clicked()
 
     user_login_gui(username, passport);
 
+    current_user.username = username;
+    current_user.passport_id = passport;
+
+    // 2. //00000000000000000000000000000000000000000000000000000000000000000هنرمي التذكرة الوهمية مباشرة هنا لو الفيكتور فاضي
+    if (tickets_list.empty()) {
+        ticket t1;
+        t1.passenger_name = "Mo Abdelhamed";
+        t1.passport_id = "A1234567";
+        t1.flight_number = 701;
+        t1.departure_city = "CAIRO";
+        t1.arrival_city = "PARIS";
+        t1.date.day = 15;
+        t1.date.month = "march";
+        t1.time.hours = 14;
+        t1.time.minutes = 30;
+        t1.seat_row = 12;
+        t1.seat_letter = 'A';
+
+        tickets_list.push_back(t1);
+    }
+
     QMessageBox::information(this, "Success ", "Welcome " + q_username + "!");
 
     ui.txt_login_username_2->clear();
@@ -530,10 +551,7 @@ void s_p_project::on_btn_search_flight_clicked()
     ui.stackedWidget->setCurrentWidget(ui.flight_search_page);
 }
 
-void s_p_project::on_btn_view_ticket_clicked()
-{
-    ui.stackedWidget->setCurrentWidget(ui.view_ticket_page);
-}
+
 
 void s_p_project::on_btn_back_user_menu_clicked()
 {
@@ -729,3 +747,73 @@ void s_p_project::on_btn_back_view_ticket_clicked()        //view ticket back
 {
     ui.stackedWidget->setCurrentWidget(ui.user_menu_page);
 }
+
+//-------------------------------------------------------------------------------------------------//
+
+void s_p_project::on_btn_view_ticket_clicked()
+{
+    bool found = false;
+    QMessageBox::information(this, "Test", "Number of tickets: " + QString::number(tickets_list.size()));
+    // بنلف على ليستة التذاكر
+    for (int i = 0; i < tickets_list.size(); i++)
+    {
+        if (tickets_list[i].passport_id == current_user.passport_id)
+        {
+            found = true;
+
+            
+            QString p_name = QString::fromStdString(tickets_list[i].passenger_name);
+            QString dep_city = QString::fromStdString(tickets_list[i].departure_city);
+            QString arr_city = QString::fromStdString(tickets_list[i].arrival_city);
+
+            // 2. التاريخ 
+            QString month_str = QString::fromStdString(tickets_list[i].date.month).toLower();
+            if (!month_str.isEmpty()) {
+                month_str[0] = month_str[0].toUpper();
+            }
+            QString date = QString::number(tickets_list[i].date.day) + " " + month_str;
+
+            // 3. الوقت 
+            QString time = QString::asprintf("%02d:%02d", tickets_list[i].time.hours, tickets_list[i].time.minutes);
+
+            // 4. الكرسي 
+            QString seat = QString::number(tickets_list[i].seat_row) + QString(QChar(tickets_list[i].seat_letter));
+
+            // 5. رقم الرحلة 
+            QString flight_code = QString::number(tickets_list[i].flight_number);
+
+            // البوابة (بما إنها مش في الـ struct حالياً هنديها قيمة ثابتة لحد ما تضيفها)
+            QString gate = "B14";
+
+            
+
+            ui.lbl_passenger_ticket->setText(p_name);
+            ui.lbl_dep_city->setText(dep_city);
+            ui.lbl_arr_city->setText(arr_city);
+            ui.lbl_date_ticket->setText(date);
+            ui.lbl_flight_code_ticket->setText(flight_code);
+            ui.lbl_gate_ticket->setText(gate);
+            ui.lbl_time_ticket->setText(time);
+            ui.lbl_seat_ticket->setText(seat);
+
+            // دي بتاعة الجزء اللي على جنب في التذكرة (الكعب)1
+             ui.lbl_passenger_ticket_2->setText(p_name);
+             ui.lbl_date_ticket_2->setText(date);
+             ui.lbl_flight_code_ticket_2->setText(flight_code);
+             ui.lbl_seat_ticket_2->setText(seat);
+
+
+            // 3. نظهر صفحة التذكرة
+            ui.stackedWidget->setCurrentWidget(ui.view_ticket_page);
+
+            break; 
+        }
+    }
+
+    // 4. لو مفيش تذكرة
+    if (!found)
+    {
+        QMessageBox::warning(this, "No Ticket", "No ticket found for your passport ID.");
+    }
+}
+
