@@ -106,7 +106,7 @@ void s_p_project::on_btn_enter_clicked()
 }
 void s_p_project::on_btn_choose_user_clicked()
 {
-    ui.stackedWidget->setCurrentWidget(ui.login_user_page); //users return to welcome page until changes
+    ui.stackedWidget->setCurrentWidget(ui.login_user_page);
 }
 
 void s_p_project::on_btn_choose_admin_clicked()
@@ -209,10 +209,10 @@ void s_p_project::on_btn_save_flight_clicked()
     int depDay = ui.date_depart->date().day();
     int arrDay = ui.date_arrival->date().day();
 
-    // القاموس اللي بيترجم أرقام الشهور لكلمات
+    
     QStringList english_months = { "", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december" };
 
-    // سحب أرقام الشهور وترجمتها لـ string
+    
     int depMonthNum = ui.date_depart->date().month();
     string depMonthStr = english_months[depMonthNum].toStdString(); // كده بقى جواه مثلا "march"
 
@@ -519,7 +519,7 @@ void s_p_project::on_btn_login_user_clicked()
 
     if (q_username.isEmpty() || q_passport.isEmpty()) {
         QMessageBox::warning(this, "Attention!", "Please enter your Username and Passport number!");
-        return; // بيوقف الدالة هنا عشان ميكملش على داتا فاضية
+        return; 
     }
 
     std::string username = q_username.toStdString();
@@ -530,23 +530,7 @@ void s_p_project::on_btn_login_user_clicked()
     current_user.username = username;
     current_user.passport_id = passport;
 
-    // 2. //00000000000000000000000000000000000000000000000000000000000000000هنرمي التذكرة الوهمية مباشرة هنا لو الفيكتور فاضي
-    if (tickets_list.empty()) {
-        ticket t1;
-        t1.passenger_name = "Mo Abdelhamed";
-        t1.passport_id = "A1234567";
-        t1.flight_number = 701;
-        t1.departure_city = "CAIRO";
-        t1.arrival_city = "PARIS";
-        t1.date.day = 15;
-        t1.date.month = "march";
-        t1.time.hours = 14;
-        t1.time.minutes = 30;
-        t1.seat_row = 12;
-        t1.seat_letter = 'A';
-
-        tickets_list.push_back(t1);
-    }
+    
 
     QMessageBox::information(this, "Success ", "Welcome " + q_username + "!");
 
@@ -578,19 +562,19 @@ void s_p_project::on_btn_back_user_menu_clicked()
 //------------------------------------------------------------------------------//
 void s_p_project::on_cmb_search_key_currentTextChanged(const QString& arg1)
 {
-    // لو اليوزر اختار إنه يبحث بالتاريخ
+    
     if (arg1 == "Date")
     {
         ui.txt_city_search->hide();       // اخفي مربع المدينة
         ui.date_search->show();           // اظهر مربع التاريخ
-        ui.lbl_keyword->setText("Enter Date :"); // غير عنوان المربع
+        ui.lbl_keyword->setText("Enter Date :"); 
     }
-    // لو اختار يبحث بالمدينة (Departure City أو Arrival City)
+    
     else
     {
-        ui.date_search->hide();           // اخفي مربع التاريخ
-        ui.txt_city_search->show();       // اظهر مربع المدينة
-        ui.lbl_keyword->setText("Enter City :"); // رجع العنوان لأصله
+        ui.date_search->hide();           
+        ui.txt_city_search->show();      
+        ui.lbl_keyword->setText("Enter City :"); 
     }
 }
 //-----------------------------------------------------------------------------------------//
@@ -602,11 +586,11 @@ void s_p_project::on_btn_search_flight_2_clicked()
    
     ui.table_flight_search->setRowCount(0);
 
-    // 2. سحب اختيارات اليوزر وتجهيزها للمقارنة
+    
     QString searchBy = ui.cmb_search_key->currentText().trimmed().toLower();
     QString keyword = ui.txt_city_search->text().trimmed().toLower();
 
-    // سحب التاريخ من الـ Date Box وترجمته لكلمة إنجليزي عشان يطابق داتا صحابك
+    
     int search_day = ui.date_search->date().day();
     int month_num = ui.date_search->date().month();
     QStringList english_months = { "", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december" };
@@ -645,7 +629,7 @@ void s_p_project::on_btn_search_flight_2_clicked()
 
             // ================== DAta Edit ========================//
 
-            // 1. تظبيط الشهر (تكبير أول حرف)
+            
             QString display_month = QString::fromStdString(flight_list[i].departure_date.month);
             if (!display_month.isEmpty())
             {
@@ -654,7 +638,7 @@ void s_p_project::on_btn_search_flight_2_clicked()
            
             QString fullDate = QString::number(flight_list[i].departure_date.day) + " " + display_month;
 
-            // 2. تظبيط الوقت (AM و PM وصفر الدقايق)
+            
             int h = flight_list[i].departure_time.hours;
             int m = flight_list[i].departure_time.minutes;
            
@@ -888,70 +872,129 @@ void s_p_project::on_btn_back_view_ticket_clicked()        //view ticket back
 
 //-------------------------------------------------------------------------------------------------//
 
+void s_p_project::display_ticket_on_screen(int i)
+{
+    // سحب الداتا من اللستة بناءً على رقم التذكرة (i) اللي مبعوت للدالة
+    QString p_name = QString::fromStdString(tickets_list[i].passenger_name);
+    QString dep_city = QString::fromStdString(tickets_list[i].departure_city);
+    QString arr_city = QString::fromStdString(tickets_list[i].arrival_city);
+
+    // التاريخ
+    QString month_str = QString::fromStdString(tickets_list[i].date.month).toLower();
+    if (!month_str.isEmpty()) {
+        month_str[0] = month_str[0].toUpper();
+    }
+    QString date = QString::number(tickets_list[i].date.day) + " " + month_str;
+
+    // الوقت
+    QString time = QString::asprintf("%02d:%02d", tickets_list[i].time.hours, tickets_list[i].time.minutes);
+
+    // الكرسي
+    QString seat = QString::number(tickets_list[i].seat_row) + QString(QChar(tickets_list[i].seat_letter));
+
+    // رقم الرحلة
+    QString flight_code = QString::number(tickets_list[i].flight_number);
+
+    // المطارات
+    QString dep_air = "";
+    QString arr_air = "";
+    for (int j = 0; j < flight_list.size(); j++)
+    {
+        if (flight_list[j].flight_code == tickets_list[i].flight_number)
+        {
+            dep_air = QString::fromStdString(flight_list[j].departure_airport);
+            arr_air = QString::fromStdString(flight_list[j].arrival_airport);
+            break;
+        }
+    }
+
+    QString gate = "B14";
+
+    // عرض الداتا في الجزء الكبير من التذكرة
+    ui.lbl_passenger_ticket->setText(p_name);
+    ui.lbl_dep_city->setText(dep_city);
+    ui.lbl_arr_city->setText(arr_city);
+    ui.lbl_date_ticket->setText(date);
+    ui.lbl_flight_code_ticket->setText(flight_code);
+    ui.lbl_gate_ticket->setText(gate);
+    ui.lbl_time_ticket->setText(time);
+    ui.lbl_seat_ticket->setText(seat);
+    ui.lbl_dep_air->setText(dep_air);
+    ui.lbl_arr_air->setText(arr_air);
+
+    // دي بتاعة الجزء اللي على جنب في التذكرة (الكعب)
+    ui.lbl_passenger_ticket_2->setText(p_name);
+    ui.lbl_date_ticket_2->setText(date);
+    ui.lbl_flight_code_ticket_2->setText(flight_code);
+    ui.lbl_seat_ticket_2->setText(seat);
+}
+//------------------------------------------//
 void s_p_project::on_btn_view_ticket_clicked()
 {
     bool found = false;
-    QMessageBox::information(this, "Test", "Number of tickets: " + QString::number(tickets_list.size()));
-    
+
+    // بندور على أول تذكرة تخص اليوزر ده
     for (int i = 0; i < tickets_list.size(); i++)
     {
         if (tickets_list[i].passport_id == current_user.passport_id)
         {
+            // لقيناها! نحفظ مكانها في المتغير بتاعنا ونعرضها
+            current_ticket_index_in_list = i;
+            display_ticket_on_screen(i);
             found = true;
-
-            
-            QString p_name = QString::fromStdString(tickets_list[i].passenger_name);
-            QString dep_city = QString::fromStdString(tickets_list[i].departure_city);
-            QString arr_city = QString::fromStdString(tickets_list[i].arrival_city);
-
-            // 2. التاريخ 
-            QString month_str = QString::fromStdString(tickets_list[i].date.month).toLower();
-            if (!month_str.isEmpty()) {
-                month_str[0] = month_str[0].toUpper();
-            }
-            QString date = QString::number(tickets_list[i].date.day) + " " + month_str;
-
-            // 3. الوقت 
-            QString time = QString::asprintf("%02d:%02d", tickets_list[i].time.hours, tickets_list[i].time.minutes);
-
-            // 4. الكرسي 
-            QString seat = QString::number(tickets_list[i].seat_row) + QString(QChar(tickets_list[i].seat_letter));
-
-            // 5. رقم الرحلة 
-            QString flight_code = QString::number(tickets_list[i].flight_number);
-
-            
-            QString gate = "B14";
-
-            
-
-            ui.lbl_passenger_ticket->setText(p_name);
-            ui.lbl_dep_city->setText(dep_city);
-            ui.lbl_arr_city->setText(arr_city);
-            ui.lbl_date_ticket->setText(date);
-            ui.lbl_flight_code_ticket->setText(flight_code);
-            ui.lbl_gate_ticket->setText(gate);
-            ui.lbl_time_ticket->setText(time);
-            ui.lbl_seat_ticket->setText(seat);
-
-            // دي بتاعة الجزء اللي على جنب في التذكرة (الكعب)1
-             ui.lbl_passenger_ticket_2->setText(p_name);
-             ui.lbl_date_ticket_2->setText(date);
-             ui.lbl_flight_code_ticket_2->setText(flight_code);
-             ui.lbl_seat_ticket_2->setText(seat);
-
-
-            // 3. نظهر صفحة التذكرة
-            ui.stackedWidget->setCurrentWidget(ui.view_ticket_page);
-
-            break; 
+            break; // بنوقف اللوب عشان إحنا عاوزين نعرض أول واحدة بس في البداية
         }
     }
 
-    // 4. لو مفيش تذكرة
     if (!found)
     {
         QMessageBox::warning(this, "No Ticket", "No ticket found for your passport ID.");
+        return;
+    }
+
+    // نظهر صفحة التذكرة للمستخدم
+    ui.stackedWidget->setCurrentWidget(ui.view_ticket_page);
+}
+
+//-------------------------------------------
+
+void s_p_project::on_btn_next_ticket_clicked()
+{
+    int next_index = -1;
+
+    // 1. هندور من بعد التذكرة اللي معروضة دلوقتي لحد آخر اللستة
+    for (int i = current_ticket_index_in_list + 1; i < tickets_list.size(); i++)
+    {
+        if (tickets_list[i].passport_id == current_user.passport_id)
+        {
+            next_index = i;
+            break;
+        }
+    }
+
+    // 2. لو ملقاش، يرجع يدور من أول اللستة تاني (عشان لو خلص تذاكره يرجع لأول واحدة)
+    if (next_index == -1)
+    {
+        for (int i = 0; i < current_ticket_index_in_list; i++)
+        {
+            if (tickets_list[i].passport_id == current_user.passport_id)
+            {
+                next_index = i;
+                break;
+            }
+        }
+    }
+
+    // 3. نعرض التذكرة الجديدة لو لقيناها
+    if (next_index != -1)
+    {
+        current_ticket_index_in_list = next_index; // نحدث مكان التذكرة الجديدة في المؤشر بتاعنا
+        display_ticket_on_screen(current_ticket_index_in_list); // نعرضها على الشاشة
     }
 }
+
+
+
+
+
 

@@ -18,7 +18,8 @@ public:
 private:
     Ui::s_p_projectClass ui;
 private:
-    struct Admin {
+    struct Admin 
+    {
         QString username;
         QString password;
     };
@@ -60,7 +61,7 @@ private slots:
     void on_btn_save_view_planes_clicked();
 
 
-//----------------------------------------------//
+ //----------------------------------------------//
     //login user
 
     void on_btn_login_user_clicked();
@@ -83,6 +84,12 @@ private slots:
     void on_btn_back_view_ticket_clicked();
     void setup_booking_page(int p_code, int f_id);
     void generate_seat_grid(int rows, int cols, std::string letters, int f_id);
+
+    //----------------------------------------------sho new ticket if he has another ticket 
+    void on_btn_next_ticket_clicked();
+private:
+         int current_ticket_index_in_list = -1; // ده المتغير اللي هيحفظ مكان آخر تذكرة اتعرضت
+         void display_ticket_on_screen(int i);  // فانكشن العرض عشان منكررش الكود
 
 private slots:
     void handleSeatSelection();
