@@ -754,7 +754,7 @@ void s_p_project::on_btn_view_ticket_clicked()
 {
     bool found = false;
     QMessageBox::information(this, "Test", "Number of tickets: " + QString::number(tickets_list.size()));
-    // بنلف على ليستة التذاكر
+    
     for (int i = 0; i < tickets_list.size(); i++)
     {
         if (tickets_list[i].passport_id == current_user.passport_id)
@@ -782,7 +782,7 @@ void s_p_project::on_btn_view_ticket_clicked()
             // 5. رقم الرحلة 
             QString flight_code = QString::number(tickets_list[i].flight_number);
 
-            // البوابة (بما إنها مش في الـ struct حالياً هنديها قيمة ثابتة لحد ما تضيفها)
+            
             QString gate = "B14";
 
             
