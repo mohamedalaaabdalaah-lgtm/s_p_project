@@ -20,7 +20,7 @@ s_p_project::s_p_project(QWidget *parent)
     ui.table_flight_search->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
        
     // set some data
-
+    LoadAllData();
 
 
     //دول مش محتاجينهم بقا عشان الفايل هجيبه هنا من الmain
@@ -1068,7 +1068,19 @@ void s_p_project::on_btn_next_ticket_clicked()
     }
 }
 
+void s_p_project::closeEvent(QCloseEvent* event)
+{
+    SaveAllData();
 
+    
+    auto res = QMessageBox::question(this, "Exit", "Save and Exit?");
+    if (res != QMessageBox::Yes) {
+        event->ignore();
+        return;
+    }
+   
+    event->accept();
+}
 
 
 

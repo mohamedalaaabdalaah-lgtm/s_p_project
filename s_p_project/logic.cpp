@@ -1382,6 +1382,7 @@ void initializeDefaultPlanes()
 
 void initializeDefaultFlights()
 {
+    srand(time(0));
     flight_list.clear();
 
     string cities[] = { "Cairo", "Dubai", "Paris", "London", "Rome", "NewYork", "Tokyo", "Madrid", "Riyadh", "Berlin" };

@@ -21,13 +21,13 @@ int main(int argc, char *argv[])
     s_p_project window;
     window.show();
 
-	srand(time(0));// initialize random values.
+	//srand(time(0));// initialize random values.
 
-    LoadAllData();
+    //LoadAllData();
 
-    start();
+    //start();
 
-    SaveAllData();
+    //SaveAllData();
 
     return app.exec();
 }

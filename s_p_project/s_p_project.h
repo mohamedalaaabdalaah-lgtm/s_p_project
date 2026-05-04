@@ -97,6 +97,10 @@ private:
 
 private slots:
     void handleSeatSelection();
+
+
+protected:
+    void closeEvent(QCloseEvent* event) override;
    
 
 
