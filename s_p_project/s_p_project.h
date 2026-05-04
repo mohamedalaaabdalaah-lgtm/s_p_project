@@ -1,7 +1,9 @@
-﻿#pragma once
+﻿#include <string>
+#pragma once
 
 #include <QtWidgets/QMainWindow>
 #include "ui_s_p_project.h"
+
 
 
 
@@ -79,7 +81,13 @@ private slots:
     //book seat
     void on_btn_back_book_seat_clicked();
     void on_btn_back_view_ticket_clicked();
+    void setup_booking_page(int p_code, int f_id);
+    void generate_seat_grid(int rows, int cols, std::string letters, int f_id);
 
-     
+private slots:
+    void handleSeatSelection();
+   
+
+
 };
 
