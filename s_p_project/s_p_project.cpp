@@ -759,6 +759,8 @@ void s_p_project::generate_seat_grid(int rows, int cols, std::string letters, in
         delete item;
     }
 
+    ui.gridLayout_seats->setSpacing(10);
+
     int safe_cols = std::min(cols, (int)letters.length());
 
     for (int r = 1; r <= rows; r++) {
@@ -774,6 +776,10 @@ void s_p_project::generate_seat_grid(int rows, int cols, std::string letters, in
             seatBtn->setProperty("row", r);
             seatBtn->setProperty("letter", QChar(current_L));
 
+            ui.gridLayout_seats->setHorizontalSpacing(15); 
+            ui.gridLayout_seats->setVerticalSpacing(10);  
+            ui.gridLayout_seats->setContentsMargins(20, 20, 20, 20);
+
             bool isBooked = false;
             for (int i = 0; i < (int)tickets_list.size(); i++) {
                 if (tickets_list[i].flight_number == f_id &&
@@ -783,6 +789,7 @@ void s_p_project::generate_seat_grid(int rows, int cols, std::string letters, in
                     break;
                 }
             }
+
 
             if (isBooked) {
                 seatBtn->setEnabled(false);
@@ -809,10 +816,33 @@ void s_p_project::generate_seat_grid(int rows, int cols, std::string letters, in
                 );
                 connect(seatBtn, &QPushButton::clicked, this, &s_p_project::handleSeatSelection);
             }
+            int grid_col = c;
+            bool addAisle = false;
+            int aisleIndex = -1;
 
-            ui.gridLayout_seats->addWidget(seatBtn, r, c);
+            if (cols <= 6) {
+                aisleIndex = cols / 2;
+                if (c >= aisleIndex) grid_col = c + 1;
+                if (c == aisleIndex) addAisle = true;
+            }
+            else {
+                if (c >= 2) grid_col += 1;
+                if (c >= (cols - 2)) grid_col += 1;
+            }
+
+
+            ui.gridLayout_seats->addWidget(seatBtn, r, grid_col);
         }
     }
+    if (cols <= 6) {
+        ui.gridLayout_seats->addItem(new QSpacerItem(40, 20, QSizePolicy::Fixed), 1, cols / 2);
+    }
+    else {
+        ui.gridLayout_seats->addItem(new QSpacerItem(40, 20, QSizePolicy::Fixed), 1, 2);
+        ui.gridLayout_seats->addItem(new QSpacerItem(40, 20, QSizePolicy::Fixed), 1, cols - 1);
+    }
+    ui.gridLayout_seats->setAlignment(Qt::AlignCenter);
+   
 }
 
 void s_p_project::handleSeatSelection() {

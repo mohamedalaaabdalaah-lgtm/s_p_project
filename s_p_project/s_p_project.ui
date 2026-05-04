@@ -137,7 +137,7 @@ QLabel {
 }</string>
          </property>
          <property name="currentIndex">
-          <number>4</number>
+          <number>6</number>
          </property>
          <widget class="QWidget" name="welcome_page">
           <property name="styleSheet">
@@ -1736,7 +1736,14 @@ QDateEdit::drop-down {
                 <widget class="QWidget" name="widget" native="true">
                  <layout class="QGridLayout" name="gridLayout_16">
                   <item row="0" column="0">
-                   <layout class="QGridLayout" name="gridLayout_seats"/>
+                   <layout class="QGridLayout" name="gridLayout_seats">
+                    <property name="horizontalSpacing">
+                     <number>12</number>
+                    </property>
+                    <property name="verticalSpacing">
+                     <number>8</number>
+                    </property>
+                   </layout>
                   </item>
                  </layout>
                 </widget>
