@@ -133,7 +133,7 @@ void s_p_project::on_btn_login_submit_clicked()
     bool authenticated = false;
 
     
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 10; i++) {
         if (username == admins[i].username && pass == admins[i].password) {
             authenticated = true;
             break;

@@ -17,13 +17,7 @@ public:
 
 private:
     Ui::s_p_projectClass ui;
-private:
-    struct Admin 
-    {
-        QString username;
-        QString password;
-    };
-    Admin admins[2]; 
+
 private slots:
 
     void on_btn_enter_clicked();
