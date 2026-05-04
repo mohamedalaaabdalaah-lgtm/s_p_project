@@ -847,8 +847,12 @@ void s_p_project::handleSeatSelection() {
         new_t.flight_number = currentFlight.flight_code;
         new_t.seat_row = r;
         new_t.seat_letter = L;
-
+        new_t.departure_city = currentFlight.departure_city;
+        new_t.arrival_city = currentFlight.arrival_city;
+        new_t.date = currentFlight.departure_date;
+        new_t.time = currentFlight.departure_time;
         
+
         tickets_list.push_back(new_t);
 
         
