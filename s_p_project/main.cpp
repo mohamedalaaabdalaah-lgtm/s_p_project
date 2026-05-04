@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     window.show();
 
 
-    //start();
+    start();
 
 
     return app.exec();
