@@ -137,6 +137,18 @@ void update_plane()
     {
         if (input_code == plane_list[i].plane_code)
         {
+
+            for (int j = 0; j < flight_list.size(); j++)//للتأكد بس لو فيه مقعد محجوز فيه رحله والرحله دي هتتعمل بالطياره دي مش هيقدر يعدل 
+            {
+                if (flight_list[j].for_planecode == plane_list[i].plane_code && flight_list[j].is_empty == false)
+                {
+
+                    cout << "\n Cannot modify: There are already bookings for flights using this plane!\n";
+                    return;//دي كدا هيخرج من الفانكشن يارجاله 
+                }
+            }
+
+
             search = true;
             cout << "\n Enter the new plane model : \n ";
             cin >> plane_list[i].plane_model;
@@ -179,10 +191,38 @@ void update_plane()
 }
 
 
-void add_flight()
-
+int time_of_flight_to_minutes(mytime t)//دي بتحول وقت الرحله الي دقايق عشان اتشيك علي تعارض الاوقات عند اضافه رحله جديده
 {
+    return t.hours * 60 + t.minutes;
+}
 
+
+bool is_plane_available(int pCode, int dDay, string dMonth, int dHour, int dMin, int aHour, int aMin)//دي الفانكشن الاساسيه الي بتشيك علي تعارض الوقت 
+{
+    for (int i = 0; i < flight_list.size(); i++)
+
+    {
+        if (flight_list[i].for_planecode == pCode && flight_list[i].departure_date.day == dDay && flight_list[i].departure_date.month == dMonth)
+        {
+            int existing_start = time_of_flight_to_minutes(flight_list[i].departure_time);
+            int existing_end = time_of_flight_to_minutes(flight_list[i].arrival_time);
+            int new_start = dHour * 60 + dMin;
+            int new_end = aHour * 60 + aMin;
+            //الكونديشن ده معقد يارب اكون ظبطه 
+            if ((new_start >= existing_start && new_start <= existing_end) ||
+                (new_end >= existing_start && new_end <= existing_end) ||
+                (new_start <= existing_start && new_end >= existing_end))
+            {
+                return false; //كدا فيه تضارب في الوقت بتاع الرحله الي دخلتها للفانكشن 
+            }
+        }
+    }
+    return true;
+}
+
+
+void add_flight()
+{
     flight* ptr = new flight();
     int plane_code_for_flight_test;
     bool found = false;
@@ -194,55 +234,14 @@ void add_flight()
     {
         if (plane_list[i].plane_code == plane_code_for_flight_test)
         {
-
-
-
-            for (int row = 0; row < plane_list[i].number_of_rows; row++)//ده الي بيملي كراسي كل رحله 
-            {
-                for (int col = 0; col < plane_list[i].number_of_col; col++)
-                {
-                    (*ptr).seats[row][col] = 'E';
-                }
-                cout << " " << endl;
-            }
-
-
-
             found = true;
-            cout << "\n Enter the flight code :\n ";
-            cin >> (*ptr).flight_code;
-
-            ///////////////////////////////////////////
-
-            cout << "\n Enter the departure city :\n ";
-            cin >> (*ptr).departure_city;
-
-            cout << "\n Enter the arrival city :\n ";
-            cin >> (*ptr).arrival_city;
-
-            ///////////////////////////////////////////////
-
-            cout << "\n Enter the departure airport :\n ";
-            cin >> (*ptr).departure_airport;
-
-            cout << "\n Enter the arrival airport :\n ";
-            cin >> (*ptr).arrival_airport;
-
-            ///////////////////////////////////////////////////
-
+            //نأخد شويه بيانات عشان نعمل بيها تشيك الاول
             cout << "\n Enter the Day of departure date :\n ";
             cin >> (*ptr).departure_date.day;
 
             cout << "\n Enter the month of departure date :\n ";
             cin >> (*ptr).departure_date.month;
 
-            cout << "\n Enter the Day of arrival date :\n ";
-            cin >> (*ptr).arrival_date.day;
-
-            cout << "\n Enter the month of arrival date :\n ";
-            cin >> (*ptr).arrival_date.month;
-
-            ////////////////////////////////////////////////////////
 
             cout << "\n Enter the hours of departure time :\n ";
             cin >> (*ptr).departure_time.hours;
@@ -256,12 +255,50 @@ void add_flight()
             cout << "\n Enter the minutes of arrival time :\n ";
             cin >> (*ptr).arrival_time.minutes;
 
-            ////////////////////////////////////////////////////////
+            //نتشيك بقا هنا 
+            if (!is_plane_available(plane_code_for_flight_test, (*ptr).departure_date.day, (*ptr).departure_date.month,
+                (*ptr).departure_time.hours, (*ptr).departure_time.minutes,
+                (*ptr).arrival_time.hours, (*ptr).arrival_time.minutes))
+            {
+                cout << "\n [!] Error: This plane is busy with another flight at the same time!\n";
+                delete ptr;
+                return;
+            }
+            //نكمل ملئ البيانات لو مفيش تعارض 
+            cout << "\n Enter the flight code :\n ";
+            cin >> (*ptr).flight_code;
 
+            cout << "\n Enter the departure city :\n ";
+            cin >> (*ptr).departure_city;
+
+            cout << "\n Enter the arrival city :\n ";
+            cin >> (*ptr).arrival_city;
+
+            cout << "\n Enter the departure airport :\n ";
+            cin >> (*ptr).departure_airport;
+
+            cout << "\n Enter the arrival airport :\n ";
+            cin >> (*ptr).arrival_airport;
+
+            cout << "\n Enter the Day of arrival date :\n ";
+            cin >> (*ptr).arrival_date.day;
+
+            cout << "\n Enter the month of arrival date :\n ";
+            cin >> (*ptr).arrival_date.month;
 
             (*ptr).for_planecode = plane_list[i].plane_code;//نوصل الرحله بالطائره
             (*ptr).rows_number = plane_list[i].number_of_rows;
             (*ptr).columns_number = plane_list[i].number_of_col;
+
+
+            for (int row = 0; row < plane_list[i].number_of_rows; row++)// ده الي بيملي كراسي كل رحله مؤقتا كدا كدا هتتظبط في الواجهه
+            {
+                for (int col = 0; col < plane_list[i].number_of_col; col++)
+                {
+                    (*ptr).seats[row][col] = 'E';
+                }
+                cout << " " << endl;
+            }
 
             flight_list.push_back(*ptr);//add values from dynamic var to vector 
 
@@ -274,7 +311,9 @@ void add_flight()
     if (found == false)
     {
         cout << "\n this plane code not found, please add the plane first \n";
-
+        //delete dynamic var /*عملتها هنا عشان لو متخلش جوا اصلا يمسح بردو البوينتر ويخليه مش بيشاور علي حاجه *\
+        delete ptr;
+        ptr = NULL;
     }
     else
     {
@@ -905,6 +944,7 @@ void book_Seats()
 
 void see_ticket()
 {
+    string cancel;
     bool found = false;
     for (int i = 0; i < tickets_list.size(); i++)
     {
@@ -916,6 +956,23 @@ void see_ticket()
                 << "\nDate: " << tickets_list[i].date.day << " " << tickets_list[i].date.month
                 << "\nTime: " << tickets_list[i].time.hours << ":" << tickets_list[i].time.minutes
                 << "\nSeat: " << tickets_list[i].seat_row << tickets_list[i].seat_letter << endl;
+            //عشان هيكنسل ولا لا 
+            cout << "   \nDo you want to cancel this booking? (Yes/No): ";
+            cin >> cancel;
+            if (cancel == "Yes" || cancel == "yes")
+            {
+
+                tickets_list.erase(tickets_list.begin() + i);
+                cout << ">>> Booking cancelled successfully!" << endl;
+            }
+            else if (cancel == "No" || cancel == "no")
+            {
+
+            }
+            else
+            {
+                cout << "Invalid input!" << endl;
+            }
         }
     }
     if (!found)

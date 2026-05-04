@@ -11,6 +11,8 @@ void start();
 void add_plane();
 void update_plane();
 void add_flight();
+int time_of_flight_to_minutes(mytime t);
+bool is_plane_available(int pCode, int dDay, string dMonth, int dHour, int dMin, int aHour, int aMin);
 void update_flight();
 bool login();
 void admin_path();
