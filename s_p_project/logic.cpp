@@ -4,6 +4,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 
@@ -80,10 +83,6 @@ void user_login_gui(string name,string passport)
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------//
-
-
-
-
 
 //backend functions(admin)
 void add_plane()
@@ -586,15 +585,6 @@ bool admin_login()
 void admin_path()
 {
 
-
-    // مجرد ارقام تجربه 
-    admins[0].username = "m";
-    admins[0].password = "m@123";
-    admins[1].username = "mohamedhany";
-    admins[1].password = "mohamedhany@123";
-
-
-
     if (admin_login() == true)
     {
         int choose_operation;
@@ -802,13 +792,19 @@ void search_Flights(int choice)
     for (int i = 0; i < flight_list.size(); i++)// دي الي بتبحث في الفيكتور 
     {
         bool match = false;
-        if (choice == 1 && flight_list[i].departure_city == keyword)
+
+        string dep_city = Checking_City_Letters(flight_list[i].departure_city);
+        string arr_city = Checking_City_Letters(flight_list[i].arrival_city);
+        string flight_month = Checking_City_Letters(flight_list[i].departure_date.month);
+
+
+        if (choice == 1 && dep_city == keyword)
             match = true;
 
-        else if (choice == 2 && flight_list[i].arrival_city == keyword)
+        else if (choice == 2 && arr_city == keyword)
             match = true;
 
-        else if (choice == 3 && flight_list[i].departure_date.month == months && flight_list[i].departure_date.day == days)
+        else if (choice == 3 && flight_month == months && flight_list[i].departure_date.day == days)
             match = true;
 
         if (match)
@@ -850,7 +846,8 @@ void search_Flights(int choice)
                 {
                     if (flight_list[i].flight_code == code)
                     {
-                        Display_Flight(flight_list[i]);
+                        current_flight_index = i;
+                        Display_Seats(flight_list[current_flight_index]);
                         current_flight_index = i;
                         currentFlight = flight_list[i];
                         code_found = true;
@@ -867,6 +864,7 @@ void search_Flights(int choice)
 
     }
 }
+
 
 void Display_Seats(flight current_flight)
 {
@@ -956,12 +954,19 @@ void see_ticket()
                 << "\nDate: " << tickets_list[i].date.day << " " << tickets_list[i].date.month
                 << "\nTime: " << tickets_list[i].time.hours << ":" << tickets_list[i].time.minutes
                 << "\nSeat: " << tickets_list[i].seat_row << tickets_list[i].seat_letter << endl;
-            //عشان هيكنسل ولا لا 
             cout << "   \nDo you want to cancel this booking? (Yes/No): ";
             cin >> cancel;
             if (cancel == "Yes" || cancel == "yes")
             {
-
+                //for (int j = 0; j < flight_list.size(); j++)//دي الي بترجع الكرسي فاضي لما يكنسل الحجز 
+                //{
+                //    if (flight_list[j].flight_code == tickets_list[i].flight_number)
+                //    {
+                //        flight_list[j].seats[tickets_list[i].seat_row - 1][tickets_list[i].seat_letter - 'A'] = 'E';
+                //        break;
+                //    }
+                //}
+                flight_list[current_flight_index].seats[tickets_list[i].seat_row - 1][tickets_list[i].seat_letter - 'A'] = 'E';
                 tickets_list.erase(tickets_list.begin() + i);
                 cout << ">>> Booking cancelled successfully!" << endl;
             }
@@ -973,6 +978,8 @@ void see_ticket()
             {
                 cout << "Invalid input!" << endl;
             }
+
+
         }
     }
     if (!found)
@@ -980,6 +987,7 @@ void see_ticket()
         cout << "\nNo ticket found for your passport ID.\n";
     }
 }
+
 
 void user_path()
 {
@@ -1035,96 +1043,7 @@ void user_path()
 
 void start()
 {
-    //مجرد ارقام للتجربه 
-    plane_list[0].plane_model = "Boeing747";
-    plane_list[0].number_of_rows = 20;
-    plane_list[0].number_of_col = 8;
-    plane_list[0].plane_code = 4;
-    plane_list[0].seat_letters = "ABCDEFGH";//هتتغير حسب نوع الطياره
-
-    plane_list[1].plane_model = "BB333";
-    plane_list[1].number_of_rows = 15;
-    plane_list[1].number_of_col = 5;
-    plane_list[1].plane_code = 707;
-    plane_list[1].seat_letters = "ABCDE";//هتتغير حسب نوع الطياره   
-
-    // مجرد ارقام تجربه 
-    flight_list[0].departure_city = "cairo";
-    flight_list[0].arrival_city = "Paris";
-    flight_list[0].departure_airport = "cairo_air";
-    flight_list[0].arrival_airport = "Roissy";
-    flight_list[0].departure_date.day = 4;
-    flight_list[0].departure_date.month = "march";
-    flight_list[0].arrival_date.day = 4;
-    flight_list[0].arrival_date.month = "march";
-    flight_list[0].departure_time.hours = 4;
-    flight_list[0].departure_time.minutes = 0;
-    flight_list[0].arrival_time.hours = 6;
-    flight_list[0].arrival_time.minutes = 30;
-    flight_list[0].flight_code = 606;
-    flight_list[0].is_empty = true;
-    flight_list[0].rows_number = plane_list[0].number_of_rows;
-    flight_list[0].columns_number = plane_list[0].number_of_col;
-    flight_list[0].for_planecode = plane_list[0].plane_code;//عشان اربط الرحله دي بالطياره الي هتتحدد من الادمن في المستقبل
-    for (int r = 0; r < flight_list[0].rows_number; r++) {
-        for (int c = 0; c < flight_list[0].columns_number; c++)
-            flight_list[0].seats[r][c] = 'E';
-    }
-
-
-    //در ارقام رحله تانيه بردو للتجربه 
-    flight_list[1].departure_city = "cairo";
-    flight_list[1].arrival_city = "Paris";
-    flight_list[1].departure_airport = "cairo_air";
-    flight_list[1].arrival_airport = "Roissy";
-    flight_list[1].departure_date.day = 4;
-    flight_list[1].departure_date.month = "march";
-    flight_list[1].arrival_date.day = 4;
-    flight_list[1].arrival_date.month = "march";
-    flight_list[1].departure_time.hours = 4;
-    flight_list[1].departure_time.minutes = 0;
-    flight_list[1].arrival_time.hours = 6;
-    flight_list[1].arrival_time.minutes = 30;
-    flight_list[1].flight_code = 700;
-    flight_list[1].is_empty = true;
-    flight_list[1].rows_number = plane_list[1].number_of_rows;
-    flight_list[1].columns_number = plane_list[1].number_of_col;
-    flight_list[1].for_planecode = plane_list[1].plane_code;//عشان اربط الرحله دي بالطياره الي هتتحدد من الادمن في المستقبل
-    for (int r = 0; r < flight_list[1].rows_number; r++) {
-        for (int c = 0; c < flight_list[1].columns_number; c++)
-            flight_list[1].seats[r][c] = 'E';
-    }
-
-
-
-    // دي انواع الطيارات الي عندنا ومش هنعملها فايل  
-    models[0].plane_model = "AirbusA320";
-    models[0].number_of_row = 20;
-    models[0].number_of_col = 6;
-    models[0].seat_letters = "ABCHJK";
-
-    models[1].plane_model = "AirbusA330-200";
-    models[1].number_of_row = 23;
-    models[1].number_of_col = 6;
-    models[1].seat_letters = "ABCHJK";
-
-    models[2].plane_model = "AirbusA380-800";
-    models[2].number_of_row = 30;
-    models[2].number_of_col = 8;
-    models[2].seat_letters = "A C D E F G H K";
-
-
-    models[3].plane_model = "Boeing787-9";
-    models[3].number_of_row = 30;
-    models[3].number_of_col = 10;
-    models[3].seat_letters = "A B C D E F G H J K";
-
-    models[4].plane_model = "AirbusA321";
-    models[4].number_of_row = 30;
-    models[4].number_of_col = 9;
-    models[4].seat_letters = "A B C D E G H J K";
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
     string choose_again;
     string choose;//admin or user
 
@@ -1167,3 +1086,426 @@ void start()
 
 
 }
+
+//----------------------file handling functions----------------------//
+void loadAdmins()
+{
+    ifstream infile("admins.txt");
+
+    if (infile.is_open())
+    {
+        int admin_count = 0;
+        while (infile >> admins[admin_count].username >> admins[admin_count].password)
+        {
+            admin_count++;
+            if (admin_count == 10)
+            {
+                cout << "Admins limit reached. Cannot load more admins." << endl;
+                break;
+            }
+            infile.ignore();
+        }
+        infile.close();
+        cout << "Admins loaded successfully. Total admins : " << admin_count << endl;
+    }
+    else
+    {
+        cout << "Unable to open \"admins.txt\" for reading." << endl;
+    }
+}
+
+void saveAdmins(admin admins[])
+{
+    ofstream outfile("admins.txt");
+    if (outfile.is_open())
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            outfile << admins[i].username << " "
+                << admins[i].password << endl;
+        }
+        outfile.close();
+        cout << "Admins saved successfully." << endl;
+    }
+    else
+    {
+        cout << "Unable to open \"admins.txt\" for writing." << endl;
+    }
+}
+
+void loadPlanes()
+{
+    ifstream infile("planes.txt");
+
+    if (infile.is_open())
+    {
+        plane temp;
+        plane_list.clear();
+
+        while (infile >> temp.plane_model >> temp.plane_code >> temp.number_of_rows >> temp.number_of_col >> temp.seat_letters)
+        {
+            plane_list.push_back(temp);
+        }
+        infile.close();
+        cout << "Planes loaded successfully. Total planes : " << plane_list.size() << endl;
+    }
+    else
+    {
+        cout << "Unable to open \"planes.txt\" for reading." << endl;
+    }
+}
+
+void savePlanes(vector<plane> planes_to_save)
+{
+    ofstream outfile("planes.txt");
+    if (outfile.is_open())
+    {
+        for (int i = 0; i < planes_to_save.size(); i++)
+        {
+            outfile << planes_to_save[i].plane_model << " "
+                << planes_to_save[i].plane_code << " "
+                << planes_to_save[i].number_of_rows << " "
+                << planes_to_save[i].number_of_col << " "
+                << planes_to_save[i].seat_letters << endl;
+        }
+        outfile.close();
+        cout << "Planes saved successfully." << endl;
+    }
+    else
+    {
+        cout << "Unable to open \"planes.txt\" for writing." << endl;
+    }
+}
+
+void loadFlights()
+{
+    ifstream infile("flights.txt");
+    if (infile.is_open())
+    {
+        flight_list.clear();
+        flight temp;
+
+        while (infile >> temp.flight_code >> temp.departure_date.day >> temp.departure_date.month >> temp.arrival_date.day >> temp.arrival_date.month >> temp.departure_time.hours >> temp.departure_time.minutes >> temp.arrival_time.hours >> temp.arrival_time.minutes >> temp.for_planecode >> temp.rows_number >> temp.columns_number)
+        {
+
+            temp.is_empty = true;
+            getline(infile >> ws, temp.departure_city);
+            getline(infile >> ws, temp.arrival_city);
+            getline(infile >> ws, temp.departure_airport);
+            getline(infile >> ws, temp.arrival_airport);
+            for (size_t i = 0; i < temp.rows_number; i++)
+            {
+                for (size_t j = 0; j < temp.columns_number; j++)
+                {
+                    infile >> temp.seats[i][j];
+
+                    if (temp.seats[i][j] != 'E')
+                    {
+                        temp.is_empty = false;
+                    }
+                }
+            }
+            flight_list.push_back(temp);
+        }
+        infile.close();
+        cout << "Flights loaded successfully. Total flights : " << flight_list.size() << endl;
+    }
+    else
+    {
+        cout << "Unable to open \"flights.txt\" for reading." << endl;
+    }
+}
+
+void saveFlights(vector<flight> flights_to_save)
+{
+    ofstream outfile("flights.txt");
+    if (outfile.is_open())
+    {
+        for (int i = 0; i < flights_to_save.size(); i++)
+        {
+            outfile << flights_to_save[i].flight_code << " "
+                << flights_to_save[i].departure_date.day << " "
+                << flights_to_save[i].departure_date.month << " "
+                << flights_to_save[i].arrival_date.day << " "
+                << flights_to_save[i].arrival_date.month << " "
+                << flights_to_save[i].departure_time.hours << " "
+                << flights_to_save[i].departure_time.minutes << " "
+                << flights_to_save[i].arrival_time.hours << " "
+                << flights_to_save[i].arrival_time.minutes << " "
+                << flights_to_save[i].for_planecode << " "
+                << flights_to_save[i].rows_number << " "
+                << flights_to_save[i].columns_number << endl;
+
+            outfile << flights_to_save[i].departure_city << endl;
+            outfile << flights_to_save[i].arrival_city << endl;
+            outfile << flights_to_save[i].departure_airport << endl;
+            outfile << flights_to_save[i].arrival_airport << endl;
+            for (size_t k = 0; k < flights_to_save[i].rows_number; k++)
+            {
+                for (size_t j = 0; j < flights_to_save[i].columns_number; j++)
+                {
+                    outfile << flights_to_save[i].seats[k][j] << " ";
+                }
+                outfile << endl;
+            }
+        }
+        outfile.close();
+        cout << "Flights saved successfully." << endl;
+    }
+    else
+    {
+        cout << "Unable to open \"flights.txt\" for writing." << endl;
+    }
+}
+
+void loadTickets()
+{
+    ifstream infile("tickets.txt");
+    if (infile.is_open())
+    {
+        tickets_list.clear();
+        ticket temp;
+
+        while (infile >> temp.flight_number >> temp.date.day >> temp.date.month >> temp.time.hours >> temp.time.minutes >> temp.seat_row >> temp.seat_letter)
+        {
+            getline(infile >> ws, temp.passenger_name);
+            getline(infile >> ws, temp.passport_id);
+            getline(infile >> ws, temp.departure_city);
+            getline(infile >> ws, temp.arrival_city);
+
+            tickets_list.push_back(temp);
+        }
+        infile.close();
+        cout << "Tickets loaded successfully. Total tickets : " << tickets_list.size() << endl;
+    }
+    else
+    {
+        cout << "Unable to open \"tickets.txt\" for reading." << endl;
+    }
+}
+
+void saveTickets(vector<ticket> tickets_to_save)
+{
+    ofstream outfile("tickets.txt");
+    if (outfile.is_open())
+    {
+        for (int i = 0; i < tickets_to_save.size(); i++)
+        {
+            outfile << tickets_to_save[i].flight_number << " "
+                << tickets_to_save[i].date.day << " "
+                << tickets_to_save[i].date.month << " "
+                << tickets_to_save[i].time.hours << " "
+                << tickets_to_save[i].time.minutes << " "
+                << tickets_to_save[i].seat_row << " "
+                << tickets_to_save[i].seat_letter << endl;
+
+            outfile << tickets_to_save[i].passenger_name << endl;
+            outfile << tickets_to_save[i].passport_id << endl;
+            outfile << tickets_to_save[i].departure_city << endl;
+            outfile << tickets_to_save[i].arrival_city << endl;
+        }
+        outfile.close();
+        cout << "Tickets saved successfully." << endl;
+    }
+    else
+    {
+        cout << "Unable to open \"tickets.txt\" for writing." << endl;
+    }
+}
+
+void loadPlanes_Models()
+{
+    ifstream infile("models.txt");
+
+    if (infile.is_open())
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            infile >> models[i].plane_model >> models[i].number_of_row >> models[i].number_of_col >> models[i].seat_letters;
+        }
+        infile.close();
+        cout << "Models loaded successfully." << endl;
+    }
+    else
+    {
+        cout << "Unable to open \"models.txt\" for reading." << endl;
+    }
+}
+
+void savePlanes_Models(model_of_plane models[])
+{
+    ofstream outfile("models.txt");
+    if (outfile.is_open())
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            outfile << models[i].plane_model << " "
+                << models[i].number_of_row << " "
+                << models[i].number_of_col << " "
+                << models[i].seat_letters << endl;
+        }
+        outfile.close();
+        cout << "Models saved successfully." << endl;
+    }
+    else
+    {
+        cout << "Unable to open \"models.txt\" for writing." << endl;
+    }
+}
+
+void initializeDefaultModels()
+{
+    models[0] = { "EmbraerE190", 20, 8, "ABCD" };
+    models[1] = { "Boeing737", 30, 6, "ABCDEF" };
+    models[2] = { "AirbusA320", 28, 6, "ABCDEF" };
+    models[3] = { "Boeing777", 45, 9, "ABCDEFGHI" };
+    models[4] = { "AirbusA380", 60, 10, "ABCDEFGHIJ" };
+}
+
+void initializeDefaultPlanes()
+{
+    for (int i = 0; i < 10; i++)
+    {
+        plane p;
+
+        int model_index = i % 5;
+
+        p.plane_model = models[model_index].plane_model;
+        p.plane_code = 100 + i;
+        p.number_of_rows = models[model_index].number_of_row;
+        p.number_of_col = models[model_index].number_of_col;
+        p.seat_letters = models[model_index].seat_letters;
+
+        plane_list.push_back(p);
+    }
+}
+
+void initializeDefaultFlights()
+{
+    flight_list.clear();
+
+    string cities[] = { "Cairo", "Dubai", "Paris", "London", "Rome", "NewYork", "Tokyo", "Madrid", "Riyadh", "Berlin" };
+    string airports[] = { "CAI_Intl", "DXB_Intl", "CDG_Paris", "LHR_Heathrow", "FCO_Rome", "JFK_Airport", "HND_Tokyo", "MAD_Barajas", "RUH_KingKhalid", "BER_Brandenburg" };
+    string months[] = { "January", "February", "May", "November" };
+
+    int base_flight_code = 500;
+
+    for (int i = 0; i < 20; i++)
+    {
+        flight f;
+
+        base_flight_code += (rand() % 10) + 1;
+        f.flight_code = base_flight_code;
+
+        f.departure_city = cities[i % 10];
+        f.arrival_city = cities[(i + 1) % 10];
+        f.departure_airport = airports[i % 10];
+        f.arrival_airport = airports[(i + 1) % 10];
+
+
+        int month_index = (i / 5) % 4;
+        f.departure_date.day = (rand() % 28) + 1;
+        f.departure_date.month = months[month_index];
+        f.arrival_date = f.departure_date;
+
+
+        f.departure_time = { (i % 12) + 1, 0 };
+        f.arrival_time = { ((i + 2) % 12) + 1, 30 };
+
+
+        int plane_index = i % 10;
+        f.for_planecode = plane_list[plane_index].plane_code;
+        f.rows_number = plane_list[plane_index].number_of_rows;
+        f.columns_number = plane_list[plane_index].number_of_col;
+        f.is_empty = true;
+
+
+        for (int r = 0; r < f.rows_number; r++)
+        {
+            for (int c = 0; c < f.columns_number; c++)
+            {
+                f.seats[r][c] = 'E';
+            }
+        }
+
+        flight_list.push_back(f);
+    }
+}
+
+void initializeDefaultAdmins()
+{
+    admins[0] = { "sisi", "1234" };
+    admins[1] = { "emo", "12345" };
+    admins[2] = { "emam", "123456" };
+}
+
+void SeedInitialData()// دي لو الفايل فاضي هتنفذ عشان تعمل داتا افتراضيه
+{
+    ifstream in_models("models.txt");
+    if (!in_models.is_open())
+    {
+        initializeDefaultModels();
+    }
+    else
+    {
+        in_models.close();
+    }
+
+    ifstream in_planes("planes.txt");
+    if (!in_planes.is_open())
+    {
+        if (plane_list.empty())
+        {
+            initializeDefaultPlanes();
+        }
+    }
+    else
+    {
+        in_planes.close();
+    }
+
+    ifstream in_flights("flights.txt");
+    if (!in_flights.is_open())
+    {
+        if (flight_list.empty())
+        {
+            initializeDefaultFlights();
+        }
+    }
+    else
+    {
+        in_flights.close();
+    }
+
+    ifstream in_admins("admins.txt");
+    if (!in_admins.is_open())
+    {
+        initializeDefaultAdmins();
+    }
+    else
+    {
+        in_admins.close();
+    }
+}
+
+void LoadAllData()
+{
+    SeedInitialData();
+
+    loadAdmins();
+    loadPlanes();
+    loadFlights();
+    loadTickets();
+    loadPlanes_Models();
+
+}
+
+void SaveAllData()
+{
+    saveAdmins(admins);
+    savePlanes(plane_list);
+    saveFlights(flight_list);
+    saveTickets(tickets_list);
+    savePlanes_Models(models);
+}
+

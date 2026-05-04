@@ -4,6 +4,9 @@
 #include "logic.h"
 #include "data.h"
 #include <QDebug>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
 
 #include <QMessageBox>
 
@@ -18,64 +21,71 @@ s_p_project::s_p_project(QWidget *parent)
        
     // set some data
 
-    // دي انواع الطيارات الي عندنا ومش هنعملها فايل  
-    models[0].plane_model = "AirbusA320";
-    models[0].number_of_row = 20;
-    models[0].number_of_col = 6;
-    models[0].seat_letters = "ABCHJK";
-
-    models[1].plane_model = "AirbusA330-200";
-    models[1].number_of_row = 23;
-    models[1].number_of_col = 6;
-    models[1].seat_letters = "ABCHJK";
-
-    models[2].plane_model = "AirbusA380-800";
-    models[2].number_of_row = 30;
-    models[2].number_of_col = 8;
-    models[2].seat_letters = "ACDEFGHK";
 
 
-    models[3].plane_model = "Boeing787-9";
-    models[3].number_of_row = 30;
-    models[3].number_of_col = 10;
-    models[3].seat_letters = "ABCDEFGHJK";
+    //دول مش محتاجينهم بقا عشان الفايل هجيبه هنا من الmain
+    
+    //// دي انواع الطيارات الي عندنا ومش هنعملها فايل  
+    //models[0].plane_model = "AirbusA320";
+    //models[0].number_of_row = 20;
+    //models[0].number_of_col = 6;
+    //models[0].seat_letters = "ABCHJK";
 
-    models[4].plane_model = "AirbusA321";
-    models[4].number_of_row = 30;
-    models[4].number_of_col = 9;
-    models[4].seat_letters = "ABCDEGHJK";
+    //models[1].plane_model = "AirbusA330-200";
+    //models[1].number_of_row = 23;
+    //models[1].number_of_col = 6;
+    //models[1].seat_letters = "ABCHJK";
 
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // مجرد ارقام تجربه 
-    admins[0].username = "m";
-    admins[0].password = "m@123";
-    admins[1].username = "mohamedhany";
-    admins[1].password = "mohamedhany@123";
-
-    //مجرد ارقام للتجربه 
-    plane_list[0].plane_model = models[3].plane_model;
-    plane_list[0].number_of_rows = models[3].number_of_row ;
-    plane_list[0].number_of_col = models[3].number_of_col ;
-    plane_list[0].seat_letters = models[3].seat_letters;
-    plane_list[0].plane_code = 77;
+    //models[2].plane_model = "AirbusA380-800";
+    //models[2].number_of_row = 30;
+    //models[2].number_of_col = 8;
+    //models[2].seat_letters = "ACDEFGHK";
 
 
-    // مجرد ارقام تجربه 
-    flight_list[0].departure_city = "cairo";
-    flight_list[0].arrival_city = "Paris";
-    flight_list[0].departure_airport = "cairo_air";
-    flight_list[0].arrival_airport = "Roissy";
-    flight_list[0].departure_date.day = 4;
-    flight_list[0].departure_date.month = "march";
-    flight_list[0].arrival_date.day = 4;
-    flight_list[0].arrival_date.month = "march";
-    flight_list[0].departure_time.hours = 4;
-    flight_list[0].departure_time.minutes = 0;
-    flight_list[0].arrival_time.hours = 6;
-    flight_list[0].arrival_time.minutes = 30;
-    flight_list[0].flight_code = 606;
-    flight_list[0].for_planecode = 77;
-    //باقي الكراسي هعملهم  لما ادقن المصفوفه الديناميكيه
+    //models[3].plane_model = "Boeing787-9";
+    //models[3].number_of_row = 30;
+    //models[3].number_of_col = 10;
+    //models[3].seat_letters = "ABCDEFGHJK";
+
+    //models[4].plane_model = "AirbusA321";
+    //models[4].number_of_row = 30;
+    //models[4].number_of_col = 9;
+    //models[4].seat_letters = "ABCDEGHJK";
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //// مجرد ارقام تجربه 
+    //admins[0].username = "m";
+    //admins[0].password = "m@123";
+    //admins[1].username = "mohamedhany";
+    //admins[1].password = "mohamedhany@123";
+
+    ////مجرد ارقام للتجربه 
+    //plane_list[0].plane_model = models[3].plane_model;
+    //plane_list[0].number_of_rows = models[3].number_of_row ;
+    //plane_list[0].number_of_col = models[3].number_of_col ;
+    //plane_list[0].seat_letters = models[3].seat_letters;
+    //plane_list[0].plane_code = 77;
+
+
+    //// مجرد ارقام تجربه 
+    //flight_list[0].departure_city = "cairo";
+    //flight_list[0].arrival_city = "Paris";
+    //flight_list[0].departure_airport = "cairo_air";
+    //flight_list[0].arrival_airport = "Roissy";
+    //flight_list[0].departure_date.day = 4;
+    //flight_list[0].departure_date.month = "march";
+    //flight_list[0].arrival_date.day = 4;
+    //flight_list[0].arrival_date.month = "march";
+    //flight_list[0].departure_time.hours = 4;
+    //flight_list[0].departure_time.minutes = 0;
+    //flight_list[0].arrival_time.hours = 6;
+    //flight_list[0].arrival_time.minutes = 30;
+    //flight_list[0].flight_code = 606;
+    //flight_list[0].for_planecode = 77;
+    ////باقي الكراسي هعملهم  لما ادقن المصفوفه الديناميكيه
+
+
+
 
     ui.stackedWidget->setCurrentIndex(0); // welcome page
     ui.lbl_welcome->setText("Welcome to Egypt Airlines");

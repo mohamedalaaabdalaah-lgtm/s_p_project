@@ -1,9 +1,12 @@
 #include "stdafx.h"
 #include "data.h"
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
 
 //global variables
-vector <plane> plane_list(10);//vectors of planes to able to add plans by admin(dynamicaly)
-vector <flight> flight_list(20);//vectors of flights to able to add flights by admin(dynamicaly)
+vector <plane> plane_list;//vectors of planes to able to add plans by admin(dynamicaly)
+vector <flight> flight_list;//vectors of flights to able to add flights by admin(dynamicaly)
 vector <ticket> tickets_list;//vectors of tickets to able to add tickets by user(dynamicaly)
 
 

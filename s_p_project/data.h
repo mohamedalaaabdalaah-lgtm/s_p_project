@@ -6,6 +6,10 @@
 #include <vector>
 #include <string>
 #include "stdafx.h"
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
+
 using namespace std;
 
 

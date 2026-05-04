@@ -61,4 +61,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="admins.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="flights.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="models.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="planes.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="tickets.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

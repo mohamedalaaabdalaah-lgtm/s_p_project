@@ -2,6 +2,9 @@
 #define LOGIC_H
 #include "data.h"
 #include "stdafx.h"
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
 
 void start();
 
@@ -49,4 +52,23 @@ void user_login_gui(string name, string passport);
 
 
 
+// ----file handling functions-------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+void SeedInitialData();
+void loadAdmins();
+void loadPlanes();
+void loadFlights();
+void loadTickets();
+void loadPlanes_Models();
+void initializeDefaultModels();
+void initializeDefaultPlanes();
+void initializeDefaultFlights();
+void initializeDefaultAdmins();
+void saveAdmins(admin admins[]);
+void savePlanes(vector<plane> planes_to_save);
+void saveFlights(vector<flight> flight_list);
+void saveTickets(vector<ticket> tickets_list);
+void savePlanes_Models(model_of_plane models[]);
+void LoadAllData();
+void SaveAllData();
 #endif
