@@ -54,19 +54,6 @@ QPushButton#btn_enter:hover {
       </property>
      </spacer>
     </item>
-    <item row="0" column="1">
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Orientation::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>22</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
     <item row="2" column="1">
      <spacer name="verticalSpacer_2">
       <property name="orientation">
@@ -137,7 +124,7 @@ QLabel {
 }</string>
          </property>
          <property name="currentIndex">
-          <number>6</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="welcome_page">
           <property name="styleSheet">
@@ -170,46 +157,72 @@ QPushButton:pressed {
     background-color: #4B3832;
 }</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout_13">
-           <item row="1" column="0">
-            <widget class="QLabel" name="lbl_welcome">
-             <property name="maximumSize">
-              <size>
-               <width>500</width>
-               <height>150</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt;&quot;&gt;Welcome to Egypt airlines&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QPushButton" name="btn_enter">
-             <property name="maximumSize">
-              <size>
-               <width>300</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="mouseTracking">
-              <bool>true</bool>
-             </property>
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::RightToLeft</enum>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color: rgb(214, 178, 120);</string>
-             </property>
-             <property name="text">
-              <string>Get Started</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
+          <widget class="QPushButton" name="btn_enter">
+           <property name="geometry">
+            <rect>
+             <x>260</x>
+             <y>420</y>
+             <width>228</width>
+             <height>46</height>
+            </rect>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>300</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="mouseTracking">
+            <bool>true</bool>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LayoutDirection::RightToLeft</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #C18F59; /* لون نحاسي/دهبي مسحوب من الطيارة */
+    color: #000000;            /* كلام بالأسود عشان يبان بوضوح وفخامة */
+    border: 2px solid #C18F59; /* إطار بنفس اللون */
+    border-radius: 20px;       /* حواف مدورة */
+    font-weight: bold;
+    font-size: 20px;
+    padding: 12px;
+}
+
+QPushButton:hover {
+    background-color: transparent; /* لما تقف عليه لونه يختفي */
+    color: #C18F59;                /* والكلام يبقى دهبي */
+    border: 2px solid #C18F59;     /* ويفضل الإطار الدهبي منور على الخلفية السودة */
+}</string>
+           </property>
+           <property name="text">
+            <string>Get Started</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="lbl_pecture_logo">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>771</width>
+             <height>551</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap>D:/Project/WhatsApp Image 2026-05-04 at 11.02.03 PM.jpeg</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <zorder>lbl_pecture_logo</zorder>
+          <zorder>btn_enter</zorder>
          </widget>
          <widget class="QWidget" name="admin_or_user">
           <layout class="QGridLayout" name="gridLayout_8">
@@ -1354,13 +1367,13 @@ QPushButton:hover {
             <rect>
              <x>70</x>
              <y>440</y>
-             <width>150</width>
+             <width>220</width>
              <height>51</height>
             </rect>
            </property>
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>220</width>
              <height>0</height>
             </size>
            </property>
@@ -1369,6 +1382,19 @@ QPushButton:hover {
            </property>
            <property name="text">
             <string>NEXT</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="btn_cancel_ticket">
+           <property name="geometry">
+            <rect>
+             <x>340</x>
+             <y>440</y>
+             <width>220</width>
+             <height>51</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Cancel ticket</string>
            </property>
           </widget>
          </widget>
@@ -1696,7 +1722,7 @@ QDateEdit::drop-down {
              </property>
              <property name="dateTime">
               <datetime>
-               <hour>6</hour>
+               <hour>2</hour>
                <minute>0</minute>
                <second>0</second>
                <year>2000</year>
@@ -3145,6 +3171,19 @@ QPushButton:hover {
        </item>
       </layout>
      </widget>
+    </item>
+    <item row="0" column="1">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>22</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>

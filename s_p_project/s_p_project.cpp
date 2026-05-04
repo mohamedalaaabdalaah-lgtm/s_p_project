@@ -88,7 +88,7 @@ s_p_project::s_p_project(QWidget *parent)
 
 
     ui.stackedWidget->setCurrentIndex(0); // welcome page
-    ui.lbl_welcome->setText("Welcome to Egypt Airlines");
+    //ui.lbl_pecture_logo->setText("Welcome to Egypt Airlines");
     ui.btn_enter->setText("Get Started");
     ui.lbl_a_or_u->setText("Are you an Admin or User ?");
     ////table shit/////
@@ -111,7 +111,7 @@ s_p_project::~s_p_project()
 //when get started is pressed
 void s_p_project::on_btn_enter_clicked()
 {
-    ui.lbl_welcome->setText("loading...");
+    //ui.lbl_pecture_logo->setText("loading...");
     ui.stackedWidget->setCurrentIndex(1);// From Welcome to user/admin
 }
 void s_p_project::on_btn_choose_user_clicked()
@@ -166,12 +166,20 @@ void s_p_project::on_btn_back_login_clicked()//////// to back admin or user   //
 
 
 //-----------------------------------------------
-void s_p_project::on_btn_addplane_clicked() {
+void s_p_project::on_btn_addplane_clicked()
+{
     ui.stackedWidget->setCurrentWidget(ui.addplane_page);//from menu to addplane page ///
     
 }
 void s_p_project::on_btn_save_plane_clicked()
 {
+    if (ui.txt_add_code->text().isEmpty())
+    {
+        
+        QMessageBox::warning(this, "Error", "Please enter the Plane Code!");
+        return; 
+    }
+
     string model = ui.cmb_airplane_model->currentText().toStdString();
     int code = ui.txt_add_code->text().toInt();
 
@@ -996,6 +1004,33 @@ void s_p_project::on_btn_view_ticket_clicked()
     ui.stackedWidget->setCurrentWidget(ui.view_ticket_page);
 }
 
+//////to cancel Ze ticket/////
+
+void s_p_project::on_btn_cancel_ticket_clicked() {
+    int flightCode = ui.lbl_flight_code_ticket->text().toInt();
+    QString seatStr = ui.lbl_seat_ticket->text();
+    int row = seatStr.left(seatStr.length() - 1).toInt();
+    char letter = seatStr.right(1).toLatin1()[0];
+
+    auto res = QMessageBox::question(this, "Cancel", "Confirm cancellation?");
+    if (res == QMessageBox::Yes) {
+
+        for (int i = tickets_list.size() - 1; i >= 0; i--) {
+            if (tickets_list[i].flight_number == flightCode &&
+                tickets_list[i].seat_row == row &&
+                tickets_list[i].seat_letter == letter &&
+                tickets_list[i].passport_id == current_user.passport_id)
+            {
+
+                tickets_list.erase(tickets_list.begin() + i);
+
+                QMessageBox::information(this, "Success", "Ticket removed.");
+                ui.stackedWidget->setCurrentWidget(ui.user_menu_page);
+                return;
+            }
+        }
+    }
+}
 //-------------------------------------------
 
 void s_p_project::on_btn_next_ticket_clicked()
