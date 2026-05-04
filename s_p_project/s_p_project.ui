@@ -98,7 +98,7 @@ QLabel {
 }</string>
          </property>
          <property name="currentIndex">
-          <number>6</number>
+          <number>12</number>
          </property>
          <widget class="QWidget" name="welcome_page">
           <property name="styleSheet">
@@ -807,7 +807,7 @@ QDateEdit::drop-down {
              </property>
              <property name="dateTime">
               <datetime>
-               <hour>12</hour>
+               <hour>10</hour>
                <minute>0</minute>
                <second>0</second>
                <year>2000</year>
@@ -828,6 +828,34 @@ QDateEdit::drop-down {
          </widget>
          <widget class="QWidget" name="book_seat_page">
           <layout class="QGridLayout" name="gridLayout_14">
+           <item row="1" column="0">
+            <widget class="QScrollArea" name="scrollArea">
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>746</width>
+                <height>456</height>
+               </rect>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_15">
+               <item row="0" column="0">
+                <widget class="QWidget" name="widget" native="true">
+                 <layout class="QGridLayout" name="gridLayout_16">
+                  <item row="0" column="0">
+                   <layout class="QGridLayout" name="gridLayout_seats"/>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
            <item row="2" column="0">
             <widget class="QPushButton" name="btn_back_book_seat">
              <property name="cursor">
@@ -863,34 +891,6 @@ QPushButton:hover {
              <property name="text">
               <string>Back</string>
              </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QScrollArea" name="scrollArea">
-             <property name="widgetResizable">
-              <bool>true</bool>
-             </property>
-             <widget class="QWidget" name="scrollAreaWidgetContents">
-              <property name="geometry">
-               <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>746</width>
-                <height>456</height>
-               </rect>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_15">
-               <item row="0" column="0">
-                <widget class="QWidget" name="widget" native="true">
-                 <layout class="QGridLayout" name="gridLayout_16">
-                  <item row="0" column="0">
-                   <layout class="QGridLayout" name="gridLayout_seats"/>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-              </layout>
-             </widget>
             </widget>
            </item>
           </layout>
@@ -2166,31 +2166,6 @@ QComboBox QAbstractItemView {
     selection-color: #ffffff;
 }</string>
              </property>
-             <item>
-              <property name="text">
-               <string>Airbus A320</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Airbus A321</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Airbus A330-200</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Airbus A380-800</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Boeing 787-9</string>
-              </property>
-             </item>
             </widget>
            </item>
            <item row="1" column="0">

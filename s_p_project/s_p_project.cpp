@@ -32,18 +32,18 @@ s_p_project::s_p_project(QWidget *parent)
     models[2].plane_model = "AirbusA380-800";
     models[2].number_of_row = 30;
     models[2].number_of_col = 8;
-    models[2].seat_letters = "A C D E F G H K";
+    models[2].seat_letters = "ACDEFGHK";
 
 
     models[3].plane_model = "Boeing787-9";
     models[3].number_of_row = 30;
     models[3].number_of_col = 10;
-    models[3].seat_letters = "A B C D E F G H J K";
+    models[3].seat_letters = "ABCDEFGHJK";
 
     models[4].plane_model = "AirbusA321";
     models[4].number_of_row = 30;
     models[4].number_of_col = 9;
-    models[4].seat_letters = "A B C D E G H J K";
+    models[4].seat_letters = "ABCDEGHJK";
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // مجرد ارقام تجربه 
@@ -54,8 +54,8 @@ s_p_project::s_p_project(QWidget *parent)
 
     //مجرد ارقام للتجربه 
     plane_list[0].plane_model = models[3].plane_model;
-    plane_list[0].number_of_rows = models[3].number_of_row = 30;
-    plane_list[0].number_of_col = models[3].number_of_col = 30;
+    plane_list[0].number_of_rows = models[3].number_of_row ;
+    plane_list[0].number_of_col = models[3].number_of_col ;
     plane_list[0].seat_letters = models[3].seat_letters;
     plane_list[0].plane_code = 77;
 
@@ -89,6 +89,11 @@ s_p_project::s_p_project(QWidget *parent)
     //////عشان لما نكبر//////
     
     ui.centralWidget->setStyleSheet("background-color: #FFF9F2;");
+
+    ////////
+    for (int j = 0; j < 5; j++) {
+        ui.cmb_airplane_model->addItem(QString::fromStdString(models[j].plane_model));
+    }
 }
 
 s_p_project::~s_p_project()
@@ -136,14 +141,14 @@ void s_p_project::on_btn_login_submit_clicked()
     }
 
 }
-void s_p_project::on_btn_back_admin_clicked()     //   to back login page   //
+void s_p_project::on_btn_back_admin_clicked()///// to back login page   //
 {
 
     ui.stackedWidget->setCurrentWidget(ui.login_page);
 }
 
 
-void s_p_project::on_btn_back_login_clicked()     //  to back admin or user   //
+void s_p_project::on_btn_back_login_clicked()//////// to back admin or user   //////
 {
     
     ui.stackedWidget->setCurrentWidget(ui.admin_or_user);
@@ -152,7 +157,8 @@ void s_p_project::on_btn_back_login_clicked()     //  to back admin or user   //
 
 //-----------------------------------------------
 void s_p_project::on_btn_addplane_clicked() {
-    ui.stackedWidget->setCurrentWidget(ui.addplane_page);//from menu to addplane page
+    ui.stackedWidget->setCurrentWidget(ui.addplane_page);//from menu to addplane page ///
+    
 }
 void s_p_project::on_btn_save_plane_clicked()
 {
@@ -769,11 +775,27 @@ void s_p_project::generate_seat_grid(int rows, int cols, std::string letters, in
 
             if (isBooked) {
                 seatBtn->setEnabled(false);
-                seatBtn->setStyleSheet("background-color: #3E2723; color: #8D6E63; border-radius: 4px;");
-                seatBtn->setText("X");
+                seatBtn->setStyleSheet(
+                    "QPushButton {"
+                    "  background-color: #3E2723; "  // Very dark brown (looks "closed" or "filled")
+                    "  color: #8D6E63; "             // Faded text color
+                    "  border-radius: 8px;"
+                    "}"
+                );
+                seatBtn->setText("booked");
             }
             else {
-                seatBtn->setStyleSheet("background-color: #EDE0D4; color: #4B3621; border: 1px solid #6F4E37; border-radius: 4px;");
+                seatBtn->setStyleSheet(
+                    "QPushButton {"
+                    "  background-color: #EDE0D4; "  // Light cream/coffee color
+                    "  color: #4B3621; "             // Dark brown text
+                    "  border: 1px solid #6F4E37; "  // Brown border
+                    "  border-radius: 8px;"          // Rounded corners
+                    "}"
+                    "QPushButton:hover {"
+                    "  background-color: #D7CCC8;"   // Darker shade when you point at it
+                    "}"
+                );
                 connect(seatBtn, &QPushButton::clicked, this, &s_p_project::handleSeatSelection);
             }
 
@@ -787,25 +809,25 @@ void s_p_project::handleSeatSelection() {
     if (!clickedBtn) return;
 
     int r = clickedBtn->property("row").toInt();
-    char L = clickedBtn->property("letter").toChar().toLatin1(); // Convert QChar back to char
+    char L = clickedBtn->property("letter").toChar().toLatin1();
 
     auto res = QMessageBox::question(this, "Confirm", "Book seat " + QString::number(r) + QChar(L) + "?");
 
     if (res == QMessageBox::Yes) {
         ticket new_t;
-        new_t.passenger_name = current_user.username; // From your user struct
-        new_t.passport_id = current_user.passport_id; //
-        new_t.flight_number = currentFlight.flight_code; //
+        new_t.passenger_name = current_user.username;
+        new_t.passport_id = current_user.passport_id;
+        new_t.flight_number = currentFlight.flight_code;
         new_t.seat_row = r;
-        new_t.seat_letter = L; // Match your 'char' type
+        new_t.seat_letter = L;
 
-        // Add to your global vector
+        
         tickets_list.push_back(new_t);
 
-        // Update visuals
+        
         clickedBtn->setEnabled(false);
         clickedBtn->setStyleSheet("background-color: #3E2723; color: #8D6E63; border-radius: 4px;");
-        clickedBtn->setText("X");
+        clickedBtn->setText("booked");
 
         QMessageBox::information(this, "Success", "Seat Booked!");
     }
