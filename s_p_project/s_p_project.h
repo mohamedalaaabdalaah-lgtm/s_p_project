@@ -92,8 +92,8 @@ private slots:
     //----------------------------------------------sho new ticket if he has another ticket 
     void on_btn_next_ticket_clicked();
 private:
-         int current_ticket_index_in_list = -1; // ده المتغير اللي هيحفظ مكان آخر تذكرة اتعرضت
-         void display_ticket_on_screen(int i);  // فانكشن العرض عشان منكررش الكود
+         int current_ticket_index_in_list = -1; 
+         void display_ticket_on_screen(int i);  
 
 private slots:
     void handleSeatSelection();

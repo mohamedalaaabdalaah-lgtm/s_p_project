@@ -78,7 +78,7 @@ s_p_project::s_p_project(QWidget *parent)
     //باقي الكراسي هعملهم  لما ادقن المصفوفه الديناميكيه
 
     ui.stackedWidget->setCurrentIndex(0); // welcome page
-    ui.lbl_welcome->setText("Welcome to Egypt Airlines");
+    //ui.lbl_pecture_logo->setText("Welcome to Egypt Airlines");
     ui.btn_enter->setText("Get Started");
     ui.lbl_a_or_u->setText("Are you an Admin or User ?");
     ////table shit/////
@@ -101,7 +101,7 @@ s_p_project::~s_p_project()
 //when get started is pressed
 void s_p_project::on_btn_enter_clicked()
 {
-    ui.lbl_welcome->setText("loading...");
+    //ui.lbl_pecture_logo->setText("loading...");
     ui.stackedWidget->setCurrentIndex(1);// From Welcome to user/admin
 }
 void s_p_project::on_btn_choose_user_clicked()
@@ -156,12 +156,20 @@ void s_p_project::on_btn_back_login_clicked()//////// to back admin or user   //
 
 
 //-----------------------------------------------
-void s_p_project::on_btn_addplane_clicked() {
+void s_p_project::on_btn_addplane_clicked()
+{
     ui.stackedWidget->setCurrentWidget(ui.addplane_page);//from menu to addplane page ///
     
 }
 void s_p_project::on_btn_save_plane_clicked()
 {
+    if (ui.txt_add_code->text().isEmpty())
+    {
+        
+        QMessageBox::warning(this, "Error", "Please enter the Plane Code!");
+        return; 
+    }
+
     string model = ui.cmb_airplane_model->currentText().toStdString();
     int code = ui.txt_add_code->text().toInt();
 
