@@ -124,7 +124,7 @@ QLabel {
 }</string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>11</number>
          </property>
          <widget class="QWidget" name="welcome_page">
           <property name="styleSheet">
@@ -2851,11 +2851,6 @@ QComboBox QAbstractItemView {
              </property>
              <item>
               <property name="text">
-               <string>Cairo</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
                <string>Borj el Arab</string>
               </property>
              </item>
@@ -2867,6 +2862,36 @@ QComboBox QAbstractItemView {
              <item>
               <property name="text">
                <string>Aswan</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Cairo</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>manchester</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>lisbona</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>fahd</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>roma</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>london</string>
               </property>
              </item>
             </widget>
@@ -2979,7 +3004,7 @@ QComboBox QAbstractItemView {
              </item>
              <item>
               <property name="text">
-               <string>Alix</string>
+               <string>Alex</string>
               </property>
              </item>
              <item>
@@ -2989,7 +3014,7 @@ QComboBox QAbstractItemView {
              </item>
              <item>
               <property name="text">
-               <string>Bejen</string>
+               <string>Beijing</string>
               </property>
              </item>
              <item>
@@ -3015,6 +3040,31 @@ QComboBox QAbstractItemView {
              <item>
               <property name="text">
                <string>Berlin</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>FCIS</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>london</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>rome</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>amesterdam</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string/>
               </property>
              </item>
             </widget>
@@ -3054,22 +3104,37 @@ QComboBox QAbstractItemView {
              </item>
              <item>
               <property name="text">
-               <string>A</string>
+               <string>J.F.K</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>S</string>
+               <string>shanghai</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>D</string>
+               <string>istanbul</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>X</string>
+               <string>heatrow</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>fahd</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>sphinx</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>C.H.D</string>
               </property>
              </item>
             </widget>
@@ -3115,7 +3180,7 @@ QComboBox QAbstractItemView {
              </item>
              <item>
               <property name="text">
-               <string>Alix</string>
+               <string>Alex</string>
               </property>
              </item>
              <item>
@@ -3141,6 +3206,31 @@ QComboBox QAbstractItemView {
              <item>
               <property name="text">
                <string>Berlin</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>rome</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>london</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Madrid</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Barcelona</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string/>
               </property>
              </item>
             </widget>
