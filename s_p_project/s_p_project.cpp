@@ -986,6 +986,33 @@ void s_p_project::on_btn_view_ticket_clicked()
     ui.stackedWidget->setCurrentWidget(ui.view_ticket_page);
 }
 
+//////to cancel Ze ticket/////
+
+void s_p_project::on_btn_cancel_ticket_clicked() {
+    int flightCode = ui.lbl_flight_code_ticket->text().toInt();
+    QString seatStr = ui.lbl_seat_ticket->text();
+    int row = seatStr.left(seatStr.length() - 1).toInt();
+    char letter = seatStr.right(1).toLatin1()[0];
+
+    auto res = QMessageBox::question(this, "Cancel", "Confirm cancellation?");
+    if (res == QMessageBox::Yes) {
+
+        for (int i = tickets_list.size() - 1; i >= 0; i--) {
+            if (tickets_list[i].flight_number == flightCode &&
+                tickets_list[i].seat_row == row &&
+                tickets_list[i].seat_letter == letter &&
+                tickets_list[i].passport_id == current_user.passport_id)
+            {
+
+                tickets_list.erase(tickets_list.begin() + i);
+
+                QMessageBox::information(this, "Success", "Ticket removed.");
+                ui.stackedWidget->setCurrentWidget(ui.user_menu_page);
+                return;
+            }
+        }
+    }
+}
 //-------------------------------------------
 
 void s_p_project::on_btn_next_ticket_clicked()

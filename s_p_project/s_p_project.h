@@ -85,6 +85,10 @@ private slots:
     void setup_booking_page(int p_code, int f_id);
     void generate_seat_grid(int rows, int cols, std::string letters, int f_id);
 
+
+    ////
+    void on_btn_cancel_ticket_clicked();
+
     //----------------------------------------------sho new ticket if he has another ticket 
     void on_btn_next_ticket_clicked();
 private:

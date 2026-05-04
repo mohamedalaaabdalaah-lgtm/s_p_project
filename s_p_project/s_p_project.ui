@@ -137,7 +137,7 @@ QLabel {
 }</string>
          </property>
          <property name="currentIndex">
-          <number>6</number>
+          <number>4</number>
          </property>
          <widget class="QWidget" name="welcome_page">
           <property name="styleSheet">
@@ -1354,13 +1354,13 @@ QPushButton:hover {
             <rect>
              <x>70</x>
              <y>440</y>
-             <width>150</width>
+             <width>220</width>
              <height>51</height>
             </rect>
            </property>
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>220</width>
              <height>0</height>
             </size>
            </property>
@@ -1369,6 +1369,19 @@ QPushButton:hover {
            </property>
            <property name="text">
             <string>NEXT</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="btn_cancel_ticket">
+           <property name="geometry">
+            <rect>
+             <x>340</x>
+             <y>440</y>
+             <width>220</width>
+             <height>51</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Cancel ticket</string>
            </property>
           </widget>
          </widget>
@@ -1696,7 +1709,7 @@ QDateEdit::drop-down {
              </property>
              <property name="dateTime">
               <datetime>
-               <hour>6</hour>
+               <hour>4</hour>
                <minute>0</minute>
                <second>0</second>
                <year>2000</year>
