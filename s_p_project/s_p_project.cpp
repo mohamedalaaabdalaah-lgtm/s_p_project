@@ -225,6 +225,15 @@ void s_p_project::on_btn_save_flight_clicked()
     int arrHour = ui.time_arrival->time().hour();
     int arrMinute = ui.time_arrival->time().minute();
 
+    //////for date and time integritiy and shi////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    bool is_available = is_plane_available(planecode, depDay, depMonthStr, depHour, depMinute, arrHour, arrMinute);
+    if (is_available == false)
+    {
+        QMessageBox::critical(this, "Error", "the plane is not available at that time!!");
+        return;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     bool isSuccess = add_flight_gui(planecode, flightcode, departcity, arrivalcity, departair, arrivalair,
         depDay, depMonthStr, arrDay, arrMonthStr, 
         depHour, depMinute, arrHour, arrMinute);
